@@ -1,0 +1,14 @@
+.bgimg{
+    background: url("../Assets/occasionbg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.fontcolor-white{
+    color: white !important; 
+}
+
+.textCenter {
+    text-align: center;
+  }
