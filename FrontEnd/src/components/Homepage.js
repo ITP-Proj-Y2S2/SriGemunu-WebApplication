@@ -11,7 +11,7 @@ function Home() {
         <div className = "col-12 text-center">
         <h1 > Welcome to Sri Gemunu Beach Resort</h1>
         <h2>The Best on the Beach.....</h2>
-        <Link to="/reservations">
+        <Link to="/booking/BookingAvailability">
           <button className ="mt-3"> BOOK NOW </button>
         </Link> 
         </div>
