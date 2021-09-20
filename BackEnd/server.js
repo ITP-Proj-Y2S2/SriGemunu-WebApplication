@@ -52,3 +52,7 @@ app.use("/occasion", occasionRouter)
 
 const restaurantRouter = require("./routes/restroute.js")
 app.use("/restaurant",restaurantRouter);
+
+
+const employeeRouter = require("./routes/employeeRoute.js");
+app.use("/employee",employeeRouter);
