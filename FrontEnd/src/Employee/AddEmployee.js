@@ -14,8 +14,8 @@ export default class AddEmployee extends Component {
     this.onChangelastName = this.onChangelastName.bind(this);
     this.onChangecontactNumber = this.onChangecontactNumber.bind(this);
     this.onChangeaddress = this.onChangeaddress.bind(this);
-    this.onChangeaNIC = this.onChangeNIC.bind(this);
-    this.onChangemail = this.onChangeemail.bind(this);
+    this.onChangeNIC = this.onChangeNIC.bind(this);
+    this.onChangeemail = this.onChangeemail.bind(this);
     this.onChangeemployeeType = this.onChangeemployeeType.bind(this);
     this.onChangesalary = this.onChangesalary.bind(this);
     this.onChangeavailability = this.onChangeavailability.bind(this);
@@ -90,9 +90,11 @@ export default class AddEmployee extends Component {
       .then(res => {
           console.log(res.data)
           alert('Employee successfully added')
+        }).catch(e=>{
+          alert('Aula ',e);
         });
         
-    this.props.history.push('/getEmp')
+    this.props.history.push('/admin/employee/getEmp')
     window.location.reload(false);
     this.setState({
         firstName:'',
@@ -109,8 +111,10 @@ export default class AddEmployee extends Component {
   }
 
   render() {
-    return (<div className="form-wrapper">
-      <Form onSubmit={this.onSubmit}>
+    return (
+    <div className="form-wrapper mt-5">
+    <div className="container mt-5 pt-5">
+      <Form onSubmit={this.onSubmit} className = "mt-5">
 
       <Form.Group controlId="firstName">
           <Form.Label>firstName</Form.Label>
@@ -163,6 +167,8 @@ export default class AddEmployee extends Component {
         </Button>
         </div>
       </Form>
-    </div>);
+      </div>
+    </div>
+    );
   }
 }

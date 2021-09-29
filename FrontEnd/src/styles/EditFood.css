@@ -1,11 +1,11 @@
-input[type=text]{
+/* input[type=text]{
     width: 100%;
     padding: 15px 20px;
     margin: 8px 0;
     border: 2px solid rgb(0, 0, 0);
     border-radius: 4px;
     box-sizing: border-box;
-  }
+  } */
 
 .updateButton{
     margin-left: 870px;
