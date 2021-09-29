@@ -6,6 +6,7 @@ import hotelBG from '../Assets/hotelBG.jpg'
 import cov1 from '../Assets/temp1.jpg'
 import cov2 from '../Assets/temp2.jpg'
 import cov3 from '../Assets/temp3.jpg'
+import room1 from '../Assets/room1.png'
 
 
 import { DatePicker, Space } from 'antd';
@@ -84,7 +85,7 @@ class BookingScreen extends Component {
                         <h3 className="text-center mb-2">Select your room type</h3>
                         <div className="clean-blog-post mt-5">
                             <div className="row">
-                                <div className="col-lg-5 align-self-center"><img className="rounded img-fluid" src={image4} alt="" /></div>
+                                <div className="col-lg-5 align-self-center"><img className="rounded img-fluid" src={room1} alt="" /></div>
                                 <div className="col-lg-7">
                                     <h5>Deluxe Room</h5>
                                     <div className="info"></div>
@@ -99,7 +100,7 @@ class BookingScreen extends Component {
                         </div>
                         <div className="clean-blog-post mt-5">
                             <div className="row">
-                                <div className="col-lg-5 align-self-center"><img className="rounded img-fluid" src={image4} alt="" /></div>
+                                <div className="col-lg-5 align-self-center"><img className="rounded img-fluid" src={room1} alt="" /></div>
                                 <div className="col-lg-7">
                                     <h5>King Room</h5>
                                     <div className="info"></div>
