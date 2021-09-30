@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import BannerImage from "../resources/banner2blur.jpg";
+import BannerImage from "../resources/bannerEmp.jpg";
 import "../styles/Home.css";
 
 function Home() {

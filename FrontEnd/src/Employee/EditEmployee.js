@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import "../styles/EditEmployee.css";
+import "../styles/AddEmployee.css";
 
 export default class EditEmployee extends Component {
 
@@ -121,6 +121,7 @@ export default class EditEmployee extends Component {
 
   render() {
     return (<div className="form-wrapper">
+    <div className="container mt-5 pt-5">
       <Form onSubmit={this.onSubmit}>
       <Form.Group controlId="firstName">
           <Form.Label>firstName</Form.Label>
@@ -173,6 +174,7 @@ export default class EditEmployee extends Component {
         </Button></div>
         </div>
       </Form>
+      </div>
     </div>);
   }
 }
