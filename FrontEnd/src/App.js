@@ -37,6 +37,10 @@ import AddEmployee from './Employee/AddEmployee';
 import GetEmployee from "./Employee/GetEmployee";
 import EditEmployee from "./Employee/EditEmployee";
 
+//Namidu's imports
+import ViewFeedbacks from "./FeedBacks/ViewFeedbacks";
+import Feedbacks from "./FeedBacks/Feedback";
+
 
 
 function App() {
@@ -83,6 +87,10 @@ function App() {
         <Route path="/admin/employee/getEmp" exact component={GetEmployee} />
         <Route path="/admin/employee/editEmp" exact component={EditEmployee} />
         <Route path="/admin/employee" exact component={EmpMain} />
+
+          {/* Namidu's imports */}
+        <Route exact path="/admin/feedback/" exact component={Feedbacks}/>
+        <Route exact path="/admin/feedback/viewfeedbacks" exact component={ViewFeedbacks}/>
 
         <Footer />
       </Router>
