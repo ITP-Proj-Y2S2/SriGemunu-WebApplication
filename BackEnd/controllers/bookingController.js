@@ -44,5 +44,59 @@ const addBooking = async (req, res) => {
     }
 }
 
-module.exports = { addBooking };
+const getBookings = async (req, res) => {
+  try {
+      const bookings = await Booking.find()
+      //return res.json({ bookings });
+      res.send(bookings)
+  } catch (error) {
+      return res.status(400).json({ message: error })
+
+  }
+}
+
+const getBookingByID = async (req,res)=>{
+  try {
+    let bookingID = req.params.id;
+
+    //check curly braces if not working
+    const booking = await Booking.findById(bookingID)
+    res.send(booking);
+
+  } catch (error) {
+    return res.status(400).json({message: error})
+  }
+}
+
+const deleteBooking = async (req, res) => {
+  try {
+    let bookingID = req.params.id;
+    
+    const booking = await Booking.findOne({ _id: bookingID});
+    booking.status = "cancelled"
+    await booking.save();
+
+
+    const tempRoom = await Room.findOne({ _id: booking.roomId });
+   // console.log(tempRoom)
+    
+   const roomBookings = tempRoom.currentbookings;
+
+   const temp = roomBookings.filter(booking => booking.bookingId.toString()!==bookingID)
+   tempRoom.currentbookings = temp;
+    await tempRoom.save().then(() => {
+      res.status(200).send({ status: "delete success" });
+    });
+    
+
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+
+
+
+
+
+module.exports = { addBooking ,getBookings, getBookingByID, deleteBooking};
 
