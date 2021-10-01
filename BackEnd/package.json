@@ -19,6 +19,9 @@
     "moment": "^2.29.1",
     "mongoose": "^5.12.14",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.6.3"
   }
 }
