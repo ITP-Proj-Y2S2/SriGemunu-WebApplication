@@ -40,6 +40,21 @@ import EditEmployee from "./Employee/EditEmployee";
 
 
 
+//Yasas's imports
+//Routing
+import PrivateRoute from './routing/PrivateRoute'; 
+
+//Screens
+import PrivateScreen from './components/usermanagement/PrivateScreen';
+import LoginScreen from './components/usermanagement/LoginScreen';
+import RegisterScreen from './components/usermanagement/RegisterScreen';
+import ForgotPasswordScreen from './components/usermanagement/ForgotPasswordScreen';
+import ResetPasswordScreen from './components/usermanagement/ResetPasswordScreen';
+
+
+
+
+
 function App() {
   return (
 
@@ -86,6 +101,14 @@ function App() {
         <Route path="/admin/employee/getEmp" exact component={GetEmployee} />
         <Route path="/admin/employee/editEmp" exact component={EditEmployee} />
         <Route path="/admin/employee" exact component={EmpMain} />
+
+
+        {/* Yasas */}
+        <PrivateRoute exact path="/privatescreen" component={PrivateScreen} />
+        <Route exact path="/login" component={LoginScreen} />
+        <Route exact path="/register" component={RegisterScreen} />
+        <Route exact path="/forgotpassword" component={ForgotPasswordScreen}/>
+        <Route exact path="/passwordreset/:resetToken" component={ResetPasswordScreen}/>
 
         <Footer />
       </Router>
