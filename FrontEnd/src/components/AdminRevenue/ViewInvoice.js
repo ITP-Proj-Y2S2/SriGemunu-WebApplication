@@ -73,6 +73,7 @@ class ViewInvoice extends Component {
 
             
             <div className="container">
+            <br/><br/>
             <h1 class="display-2">View All Invoices</h1>
             
             <div><span style={{ color: "#27a844" }} class="spinner-border spinner-border-sm" role="status" aria-hidden="true">

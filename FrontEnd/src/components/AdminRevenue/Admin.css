@@ -22,6 +22,10 @@ body{
     background: linear-gradient(45deg,#FF5370,#ff869a);
 }
 
+.bg-c-revenuePage {
+    background: linear-gradient(45deg,#242424,#474747);
+}
+
 
 .card {
     border-radius: 5px;
@@ -48,3 +52,8 @@ body{
 .f-right {
     float: right;
 }
+
+
+
+
+  

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import './Admin.css';
+import './AdminBtn.scss';
 import axios from "axios";
+import './Clock'
+import Clock from "./Clock";
+import {Link} from 'react-router-dom';
 
 class Admin extends Component {
 
@@ -50,6 +54,7 @@ class Admin extends Component {
 
 
     render(){
+       
 
         const { fetchLast, fetchTotal } = this.state;
 
@@ -60,6 +65,7 @@ class Admin extends Component {
         const NumOfInvoices = fetchTotal;
 
         return(
+            
 
             <div className="container" style={{marginTop:"100px"}}>
             
@@ -121,7 +127,243 @@ class Admin extends Component {
 	</div>
 </div>
 {/* ////////////___end of the import cards____////////// */}  
+                <br></br>
+
                 
+{/* ////////////___import button cards____////////// */}  
+
+                <div class="container">
+  <div class="row">
+    <div class="col order-last">
+      
+
+
+
+
+
+
+
+    <div class="containerBtnCard">
+
+<div class="card">
+  <div class="face face1">
+    <div class="content">
+      <span class="stars"></span>
+      <h5 class="java">Manage Income</h5>
+      
+      <Link to="/admin/revenue" type="button" class="btn btn-outline-light">Manage</Link>
+    </div>
+  </div>
+  <div class="face face2">
+    <h5 style={{marginLeft:"20px"}}>Revenue Management</h5>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+    </div>
+    <div class="col">
+      
+      
+
+
+
+
+
+
+    <div class="containerBtnCard">
+
+<div class="card">
+  <div class="face face1">
+    <div class="content">
+      <span class="stars"></span>
+      <h5 class="java">Manage Rooms</h5>
+      
+      <Link to="#" type="button" class="btn btn-outline-light">Manage</Link>
+    </div>
+  </div>
+  <div class="face face2">
+    <h5 style={{marginLeft:"20px"}}>Room Management</h5>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+    </div>
+    <div class="col order-first">
+      
+
+
+
+
+
+
+
+    <div class="containerBtnCard">
+
+<div class="card">
+  <div class="face face1">
+    <div class="content">
+      <span class="stars"></span>
+      <h5 class="java">Manage Bookings</h5>
+      
+      <Link to="#" type="button" class="btn btn-outline-light">Manage</Link>
+    </div>
+  </div>
+  <div class="face face2">
+    <h5 style={{marginLeft:"20px"}}>Booking Management</h5>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+{/* /////////////////////2nd row of cards/////////// */}
+
+<div class="container">
+  <div class="row">
+    <div class="col order-last">
+      
+
+
+
+
+
+
+
+    <div class="containerBtnCard">
+
+<div class="card">
+  <div class="face face1">
+    <div class="content">
+      <span class="stars"></span>
+      <h5 class="java">Manage Restaurant</h5>
+      
+      <Link to="#" type="button" class="btn btn-outline-light">Manage</Link>
+    </div>
+  </div>
+  <div class="face face2">
+    <h5 style={{marginLeft:"20px"}}>Restaurant Management</h5>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+    </div>
+    <div class="col">
+      
+      
+
+
+
+
+
+
+    <div class="containerBtnCard">
+
+<div class="card">
+  <div class="face face1">
+    <div class="content">
+      <span class="stars"></span>
+      <h5 class="java">Manage Employee</h5>
+      
+      <Link to="#" type="button" class="btn btn-outline-light">Manage</Link>
+    </div>
+  </div>
+  <div class="face face2">
+    <h5 style={{marginLeft:"20px"}}>Employee Management</h5>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+    </div>
+    <div class="col order-first">
+      
+
+
+
+
+
+
+
+    <div class="containerBtnCard">
+
+<div class="card">
+  <div class="face face1">
+    <div class="content">
+      <span class="stars"></span>
+      <h5 class="java">Maintenance</h5>
+      
+      <Link to="#" type="button" class="btn btn-outline-light">Manage</Link>
+    </div>
+  </div>
+  <div class="face face2">
+    <h5 style={{marginLeft:"20px"}}>Hotel<br/>Maintenance</h5>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<br></br>
+<br></br>
+
+
+
+
 
             </div>
         )

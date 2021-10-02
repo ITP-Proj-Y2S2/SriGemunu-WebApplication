@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import CounterClass from "./CounterClass";
 import Motion from "./Motion";
+import RevenueHome from "./RevenueHome.module.scss";
+import {Link} from 'react-router-dom';
 
 class Home extends Component {
   constructor(props) {
@@ -78,7 +80,7 @@ class Home extends Component {
         
 
         <div class="card-group">
-          <div class="card border-dark mb-3" style={{ maxWidth: "18rem" }}>
+          {/* <div class="card border-dark mb-3" style={{ maxWidth: "18rem" }}>
             <div class="card-header">Total Invoices</div>
             <div class="card-body text-dark">
               <h5 class="card-title">Issued Invoices</h5>
@@ -90,40 +92,72 @@ class Home extends Component {
                 <div class="spinner-grow spinner-grow-sm" role="status"></div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <br></br>
-          <div
-            class="card border-dark mb-3"
-            style={{ maxWidth: "18rem", marginLeft: "30px" }}
-          >
-            <div class="card-header">Recent Invoice </div>
-            <div class="card-body text-dark">
-              <h5 class="card-title">{"ID:"+" "+LastID}</h5>
-              <p class="card-text"> {"Name:"+" "+LastInvoiceName}</p>
-              <p class="card-text"> {"Contact:"+" "+LastMobileNum}</p>
+          <div class="col-md-4 col-xl-3">
+            <div className="card bg-c-revenuePage order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20" style={{color:"white"}}>Total Invoices</h6>   
+                    <h2 class="text-right" style={{color:"white", fontSize:"70px"}}><span>{"0" + NumOfInvoices}</span></h2>
+                    <div style={{ color: "#27a844", marginTop:"50px"}}>
+                <div class="spinner-grow spinner-grow-sm" role="status"></div>
+              </div> <br/>
               
-              <button class="btn btn-secondary btn-lg" disabled> {"Amount:"+" "+LastInvoiceAmount}</button>
-              
+                </div>
             </div>
-          </div>
-
-          <br></br>
-
-          <div
-            class="card border-dark mb-3"
-            style={{ maxWidth: "18rem", marginLeft: "30px" }}
-          >
-            <div class="card-header">Payments</div>
-            <div class="card-body text-dark">
-              <h5 class="card-title">Total Revenue</h5>
-              <p class="card-text"> {"05 Crores"}</p>
-              <div></div>
-            </div>
-          </div>
         </div>
-        <Motion />
+
+          <br></br>
+ 
+
+
+          <div class="col-md-4 col-xl-3" style={{ maxWidth: "18rem", marginLeft: "30px" }}>
+            <div class="card bg-c-revenuePage order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20" style={{color:"white"}}>Recent Invoice</h6>   
+                    <h2 class="text-right" style={{color:"white"}}><span>{"ID:" + LastID}</span></h2>
+                    <p class="card-text"> {"Name:"+" "+LastInvoiceName}</p>
+                    <p class="card-text"> {"Contact:"+" "+LastMobileNum}</p>
+                    <button style={{fontSize:"18px", marginTop:"7px"}} class="btn btn-secondary btn-lg" disabled> {"Amount:"+" "+LastInvoiceAmount+"LKR"}</button>
+              
+                </div>
+            </div>
+        </div>
+
+
+          <br></br>
+
+
+          <div class="col-md-4 col-xl-3" style={{ maxWidth: "18rem", marginLeft: "30px" }}>
+            <div class="card bg-c-revenuePage order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20" style={{color:"white"}}>Payments</h6>   
+                    <h2 class="text-right" style={{color:"white"}}><span>{"Total Revenue"}</span></h2>
+                    <p class="card-text"> {"05 Crores"}</p>
+                    <br/> <br/> <br/> <br/>
+              
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+
+
+        {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
+        <div>
+        <Link to="/admin/revenue/add" type="button" class="btn btn-outline-dark btn-lg" >Issue Invoice</Link>
+        
+        <Link to="/admin/revenue/ViewInvoice" type="button" class="btn btn-outline-dark  btn-lg" style={{marginLeft:"30px"}}>Manage Invoices</Link>
+
+        <Link to="#" type="button" class="btn btn-warning btn-lg" style={{marginLeft:"30px"}}>Generate Report</Link>
+        </div>
+        
+
+        <br/><br/><br/>
+        
       </div>
+      
     );
   }
 }

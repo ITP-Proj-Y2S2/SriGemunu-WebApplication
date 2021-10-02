@@ -72,6 +72,7 @@ export default function Addinvoice() {
    return (
       
        <div className="container">
+       <br/><br/>
        <h1 class="display-2">Issue Customer Invoice</h1>
        <br></br>
 
@@ -227,7 +228,7 @@ export default function Addinvoice() {
 
 
 </form>
-
+<br/><br/><br/>
 </div>
           
    );
