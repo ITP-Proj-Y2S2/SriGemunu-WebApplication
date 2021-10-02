@@ -35,6 +35,7 @@ router.route("/add").post((req, res) => {
     });
 });
 
+//get all data
 router.route("/").get((req, res) => {
   
  
@@ -47,6 +48,8 @@ router.route("/").get((req, res) => {
       console.log(error2);
     });
 });
+
+
 
 //updating record
 

@@ -25,6 +25,7 @@ class ViewInvoice extends Component {
         .then(response=>{
             //console.table(response.data)
             this.setState({posts:response.data})
+            console.log(response.data)
             
         })
         .catch(error=>{
@@ -45,28 +46,6 @@ class ViewInvoice extends Component {
 
         
         const AllData = posts;
-        
-        //const FetchInvID = AllData.map(AllData=><div>{AllData.invoiceID}</div>)
-        
-
-        
-       
-        //console.log(JSON.parse(sessionStorage.getItem('posts')));
-
-        // const FetchRefID = AllData.map(AllData=><div>{AllData._id}</div>)
-        // sessionStorage.setItem("FetchRefID",FetchRefID);
-
-        // const FetchName = AllData.map(AllData=><div>{AllData.billingName}</div>)
-        // sessionStorage.setItem("FetchName",FetchName);
-
-        // const FetchMobile = AllData.map(AllData=><div>{AllData.mobileNumber}</div>)
-        // sessionStorage.setItem("FetchMobile",FetchMobile);
-
-        // sessionStorage.setItem('job',"software eng");
-        // console.log(sessionStorage.getItem('job'));
-        
-        
-
 
 
         return(
@@ -86,34 +65,15 @@ class ViewInvoice extends Component {
             <br></br>
             {btnData}
         
-            
-
-
 
             {
                 posts.length ?
                 posts.map((post,index)=> <div key={index}><h1 class="h6"key={index}>
 
                 
-                {/* Name: {post.billingName}
-                <br></br>
-                ID: {post.invoiceID} */}
-               
-                {/* table */}
-
-                {/* <table class="table table-striped">
-
-  <tbody> 
-    <tr>
-      <th scope="row">{index}</th>
-      <td>{post.invoiceID}</td>
-      <td>{post.billingName}</td>
-      <td>{post.mobileNumber}</td>
-    </tr>
 
 
-  </tbody>
-</table> */}
+   
 
 
 <div class="card w-50">
@@ -122,26 +82,13 @@ class ViewInvoice extends Component {
     <p class="card-text">Billing Name:{post.billingName}</p>
     <p class="card-text">Billing ID:{post.invoiceID}</p>
     
-    
-  {/* <script>
-    
-    {
-      function passValuesResult(){
-      var id=document.getElementById("btnID").value;
-      localStorage.setItem("textValue",id);
-      return false;
-      }
 
-    }
-  </script> */}
 
     
-    {/* <Link to="/ViewInvoice/CustomerInvoice" type="submit"  id="btnID" value={post._id} className="btn btn-primary" Click="passValuesResult()">{"View Invoice"}</Link> */}
     
     <Link to={"/admin/revenue/ViewInvoice/CustomerInvoice/"+post._id} className="btn btn-primary" value={post._id}>{"View Invoice"}</Link>
     <br></br>
-   
-    {/* <button className="btn btn-primary" onClick={this.deleteInvoice}>Delete Invoice</button> */}
+
     
     
     
@@ -149,10 +96,6 @@ class ViewInvoice extends Component {
 </div>
 
 
-
-
-{/* {sessionStorage.setItem('fetchInvoiceID',post.invoiceID)}
-{sessionStorage.setItem('fetchBillingName',post.billingName)} */}
 
                 <br></br>
                 </h1></div>):null

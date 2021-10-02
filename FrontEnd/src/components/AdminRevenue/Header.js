@@ -32,6 +32,8 @@ function Header() {
 
               <Link to="/admin/revenue/ViewInvoice" className="nav-link">All Invoices</Link>
 
+              <Link to="/admin/" className="btn btn-warning" style={{marginLeft:"50px"}}>Back to Admin Panel</Link>
+
 
 
 
