@@ -39,8 +39,12 @@ const loginHandler = async (e) => {
         );
   
         localStorage.setItem("authToken", data.token);
+        const userobj = (data.userobj)
+        localStorage.setItem("_id" , userobj._id)
+        localStorage.setItem("currentUser" , JSON.stringify(userobj))
+        
   
-        history.push("/");
+        window.location.href = "/"
       } catch (error) {
         setError(error.response.data.error);
         setTimeout(() => {
