@@ -67,8 +67,10 @@ import Cards from './components/AdminRevenue/Cards';
 import CustomerInvoice from './components/AdminRevenue/CustomerInvoice';
 
 
+
 import Data from './components/AdminRevenue/Data';
 import tempCus from './components/AdminRevenue/tempCus';
+import Admin from './components/AdminRevenue/Admin';
 //import Motion from './components/AdminRevenue/Motion';
 
 
@@ -129,7 +131,9 @@ function App() {
         <Route exact path="/passwordreset/:resetToken" component={ResetPasswordScreen}/>
 
         {/*chama's imports*/}
-        <Route path="/admin/revenue" exact component={HeaderRevenue}/>
+        {/* <Route path="/admin/revenue" exact component={HeaderRevenue}/> */}
+        <Route path="/admin/" exact component={Admin} />
+        <Route path={["/admin/revenue","/admin/revenue/add","/admin/revenue/ViewInvoice","/admin/revenue/ViewInvoice/CustomerInvoice/:id"]} exact component={HeaderRevenue}/>
         <Route path={["/admin/revenue","/admin/revenue/Clock"]} exact component={Clock}/>
     <Route path="/admin/revenue/Home" exact component={HomeRevenue}/>
     
@@ -144,6 +148,7 @@ function App() {
     {/* <Route exact path="/allinvoices"   component={() => <AllInvoices posts={posts}/>}/> */}
     <Route path="/admin/revenue/add" exact component={Addinvoice} />
     <Route path="/admin/revenue/ViewInvoice/CustomerInvoice/:id/Update" exact component={Update}/>
+    
     
 
         <Footer />

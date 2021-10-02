@@ -8,7 +8,7 @@ function Header() {
       <div className="container mt-5">
        <nav className="navbar navbar-expand-lg navbar-light bg-light">
          <div className="container-fluid">
-         <Link to="/" className="btn btn-outline-secondary" style={{margin:"10px"}}>Management Dashboard</Link>
+         <Link to="/admin/revenue" className="btn btn-outline-secondary" style={{margin:"10px"}}>Management Dashboard</Link>
 
            <button
              className="navbar-toggler"
