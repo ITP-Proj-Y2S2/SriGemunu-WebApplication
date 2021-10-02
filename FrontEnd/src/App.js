@@ -52,7 +52,27 @@ import RegisterScreen from './components/usermanagement/RegisterScreen';
 import ForgotPasswordScreen from './components/usermanagement/ForgotPasswordScreen';
 import ResetPasswordScreen from './components/usermanagement/ResetPasswordScreen';
 
+//chama's imports
 
+import CounterClass from './components/AdminRevenue/CounterClass';
+import CounterFunc from './components/AdminRevenue/CounterFunction';
+import HeaderRevenue from './components/AdminRevenue/Header';
+import Addinvoice from './components/AdminRevenue/Addinvoice'
+
+import AllInvoices from './components/AdminRevenue/AllInvoices';
+import HomeRevenue from './components/AdminRevenue/Home';
+import Update from './components/AdminRevenue/Update';
+import ViewInvoice from './components/AdminRevenue/ViewInvoice';
+import Clock from './components/AdminRevenue/Clock';
+import Cards from './components/AdminRevenue/Cards';
+import CustomerInvoice from './components/AdminRevenue/CustomerInvoice';
+
+
+
+import Data from './components/AdminRevenue/Data';
+import tempCus from './components/AdminRevenue/tempCus';
+import Admin from './components/AdminRevenue/Admin';
+//import Motion from './components/AdminRevenue/Motion';
 
 
 
@@ -112,6 +132,27 @@ function App() {
         <Route exact path="/register" component={RegisterScreen} />
         <Route exact path="/forgotpassword" component={ForgotPasswordScreen}/>
         <Route exact path="/passwordreset/:resetToken" component={ResetPasswordScreen}/>
+
+        {/*chama's imports*/}
+        {/* <Route path="/admin/revenue" exact component={HeaderRevenue}/> */}
+        <Route path="/admin/" exact component={Admin} />
+        <Route path={["/admin/revenue","/admin/revenue/add","/admin/revenue/ViewInvoice","/admin/revenue/ViewInvoice/CustomerInvoice/:id"]} exact component={HeaderRevenue}/>
+        <Route path={["/admin/revenue","/admin/revenue/Clock"]} exact component={Clock}/>
+    <Route path="/admin/revenue/Home" exact component={HomeRevenue}/>
+    
+    <Route path="/admin/revenue/TempCus" exact component={tempCus}/>
+    {/* <Route path="/Motion" exact component={Motion}/> */}
+    
+    <Route path="/admin/revenue/ViewInvoice" exact component={ViewInvoice}/>
+    <Route path="/admin/revenue/" exact component={HomeRevenue}/>
+    <Route path="/admin/revenue/ViewInvoice/CustomerInvoice/:id?" exact component={CustomerInvoice}/>
+    {/* <Route path="/allinvoices" exact component={AllInvoices }/> */}
+    {/* <Route exact path='/allinvoices' exact component={AllInvoices} /> */}
+    {/* <Route exact path="/allinvoices"   component={() => <AllInvoices posts={posts}/>}/> */}
+    <Route path="/admin/revenue/add" exact component={Addinvoice} />
+    <Route path="/admin/revenue/ViewInvoice/CustomerInvoice/:id/Update" exact component={Update}/>
+    
+    
 
         <Footer />
       </Router>

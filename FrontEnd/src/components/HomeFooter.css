@@ -7,6 +7,12 @@
     align-items: center;
     flex-direction: column;
     padding-top: 10px;
+
+/*     
+    position: fixed;
+    
+    bottom: 0;
+     */
   }
   
   .socialMedia svg {
