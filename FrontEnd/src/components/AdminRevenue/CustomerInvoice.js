@@ -462,7 +462,7 @@ class CustomerInvoice extends Component {
             </button>
           </div>
         </form>
-
+<br/><br/>
         {/* end of the form */}
       </div>
     );

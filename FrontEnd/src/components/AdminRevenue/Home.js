@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import CounterClass from "./CounterClass";
 import Motion from "./Motion";
+import RevenueHome from "./RevenueHome.module.scss";
+import {Link} from 'react-router-dom';
 
 class Home extends Component {
   constructor(props) {
@@ -93,7 +95,7 @@ class Home extends Component {
           </div> */}
 
           <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-revenuePage order-card">
+            <div className="card bg-c-revenuePage order-card">
                 <div class="card-block">
                     <h6 class="m-b-20" style={{color:"white"}}>Total Invoices</h6>   
                     <h2 class="text-right" style={{color:"white", fontSize:"70px"}}><span>{"0" + NumOfInvoices}</span></h2>
@@ -140,6 +142,19 @@ class Home extends Component {
 
 
         </div>
+
+
+        {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
+        <div>
+        <Link to="/admin/revenue/add" type="button" class="btn btn-outline-dark btn-lg" >Issue Invoice</Link>
+        
+        <Link to="/admin/revenue/ViewInvoice" type="button" class="btn btn-outline-dark  btn-lg" style={{marginLeft:"30px"}}>Manage Invoices</Link>
+
+        <Link to="#" type="button" class="btn btn-warning btn-lg" style={{marginLeft:"30px"}}>Generate Report</Link>
+        </div>
+        
+
+        <br/><br/><br/>
         
       </div>
       
