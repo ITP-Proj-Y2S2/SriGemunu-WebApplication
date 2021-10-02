@@ -42,8 +42,8 @@ exports.login = async(req,res, next)=> {
         if(!isMatch) {
             return next(new ErrorResponse("Invalid credentials", 401));
         }
-
-        sendToken(user, 200, res);
+        const userobj = await User.findOne({ email })
+        sendToken(user, 200, res, userobj);
 
     } catch (err) {
         next(err);
@@ -128,7 +128,7 @@ try {
 }
 };
 
-const sendToken = (user, statusCode,res) =>{
-    const token = user.getSignedJwtToken();
-    res.status(statusCode).json({success: true, token})
+const sendToken = (user, statusCode,res , userobj) =>{
+  const token = user.getSignedJwtToken();
+  res.status(statusCode).json({success: true, token , "userobj" : userobj})
 };

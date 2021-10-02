@@ -96,7 +96,21 @@ const deleteBooking = async (req, res) => {
 
 
 
+const getuserbooking = async (req,res)=>{
+  let userId = req.body.userId;
+  console.log(userId)
+
+  try {
+    const bookings = await Booking.find({userId : userId})
+    //console.log(bookings)
+    res.send(bookings);
+
+  } catch (error) {
+    return res.status(400).json({message: error})
+  }
+}
 
 
-module.exports = { addBooking ,getBookings, getBookingByID, deleteBooking};
+
+module.exports = { addBooking ,getBookings, getBookingByID, deleteBooking, getuserbooking};
 
