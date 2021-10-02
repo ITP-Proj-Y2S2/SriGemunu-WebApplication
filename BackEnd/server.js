@@ -63,3 +63,13 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
 
 app.use(errorHandler);
+
+//Chama's Routes
+const invoiceRouter = require("./routes/invoices.js");
+app.use("/invoice",invoiceRouter);
+
+//Chama's viewAllPostData
+app.post("/viewall", (req, res) => {
+    res.status(200).send(req.body);
+    console.log(req.body);
+  });
