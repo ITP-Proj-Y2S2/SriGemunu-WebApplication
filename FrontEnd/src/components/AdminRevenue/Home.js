@@ -349,8 +349,53 @@ class Home extends React.Component {
         
         <Link to="/admin/revenue/ViewInvoice" type="button" class="btn btn-dark btn-lg" style={{marginLeft:"30px"}}>Manage Invoices</Link>
 
-        <Link to="/admin/revenue/TempChart" type="button" class="btn btn-warning btn-lg" style={{marginLeft:"30px"}}>Generate Report</Link>
+        {/* <Link to="/admin/revenue/TempChart" type="button" class="btn btn-warning btn-lg" style={{marginLeft:"30px"}}>Generate Report</Link> */}
+
+        <Link type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{marginLeft:"30px"}}> Generate Report </Link>
+        
         </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Generate Report</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h1 style={{textAlign:"center"}}>Generate Report</h1><br/>
+
+
+
+
+             <div class="col-md"  >
+  <div class="card bg-c-revenuePage order-card" style={{borderRadius:"20px"}}>
+      <div class="card-block">
+          <h6 class="m-b-20" style={{color:"white"}}>Payments</h6>   
+          <h2 class="text-right" style={{color:"white"}}><span>{"Total Revenue"}</span></h2>
+          <p class="card-text" style={{fontSize:"55px", marginBottom:"-19px"}}> {TotalAmount}<a style={{fontSize:"30px", color:"#8f8f8f"}}>{" LKR"}</a></p>
+          
+          <br/> <br/> 
+    
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+        
+      </div>
+      <div class="modal-footer">
+        <Link type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</Link>
+        
+      </div>
+    </div>
+  </div>
+</div>
         
 
         <br/><br/><br/>
