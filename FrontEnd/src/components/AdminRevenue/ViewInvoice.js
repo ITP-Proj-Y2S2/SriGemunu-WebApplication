@@ -53,7 +53,7 @@ class ViewInvoice extends Component {
             
             <div className="container">
             <br/><br/>
-            <h1 class="display-2">View All Invoices</h1>
+            <h1 class="display-2">Manage Invoices</h1>
             
             <div><span style={{ color: "#27a844" }} class="spinner-border spinner-border-sm" role="status" aria-hidden="true">
             </span>
@@ -77,16 +77,16 @@ class ViewInvoice extends Component {
 
 
 <div class="card w-50">
-  <div class="card-body">
-    <h5 class="card-title" >Ref ID: {post._id}</h5>
-    <p class="card-text">Billing Name:{post.billingName}</p>
-    <p class="card-text">Billing ID:{post.invoiceID}</p>
+  <div class="card-body" style={{background:"#292929", borderRadius:"20px"}}>
+    <h5 class="card-title" style={{color:"white"}}>Ref ID: {post._id}</h5>
+    <p class="card-text" style={{color:"#999999"}}>Billing Name:{post.billingName}</p>
+    <p class="card-text" style={{color:"#999999"}}>Billing ID:{post.invoiceID}</p>
     
 
 
     
     
-    <Link to={"/admin/revenue/ViewInvoice/CustomerInvoice/"+post._id} className="btn btn-primary" value={post._id}>{"View Invoice"}</Link>
+    <Link to={"/admin/revenue/ViewInvoice/CustomerInvoice/"+post._id} className="btn btn-outline-warning" style={{borderRadius:"10px"}} value={post._id}>{"View Invoice"}</Link>
     <br></br>
 
     

@@ -187,7 +187,8 @@ class CustomerInvoice extends Component {
         <p class="h6" style={{ color: "grey" }}>
           {"Customer Name: " + this.state.billingName}{" "}
         </p>
-        <br></br>
+        <Link to="/admin/revenue/ViewInvoice" type="button" class="btn btn-secondary btn-sm">{"< Back to All Invoices"}</Link>
+        <br></br><br/>
         <div id="hideDiv" class="alert alert-success" hidden={this.state.visibleAlert}  role="alert">
   You have successfully updated the invoice
 </div>

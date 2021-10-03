@@ -4,12 +4,17 @@ import CounterClass from "./CounterClass";
 import Motion from "./Motion";
 import RevenueHome from "./RevenueHome.module.scss";
 import {Link} from 'react-router-dom';
+import {Bar} from 'react-chartjs-2';
 
-class Home extends Component {
+class Home extends React.Component {
+
+  
   constructor(props) {
     super(props);
+    
 
     this.state = {
+
       fetchLast: [],
       fetchTotal: [],
       AmountLKR:[],
@@ -17,11 +22,33 @@ class Home extends Component {
       TotalAmount:[],
 
       array:[],
-      loading:true
+      loading:true,
+
+      //chartJS  AmountArray invoiceIDChartArray
+//       labels: ['aneew', 'February', 'March',
+//       'April', 'May','june'],
+// datasets: [
+// {
+//  label: 'Rainfall',
+//  backgroundColor: '#e8b527',
+//  borderColor: 'rgba(0,0,0,1)',
+//  borderWidth: 2,
+//  data: [65, 59, 80, 81, 56,89]
+ 
+// }
+// ]
+
       
       
     };
+
+
+    
+    
   }
+
+  
+  
 
   async getAllInvoiceData(){
     
@@ -89,6 +116,8 @@ class Home extends Component {
       
   }
 
+  
+
  
 
   render() {
@@ -98,17 +127,51 @@ class Home extends Component {
      const { fetchLast, fetchTotal, posts } = this.state;
 
     let TotalAmount = 0.0;
+    let Amount = 0.0
+    let AmountArray=[];
+    let invoiceIDChart=""
+    let invoiceIDChartArray=[];
 
     for (let index = 0; index < fetchTotal; index++) {
       console.log("num"+index)
       console.log("Amount " + posts[index].totalAmount); 
+
+
+      Amount = parseFloat(posts[index].totalAmount);
       TotalAmount += parseFloat(posts[index].totalAmount);
+      AmountArray[index]= Amount;
+
+      invoiceIDChart = (posts[index].invoiceID);
+      invoiceIDChartArray[index] = invoiceIDChart
       
     }
 
 
+
+
     
-    console.log(TotalAmount) 
+    console.log(AmountArray);
+    console.log(invoiceIDChartArray);
+    console.log(invoiceIDChartArray[2]);
+
+  
+
+    const stateChart = {
+
+    
+    
+      labels: invoiceIDChartArray,
+      datasets: [
+        {
+          label: 'Amount LKR',
+          backgroundColor: '#ffc006',
+          borderColor: 'rgba(0,0,0,1)',
+          borderWidth: 0,
+          data: AmountArray
+        }
+      ]
+    }
+    
     
 
     //const LastData = JSON.stringify((posts[posts.length-1])) ;
@@ -121,6 +184,8 @@ class Home extends Component {
 
 
     return (
+
+      
       
       <div className="container">
         <br></br>
@@ -131,7 +196,7 @@ class Home extends Component {
           style={{width:"13%", marginTop:"-15px", marginleft:"-20px"}} class="img-fluid" alt="Responsive image"/></a>
         </h1>
         {/* https://res.cloudinary.com/srigemunuwebapp/image/upload/v1633254363/image_processing20200819-29479-swr9uc_jdecpm.gif */}
-        <br></br>
+        <br></br> 
         
         
 
@@ -167,7 +232,7 @@ class Home extends Component {
  
 
 
-          <div class="col-md-4 col-xl-3" style={{ maxWidth: "18rem", marginLeft: "30px" }}>
+          <div class="col-md-4 col-xl-3" style={{ maxWidth: "18rem", marginLeft: "100px" }}>
             <div class="card bg-c-revenuePage order-card">
                 <div class="card-block">
                     <h6 class="m-b-20" style={{color:"white"}}>Recent Invoice</h6>   
@@ -183,7 +248,7 @@ class Home extends Component {
 
           <br></br>
 
-          <div class="col-md-4 col-xl-3" style={{ maxWidth: "18rem", marginLeft: "30px" }}>
+          <div class="col-md-4 col-xl-3" style={{ maxWidth: "18rem", marginLeft: "100px" }}>
   <div class="card bg-c-revenuePage order-card">
       <div class="card-block">
           <h6 class="m-b-20" style={{color:"white"}}>Payments</h6>   
@@ -206,11 +271,78 @@ class Home extends Component {
         
         <Link to="/admin/revenue/ViewInvoice" type="button" class="btn btn-dark btn-lg" style={{marginLeft:"30px"}}>Manage Invoices</Link>
 
-        <Link to="#" type="button" class="btn btn-warning btn-lg" style={{marginLeft:"30px"}}>Generate Report</Link>
+        <Link to="/admin/revenue/TempChart" type="button" class="btn btn-warning btn-lg" style={{marginLeft:"30px"}}>Generate Report</Link>
         </div>
         
 
         <br/><br/><br/>
+
+        <div>
+
+  <div class="row" style={{marginTop:"100px"}}>
+    <div class="col-sm-5 col-md-6">
+
+
+    <div><span style={{ color: "#27a844" }} class="spinner-border spinner-border-sm" role="status" aria-hidden="true">
+            </span>
+            <p className="h6" style={{marginTop:"-23.4px", marginLeft:"25px", color: "#707070"}}>Invoice ID AND Amount in LKR</p>
+            </div>
+
+    <div  style={{width:"80%", marginLeft:"-20px", marginTop:"40px"}}>
+
+
+{/* CHART ONE */}
+<Bar
+          data={stateChart}
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+</div>
+
+    </div>
+    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+
+    <div><span style={{ color: "#27a844" }} class="spinner-border spinner-border-sm" role="status" aria-hidden="true">
+            </span>
+            <p className="h6" style={{marginTop:"-23.4px", marginLeft:"25px", color: "#707070"}}>Invoice ID AND Amount in LKR</p>
+            </div>
+
+    <div  style={{width:"80%", marginLeft:"-20px", marginTop:"40px"}}>
+
+
+{/* CHART TWO */}
+<Bar
+          data={stateChart}
+          options={{
+            title:{
+              display:true,
+              text:'text',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+</div>
+
+
+    </div>
+  </div>
+
+</div>
+
+<br/><br/><br/>
         
       </div>
       
