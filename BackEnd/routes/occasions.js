@@ -10,6 +10,9 @@ router.route("/add").post((req,res)=>{
     const menu = String(req.body.menu);
     const type = String(req.body.type);
     const bookedDate = String(req.body.bookedDate);
+    const userId = String(req.body.userId);
+
+
 
 
     const newOccasion = new occasion({
@@ -19,6 +22,7 @@ router.route("/add").post((req,res)=>{
         menu,
         type,
         bookedDate,
+        userId
     
     })
 
@@ -47,7 +51,7 @@ router.route("/").get((req,res)=>{
 
 router.route("/update/:id").put(async(req,res)=>{
     let userid = req.params.id;
-    const {time,email, guests, menu, type, bookedDate}= req.body;
+    const {time,email, guests, menu, type, bookedDate, userId}= req.body;
 
     const updateOccasion  = {
         guests,
@@ -56,6 +60,7 @@ router.route("/update/:id").put(async(req,res)=>{
         menu,
         type,
         bookedDate,
+        uerId
     }
 
     const update = await occasion.findByIdAndUpdate(userid, updateOccasion)
