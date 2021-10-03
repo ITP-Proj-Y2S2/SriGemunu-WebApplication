@@ -17,7 +17,8 @@ export class RoomAvailibilty extends Component {
       toDate: props.match.params.toDate,
       sendDBroom: null,
       roomDB: [],
-      isSuccess :false
+      isSuccess :false,
+      userId : localStorage.getItem("_id")
     };
     this.bookRoom = this.bookRoom.bind(this);
     this.checkRoomAvailability = this.checkRoomAvailability.bind(this);
@@ -37,13 +38,15 @@ export class RoomAvailibilty extends Component {
       console.log(error);
     }
 
+    let x = localStorage.getItem("_id");
+    console.log(x)
     
   }
 
   async bookRoom() {
     const bookingDetails = {
       room: this.state.sendDBroom,
-      userId: "123",
+      userId : this.state.userId,
       basis: this.state.basis,
       fromDate: moment(this.state.fromDate, "DD-MM-YYYY"),
       toDate: moment(this.state.toDate, "DD-MM-YYYY"),
