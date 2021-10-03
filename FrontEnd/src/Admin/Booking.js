@@ -16,10 +16,12 @@ const Booking = (props) => {
         <p className="card-text">To date :{booking.toDate}</p>
         <p className="card-text">Booking amount : {booking.totalAmount}</p>
         <p className="card-text">User ID :{booking.userId}</p>
-        <div style={{ float: "right" }}>
+        <h4 className="card-text">Booking Status :{booking.status}</h4>
+        {booking.status == "cancelled" ? "" : <div style={{ float: "right" }}>
           <button className="btn btn-dark m-1">Edit</button>
           <button className="btn btn-dark m-1" onClick={() => props.deleteBooking(booking._id)}>Delete</button>
-        </div>
+        </div>}
+
       </div>
     </div>
   );

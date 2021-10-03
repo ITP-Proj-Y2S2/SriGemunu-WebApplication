@@ -22,10 +22,7 @@ function AdminBooking() {
   function deleteBookingHandler(id){
     // console.log(id)
     // console.log(bookings)
-    axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => alert("delete success")).then(()=>{
-      const newList = bookings.filter((item) => item._id !== id);
-      setbookings(newList);
-    });
+    axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => alert("delete success"));
   }
 
   return (
