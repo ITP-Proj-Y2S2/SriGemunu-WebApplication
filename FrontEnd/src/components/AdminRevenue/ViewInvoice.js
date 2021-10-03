@@ -76,8 +76,8 @@ class ViewInvoice extends Component {
    
 
 
-<div class="card w-50">
-  <div class="card-body" style={{background:"#292929", borderRadius:"20px"}}>
+<div class="card w-50" style={{background:"#292929", borderRadius:"20px"}}>
+  <div class="card-body" >
     <h5 class="card-title" style={{color:"white"}}>Ref ID: {post._id}</h5>
     <p class="card-text" style={{color:"#999999"}}>Billing Name:{post.billingName}</p>
     <p class="card-text" style={{color:"#999999"}}>Billing ID:{post.invoiceID}</p>
