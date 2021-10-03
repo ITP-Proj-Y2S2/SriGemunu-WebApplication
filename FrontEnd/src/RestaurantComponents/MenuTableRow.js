@@ -11,7 +11,7 @@ export default class MenuTableRow extends Component {
     }
 
     deleteItem() {
-        axios.delete('http://localhost:5000/restaurant/delete/' + this.props.obj._id)
+        axios.delete('http://localhost:8070/restaurant/delete/' + this.props.obj._id)
             .then((res) => {
                 alert('Item successfully deleted!')
                 window.location.reload(false);
@@ -26,9 +26,10 @@ export default class MenuTableRow extends Component {
             <tr>
                 <td>{this.props.obj.item}</td>
                 <td>{this.props.obj.itemno}</td>
+                <td>{this.props.obj.itemCat}</td>
                 <td>{this.props.obj.price}</td>
                 <td>
-                    <Link to={"/editfood/" + this.props.obj._id}>
+                    <Link to={"/restaurant/editfood/" + this.props.obj._id}>
                     <Button size="sm" variant="primary" >Edit</Button>{' '}
                     </Link>
                     <Button onClick={this.deleteItem} size="sm" variant="danger">Delete</Button>

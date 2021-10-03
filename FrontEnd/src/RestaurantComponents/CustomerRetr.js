@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import MenuTableRow from './MenuTableRow';
-import "../styles/RetrFood.css";
-export default class RetrFood extends Component {
+import CustomerTableRow from './CustomerTableRow';
+import "../styles/CustomerRetr.css";
+export default class CustomerRetr extends Component {
 
   constructor(props) {
     super(props);
@@ -28,7 +28,7 @@ export default class RetrFood extends Component {
 
   DataTable() {
     return this.state.items.map((items, i) => {
-      return <MenuTableRow obj={items} key={i} />;
+      return <CustomerTableRow obj={items} key={i} />;
     });
   }
 
@@ -36,12 +36,11 @@ export default class RetrFood extends Component {
   render() {
     return (
     <div className="container">
-      <div className="retrdisplay">
+      <div className="cusdisplay">
     <table class="table">
       <thead>
         <tr>
-          <th>Item</th>
-          <th>Item No</th>
+          <th>Food Item</th>
           <th>Catergory</th>
           <th>Price</th>
           <th></th>

@@ -10,22 +10,25 @@ export default class EditFood extends Component {
     super(props)
 
     this.onChangeFoodItem = this.onChangeFoodItem.bind(this);
+    this.onChangeFoodItemCat = this.onChangeFoodItemCat.bind(this);
     this.onChangeFoodItemNo = this.onChangeFoodItemNo.bind(this);
     this.onChangeFoodPrice = this.onChangeFoodPrice.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       item: '',
+      itemCat: '',
       itemno: '',
       price: ''
     }
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/restaurant/edit/' + this.props.match.params.id)
+    axios.get('http://localhost:8070/restaurant/edit/' + this.props.match.params.id)
       .then(res => {
         this.setState({
             item: res.data.item,
+            itemCat: res.data.itemCat,
             itemno: res.data.itemno,
             price: res.data.price
         });
@@ -37,6 +40,10 @@ export default class EditFood extends Component {
 
   onChangeFoodItem(e) {
     this.setState({ item: e.target.value })
+  }
+
+  onChangeFoodItemCat(e){
+    this.setState({ itemCat: e.target.value })
   }
 
   onChangeFoodItemNo(e) {
@@ -52,11 +59,12 @@ export default class EditFood extends Component {
 
     const foodObject = {
       item: this.state.item,
+      itemCat: this.state.itemCat,
       itemno: this.state.itemno,
       price: this.state.price
     };
 
-    axios.put('http://localhost:5000/restaurant/update/' + this.props.match.params.id, foodObject)
+    axios.put('http://localhost:8070/restaurant/update/' + this.props.match.params.id, foodObject)
       .then((res) => {
         console.log(res.data)
        
@@ -64,16 +72,23 @@ export default class EditFood extends Component {
         console.log(error)
       })
       alert('Food Item successfully updated')
-    this.props.history.push('/retrfood')
+    this.props.history.push('/restaurant/retrfood')
     window.location.reload(false);
   }
 
   render() {
-    return (<div className="form-wrapper">
+    return (
+      <div className="edits">
+    <div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
         <Form.Group controlId="Item">
           <Form.Label>Item</Form.Label>
           <Form.Control type="text" value={this.state.item} onChange={this.onChangeFoodItem} />
+        </Form.Group>
+
+        <Form.Group controlId="ItemCat">
+          <Form.Label>Item Catergory</Form.Label>
+          <Form.Control type="text" value={this.state.itemCat} onChange={this.onChangeFoodItemCat} />
         </Form.Group>
 
         <Form.Group controlId="itemNo">
@@ -91,6 +106,7 @@ export default class EditFood extends Component {
         </Button></div>
         </div>
       </Form>
+    </div>
     </div>);
   }
 }

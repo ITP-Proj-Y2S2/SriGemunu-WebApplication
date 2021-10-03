@@ -8,6 +8,12 @@ const restSchema = new Schema({
         type: String,
         required: true
     },
+
+    itemCat :  {
+        type: String,
+        required: true
+    },
+    
     itemno : { 
         type: Number,
         required: true
