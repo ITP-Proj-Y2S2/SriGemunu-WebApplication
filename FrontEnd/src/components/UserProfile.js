@@ -13,7 +13,7 @@ function UserProfile() {
 
             <Tabs defaultActiveKey="1" centered>
                 <TabPane tab="Profile" key="1" >
-                    <h1>Profile</h1>
+                   <MyProfile/>
                 </TabPane>
                 <TabPane tab="Room Bookings" key="2">
                 <UserBookings/>
@@ -64,10 +64,22 @@ useEffect(async () => {
                         </div>
                         )  
                    }))}
-                   
+
                </div>
            </div>
         </div>
     )
 }
+
+
+export function MyProfile() {
+    const user = JSON.parse(localStorage.getItem("currentUser"))
+ 
+        return (
+            <div>
+                <h1>My Profile</h1>
+              
+            </div>
+        )
+    }
 
