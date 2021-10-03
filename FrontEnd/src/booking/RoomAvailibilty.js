@@ -4,7 +4,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./BookingScreen.css";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 var moment = require("moment");
+
+AOS.init({
+  duration : 500
+});
+
 
 export class RoomAvailibilty extends Component {
   constructor(props) {
@@ -175,7 +183,7 @@ export class RoomAvailibilty extends Component {
     }
 
     return (
-      <div className="bgimg p-5">
+      <div className="bgimg p-5" data-aos ="fade-down">
         <section className="clean-block-booking dark p-5">
           <div className="container">
             <div className="text-center block-heading ">

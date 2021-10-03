@@ -22,12 +22,12 @@ function AdminBooking() {
   function deleteBookingHandler(id){
     // console.log(id)
     // console.log(bookings)
-    axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => alert("delete success"));
+    axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => alert("cancellation success")).then(()=>{window.location.href = "http://localhost:3000/admin/bookings"});
   }
 
   return (
-  <div>
-    <div className="container">
+  <div style = {{marginTop: "80px"}}>
+    <div className="container mt-5" >
       <h1 className="text-center mt-2">Current Bookings</h1>
       <h5 className="text-center mt-3">
         Total {bookings.length} bookings
