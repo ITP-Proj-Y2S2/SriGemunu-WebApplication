@@ -4,11 +4,13 @@ let Restaurant = require("../models/restaurant");
 router.route("/add").post((req,res)=>{
 
     const item = req.body.item;
+    const itemCat = req.body.itemCat;
     const itemno = Number(req.body.itemno);
     const price = Number(req.body.price);
 
     const newRestaurant = new Restaurant({
         item,
+        itemCat,
         itemno,
         price
     })
@@ -49,7 +51,7 @@ router.route('/edit/:id').get((req, res) => {
         console.log(error)
       } else {
         res.json(data)
-        console.log('Student updated successfully !')
+        console.log('Food Item updated successfully !')
       }
     })
   })
@@ -58,7 +60,7 @@ router.route("/delete/:id").delete(async (req,res) => {
     let foodId = req.params.id;
 
     await Restaurant.findByIdAndDelete(foodId).then(() => {
-        res.status(200).send({status: "User Deleted"});
+        res.status(200).send({status: "Food Item Deleted"});
     }).catch((err)=>{
         console.log(err.message);
         res.status(500).send({status: "Error with deleting data",error: err.message});

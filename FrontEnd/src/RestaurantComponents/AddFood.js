@@ -11,12 +11,14 @@ export default class AddFood extends Component {
 
     // Setting up functions
     this.onChangeFoodItem = this.onChangeFoodItem.bind(this);
+    this.onChangeFoodItemCat = this.onChangeFoodItemCat.bind(this);
     this.onChangeFoodItemNo = this.onChangeFoodItemNo.bind(this);
     this.onChangeFoodPrice = this.onChangeFoodPrice.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
         item: '',
+        itemCat: '',
         itemno: '',
         price: ''
       }
@@ -24,6 +26,10 @@ export default class AddFood extends Component {
 
   onChangeFoodItem(e) {
     this.setState({ item: e.target.value })
+  }
+
+  onChangeFoodItemCat(e) {
+    this.setState({ itemCat: e.target.value })
   }
 
   onChangeFoodItemNo(e) {
@@ -39,21 +45,23 @@ export default class AddFood extends Component {
 
     const foodObject = {
         item: this.state.item,
+        itemCat: this.state.itemCat,
         itemno: this.state.itemno,
         price: this.state.price
       };
   
 
-    axios.post('http://localhost:5000/restaurant/add', foodObject)
+    axios.post('http://localhost:8070/restaurant/add', foodObject)
       .then(res => {
           console.log(res.data)
           alert('Food Item successfully added')
         });
         
-    this.props.history.push('/retrfood')
+    this.props.history.push('/restaurant/retrfood')
     window.location.reload(false);
     this.setState({
         item: '',
+        itemCat:'',
         itemno: '',
         price: ''
     });
@@ -61,13 +69,21 @@ export default class AddFood extends Component {
   }
 
   render() {
-    return (<div className="form-wrapper">
+    return (
+    
+      <div className="container mt-5 pt-5">
+    <div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
         <Form.Group controlId="Item">
           <Form.Label>Item</Form.Label>
           <Form.Control type="text" value={this.state.item} onChange={this.onChangeFoodItem} />
         </Form.Group>
 
+        <Form.Group controlId="ItemCat">
+          <Form.Label>Item Catergory</Form.Label>
+          <Form.Control type="text" value={this.state.itemCat} onChange={this.onChangeFoodItemCat} />
+        </Form.Group>
+        
         <Form.Group controlId="ItemNo">
           <Form.Label>Item No</Form.Label>
           <Form.Control type="text" value={this.state.itemno} onChange={this.onChangeFoodItemNo} />
@@ -83,6 +99,9 @@ export default class AddFood extends Component {
         </Button>
         </div>
       </Form>
-    </div>);
+    </div>
+    </div>
+    );
+    
   }
 }

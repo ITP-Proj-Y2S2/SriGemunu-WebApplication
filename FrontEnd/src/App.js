@@ -31,6 +31,7 @@ import Contact from "./pages/Contact";
 import AddFood from "./RestaurantComponents/AddFood";
 import RetrFood from "./RestaurantComponents/RetrFood";
 import EditFood from "./RestaurantComponents/EditFood";
+import CusFood from "./RestaurantComponents/CustomerRetr";
 
 //Chamudi's imports
 import EmpMain from './Employee/EmployeeMain';
@@ -69,14 +70,13 @@ function App() {
        
 
         {/* Isi's Imports   */}
-        {/* <RestNavbar/> */}
-        {/* <Route path="/restaurant" exact component={RestNavbar} /> */}
         <Route path="/restaurant" exact component={Home} />
         <Route path="/restaurant/menu" exact component={Menu} />
         <Route path="/restaurant/about" exact component={About} />
         <Route path="/restaurant/contact" exact component={Contact} />
         <Route path="/restaurant/addfood" exact component={AddFood} />
         <Route path="/restaurant/retrfood" exact component={RetrFood} />
+        <Route path="/restaurant/cusretr" exact component={CusFood} />
         <Route path="/restaurant/editfood/:id" exact component={EditFood} />
 
 
