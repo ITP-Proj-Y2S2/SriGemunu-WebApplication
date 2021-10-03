@@ -12,15 +12,39 @@ class Home extends Component {
     this.state = {
       fetchLast: [],
       fetchTotal: [],
+      AmountLKR:[],
+      posts:[],
 
+      array:[],
+      loading:true
       
       
     };
   }
 
+  async getAllInvoiceData(){
+
+          // fetch All data
+          await axios.get('http://localhost:8070/invoice/')
+          .then(response=>{
+              //console.table(response.data)
+              this.setState({loading:false, posts:response.data})
+              console.log(response.data)
+              console.log(response.data.length)
+              
+          })
+          .catch(error=>{
+              console.log(error)
+              this.setState({errorMsg: 'something went wrong with invoices'})
+          })
+    
+
+  }
 
 
-  componentDidMount() {
+   componentDidMount() {
+
+    this.getAllInvoiceData()
     axios
       .get("http://localhost:8070/invoice/view/last")
       .then((response) => {
@@ -34,7 +58,7 @@ class Home extends Component {
       });
 
   
-    axios
+       axios
       .get("http://localhost:8070/invoice/view/count")
       .then((response) => {
         //const xxy = response.data;
@@ -49,6 +73,9 @@ class Home extends Component {
         this.setState({ errorMsg: "something went wrong with invoices" });
       });
 
+
+
+
       
   }
 
@@ -56,7 +83,24 @@ class Home extends Component {
 
 
 
-    const { fetchLast, fetchTotal, errorMsg } = this.state;
+    const { fetchLast, fetchTotal, AmountLKR, posts } = this.state;
+
+    let TotalAmount = 0.0;
+
+    for (let index = 0; index < fetchTotal; index++) {
+      console.log("num"+index)
+      console.log("aneww " + posts[index].totalAmount); 
+      TotalAmount += parseFloat(posts[index].totalAmount);
+      
+      //let AMOUNT = posts[index].totalAmount
+     
+     
+      
+      
+    
+      
+    }
+    console.log(TotalAmount) 
     
 
     //const LastData = JSON.stringify((posts[posts.length-1])) ;
@@ -133,7 +177,7 @@ class Home extends Component {
                 <div class="card-block">
                     <h6 class="m-b-20" style={{color:"white"}}>Payments</h6>   
                     <h2 class="text-right" style={{color:"white"}}><span>{"Total Revenue"}</span></h2>
-                    <p class="card-text"> {"05 Crores"}</p>
+                    <p class="card-text" style={{fontSize:"15px"}}> {TotalAmount+"LKR"}</p>
                     <br/> <br/> <br/> <br/>
               
                 </div>
@@ -146,9 +190,9 @@ class Home extends Component {
 
         {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
         <div>
-        <Link to="/admin/revenue/add" type="button" class="btn btn-outline-dark btn-lg" >Issue Invoice</Link>
+        <Link to="/admin/revenue/add" type="button" class="btn btn-dark btn-lg" >Issue Invoice</Link>
         
-        <Link to="/admin/revenue/ViewInvoice" type="button" class="btn btn-outline-dark  btn-lg" style={{marginLeft:"30px"}}>Manage Invoices</Link>
+        <Link to="/admin/revenue/ViewInvoice" type="button" class="btn btn-dark btn-lg" style={{marginLeft:"30px"}}>Manage Invoices</Link>
 
         <Link to="#" type="button" class="btn btn-warning btn-lg" style={{marginLeft:"30px"}}>Generate Report</Link>
         </div>
