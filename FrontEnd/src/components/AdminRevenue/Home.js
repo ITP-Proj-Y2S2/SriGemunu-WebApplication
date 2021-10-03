@@ -14,6 +14,7 @@ class Home extends Component {
       fetchTotal: [],
       AmountLKR:[],
       posts:[],
+      TotalAmount:[],
 
       array:[],
       loading:true
@@ -23,6 +24,8 @@ class Home extends Component {
   }
 
   async getAllInvoiceData(){
+    
+    
 
           // fetch All data
           await axios.get('http://localhost:8070/invoice/')
@@ -37,14 +40,22 @@ class Home extends Component {
               console.log(error)
               this.setState({errorMsg: 'something went wrong with invoices'})
           })
+
+
+
     
 
   }
 
 
-   componentDidMount() {
 
-    this.getAllInvoiceData()
+
+   async componentDidMount() {
+    
+    
+    await this.getAllInvoiceData()
+   
+    
     axios
       .get("http://localhost:8070/invoice/view/last")
       .then((response) => {
@@ -73,33 +84,30 @@ class Home extends Component {
         this.setState({ errorMsg: "something went wrong with invoices" });
       });
 
-
-
+      
 
       
   }
+
+ 
 
   render() {
 
 
 
-    const { fetchLast, fetchTotal, AmountLKR, posts } = this.state;
+     const { fetchLast, fetchTotal, posts } = this.state;
 
     let TotalAmount = 0.0;
 
     for (let index = 0; index < fetchTotal; index++) {
       console.log("num"+index)
-      console.log("aneww " + posts[index].totalAmount); 
+      console.log("Amount " + posts[index].totalAmount); 
       TotalAmount += parseFloat(posts[index].totalAmount);
       
-      //let AMOUNT = posts[index].totalAmount
-     
-     
-      
-      
-    
-      
     }
+
+
+    
     console.log(TotalAmount) 
     
 
@@ -116,9 +124,13 @@ class Home extends Component {
       
       <div className="container">
         <br></br>
+ 
         <h1>
-          <span class="badge bg-secondary">Revenue Management Dashboard</span>
+          <span class="badge bg-secondary" >Revenue Management Dashboard</span>
+          <a ><img src="https://res.cloudinary.com/srigemunuwebapp/image/upload/v1633254573/paymentsbilling_z9rno8.gif"
+          style={{width:"13%", marginTop:"-15px", marginleft:"-20px"}} class="img-fluid" alt="Responsive image"/></a>
         </h1>
+        {/* https://res.cloudinary.com/srigemunuwebapp/image/upload/v1633254363/image_processing20200819-29479-swr9uc_jdecpm.gif */}
         <br></br>
         
         
@@ -162,7 +174,7 @@ class Home extends Component {
                     <h2 class="text-right" style={{color:"white"}}><span>{"ID:" + LastID}</span></h2>
                     <p class="card-text"> {"Name:"+" "+LastInvoiceName}</p>
                     <p class="card-text"> {"Contact:"+" "+LastMobileNum}</p>
-                    <button style={{fontSize:"18px", marginTop:"7px"}} class="btn btn-secondary btn-lg" disabled> {"Amount:"+" "+LastInvoiceAmount+"LKR"}</button>
+                    <button style={{fontSize:"18px", marginTop:"7px"}} class="btn btn-secondary btn-lg" disabled> {"Amount:"+" "+LastInvoiceAmount+" LKR"}</button>
               
                 </div>
             </div>
@@ -171,18 +183,18 @@ class Home extends Component {
 
           <br></br>
 
-
           <div class="col-md-4 col-xl-3" style={{ maxWidth: "18rem", marginLeft: "30px" }}>
-            <div class="card bg-c-revenuePage order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20" style={{color:"white"}}>Payments</h6>   
-                    <h2 class="text-right" style={{color:"white"}}><span>{"Total Revenue"}</span></h2>
-                    <p class="card-text" style={{fontSize:"15px"}}> {TotalAmount+"LKR"}</p>
-                    <br/> <br/> <br/> <br/>
-              
-                </div>
-            </div>
-        </div>
+  <div class="card bg-c-revenuePage order-card">
+      <div class="card-block">
+          <h6 class="m-b-20" style={{color:"white"}}>Payments</h6>   
+          <h2 class="text-right" style={{color:"white"}}><span>{"Total Revenue"}</span></h2>
+          <p class="card-text" style={{fontSize:"35px", marginBottom:"-19px"}}> {TotalAmount}<a style={{fontSize:"20px", color:"#8f8f8f"}}>{" LKR"}</a></p>
+          
+          <br/> <br/> <br/> <br/>
+    
+      </div>
+  </div>
+</div>
 
 
         </div>
