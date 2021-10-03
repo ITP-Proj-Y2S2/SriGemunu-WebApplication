@@ -36,17 +36,19 @@ const addRoom = async (req, res) => {
 }
 
 const updateRoom = async (req,res)=>{
+
     try {
       let roomID = req.params.id;
+    
       const {
         name,
         type,
         size,
         number,
         imageurls,
-        currentbookings,
         description,
       } = req.body;
+
 
       const updateRoom = {
         name,
@@ -54,7 +56,6 @@ const updateRoom = async (req,res)=>{
         size,
         number,
         imageurls,
-        currentbookings,
         description,
       };
 
