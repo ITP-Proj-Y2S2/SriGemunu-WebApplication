@@ -13,6 +13,7 @@ import BookingScreen from './booking/BookingScreen';
 import RoomAvailibilty from './booking/RoomAvailibilty';
 import BookingConfirmation from "./booking/BookingConfirmation";
 import AllBookings from './Admin/AdminBooking';
+import UserProfile from './components/UserProfile';
 
 //channu's imports
 
@@ -91,6 +92,8 @@ function App() {
         <Route path="/booking/BookingAvailability/RoomAvailibilty/:room/:basis/:fromDate/:toDate" exact component={RoomAvailibilty} />
         <Route path="/booking/BookingAvailability/BookingConfirmation" exact component={BookingConfirmation} />
         <Route path="/admin/bookings" exact component={AllBookings} />
+        <PrivateRoute path="/user/userprofile" exact component={UserProfile} />
+        
 
 
 
