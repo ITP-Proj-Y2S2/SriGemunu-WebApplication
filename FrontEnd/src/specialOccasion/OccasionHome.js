@@ -6,9 +6,9 @@ import './EventDesign.css';
 export default function OccasionHome() {
 
   return (
-    <div className="bgimg textCenter">
-      <div className="d-flex justify-content-center p-5"></div>
-      <h1 className="display-1 fontcolor-white">Events</h1>
+    <div className="bgimg textCenter" >
+      <div className="d-flex justify-content-center p-5 m-5"></div>
+      <h1 className="display-1 fontcolor-white md-5">Events</h1>
 
       <div className="row md-5  align-items-center">
         <div className="col-sm-6">
