@@ -62,7 +62,7 @@ export default function AddOccasion(props) {
         <div className="bgimg textCenter ">
             <div className = "mt-5">
             <h1 className="display-1 fontcolor-white">Events</h1>
-            <h5 className="fontcolor-white">Selected Event Type : {eventType}</h5>
+            <h5 className="fontcolor-white">Selected Event Type : {type}</h5>
             </div>
             <div class="row">
                 <div class="col-6">
