@@ -4,7 +4,7 @@ import CounterClass from "./CounterClass";
 import Motion from "./Motion";
 import RevenueHome from "./RevenueHome.module.scss";
 import {Link} from 'react-router-dom';
-import {Bar} from 'react-chartjs-2';
+import {Bar,Pie,Doughnut} from 'react-chartjs-2';
 
 class Home extends React.Component {
 
@@ -138,6 +138,18 @@ class Home extends React.Component {
     let totalDates=0;
     let totalDatesArray=[];
 
+    let noOfAdults=0;
+    let TotalAdults=0;
+    
+
+    let noOfChild=0;
+    let TotalChild=0;
+    
+
+    let childAdultArray=[];
+    
+
+
 
     for (let index = 0; index < fetchTotal; index++) {
       console.log("num"+index)
@@ -156,6 +168,18 @@ class Home extends React.Component {
 
       totalDates = parseFloat(posts[index].totalDates);
       totalDatesArray[index]= totalDates
+
+      noOfAdults=parseInt(posts[index].noOfAdults);
+      TotalAdults += parseInt(posts[index].noOfAdults);
+      
+
+      noOfChild=parseInt(posts[index].noOfChildern);
+      TotalChild += parseInt(posts[index].noOfChildern);
+      
+
+      childAdultArray = [TotalAdults,TotalChild]
+
+
       
     }
 
@@ -169,6 +193,8 @@ class Home extends React.Component {
 
     console.log(invoiceNameArray);
     console.log(totalDatesArray);
+    
+    console.log(childAdultArray);
 
   
 
@@ -200,6 +226,26 @@ class Home extends React.Component {
           borderColor: 'rgba(0,0,0,1)',
           borderWidth: 0,
           data: totalDatesArray
+        }
+      ]
+    }
+
+    const statePieChart = {
+      labels: ['Adult', 'Kids'],
+      datasets: [
+        {
+          label: 'Adult Kids',
+          backgroundColor: [
+            '#007aff',
+            '#34c759',
+            
+          ],
+          hoverBackgroundColor: [
+          '#00438c',
+          '#1d6d31',
+          
+          ],
+          data: childAdultArray
         }
       ]
     }
@@ -303,8 +349,53 @@ class Home extends React.Component {
         
         <Link to="/admin/revenue/ViewInvoice" type="button" class="btn btn-dark btn-lg" style={{marginLeft:"30px"}}>Manage Invoices</Link>
 
-        <Link to="/admin/revenue/TempChart" type="button" class="btn btn-warning btn-lg" style={{marginLeft:"30px"}}>Generate Report</Link>
+        {/* <Link to="/admin/revenue/TempChart" type="button" class="btn btn-warning btn-lg" style={{marginLeft:"30px"}}>Generate Report</Link> */}
+
+        <Link type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{marginLeft:"30px"}}> Generate Report </Link>
+        
         </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Generate Report</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h1 style={{textAlign:"center"}}>Generate Report</h1><br/>
+
+
+
+
+             <div class="col-md"  >
+  <div class="card bg-c-revenuePage order-card" style={{borderRadius:"20px"}}>
+      <div class="card-block">
+          <h6 class="m-b-20" style={{color:"white"}}>Payments</h6>   
+          <h2 class="text-right" style={{color:"white"}}><span>{"Total Revenue"}</span></h2>
+          <p class="card-text" style={{fontSize:"55px", marginBottom:"-19px"}}> {TotalAmount}<a style={{fontSize:"30px", color:"#8f8f8f"}}>{" LKR"}</a></p>
+          
+          <br/> <br/> 
+    
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+        
+      </div>
+      <div class="modal-footer">
+        <Link type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</Link>
+        
+      </div>
+    </div>
+  </div>
+</div>
         
 
         <br/><br/><br/>
@@ -367,6 +458,36 @@ class Home extends React.Component {
           }}
         />
 </div>
+
+{/* <div><span style={{ color: "#27a844",marginLeft:"-325px",marginTop:"-10px" }} class="spinner-border spinner-border-sm" role="status" aria-hidden="true">
+            </span>
+            <p className="h6" style={{marginTop:"30px", marginLeft:"-280px", color: "#707070"}}>Total Spent Days</p>
+            </div> */}
+
+<div  style={{width:"50%", marginLeft:"-230px", marginTop:"40px"}}>
+<div className="container" style={{marginBottom:"50px", marginRight:"-30px"}}>
+<span style={{ color: "#27a844" }} class="spinner-border spinner-border-sm" role="status" aria-hidden="true">
+            </span>
+<p className="h6" style={{marginLeft:"30px", marginTop:"-20px", color: "#707070"}}>Total Adults & Kids</p>
+</div>
+
+{/* CHART THREE */}
+<Doughnut
+          data={statePieChart}
+          options={{
+            title:{
+              display:true,
+              text:'Pie Chart',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+</div>
+
 
 
     </div>
