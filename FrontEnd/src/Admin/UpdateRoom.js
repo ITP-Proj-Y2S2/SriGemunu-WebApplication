@@ -1,34 +1,34 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 
- const AddRoom=()=>{
+ const UpdateRoom=(props)=>{
 
-    const[name, setName] = useState("");
-    const[type, setType] = useState("");
-    const[size, setSize] = useState(0);
-    const[number, setNumber] = useState(0);
-    const[imageurls, setImageurls] = useState([]);
-    const[currentbookings, setCurrentbookings] = useState([]);
-    const[description, setDescription] = useState("");
+    const[id, setId] = useState(props.location.state.roomId);
+    const[name, setName] = useState(props.location.state.roomName);
+    const[type, setType] = useState(props.location.state.roomType);
+    const[size, setSize] = useState(props.location.state.roomSize);
+    const[number, setNumber] = useState(props.location.state.roomNumber);
+    const[imageurls, setImageurls] = useState(props.location.state.roomImageURLs);
+    const[currentbookings, setCurrentbookings] = useState(props.location.state.roomName);
+    const[description, setDescription] = useState(props.location.state.roomdescription);
 
 
     function senddata(e){
         e.preventDefault();
 
-        const newRoom = {
+        const updateRoom = {
           name,
           type,
           size :Number(size),
           number: Number(number),
           imageurls :[imageurls],
-          currentbookings : [currentbookings],
           description,
         };
 
-        console.log(newRoom)
+        console.log(updateRoom)
 
-        axios.post("/api/rooms/add",newRoom).then(()=>{
-            alert("Room added")
+        axios.put(`/api/rooms/update/${id}`,updateRoom).then(()=>{
+            alert("Room Updated")
         }).catch((err)=>{
             alert(err)
         })
@@ -38,13 +38,13 @@ import axios from 'axios';
       
         <div className = "container p-5 mt-5">
            
-           <h1 className = "text-center mt-5"> Add new Room </h1>
+           <h1 className = "text-center mt-5"> Update Room </h1>
            <div className="parent-div">
             <div className = "p-5 mt-3">
             <form onSubmit={senddata}>
                 <div className="form-group mt-3">
                     <label for="name"  >Name</label>
-                    <input type="text" className="form-control" id="name" onChange = {(e)=>{
+                    <input type="text" className="form-control" id="name" value={name} onChange = {(e)=>{
                         setName(e.target.value);
                     }} />
                 </div>
@@ -59,28 +59,28 @@ import axios from 'axios';
 
                 <div className="form-group mt-3">
                     <label for="size"  >Size</label>
-                    <input type="text" className="form-control" id="size" onChange = {(e)=>{
+                    <input type="text" className="form-control" id="size"  value={size} onChange = {(e)=>{
                         setSize(e.target.value);
                     }} />
                 </div>
 
                 <div className="form-group mt-3">
                     <label for="number"  >Number</label>
-                    <input type="text" className="form-control" id="number" onChange = {(e)=>{
+                    <input type="text" className="form-control" id="number" value={number}  onChange = {(e)=>{
                         setNumber(e.target.value);
                     }} />
                 </div>
 
                 <div className="form-group mt-3">
                     <label for="imageurls" >Image URL</label>
-                    <input type="text" className="form-control" id="imageurls" onChange = {(e)=>{
+                    <input type="text" className="form-control" id="imageurls"  value={imageurls} onChange = {(e)=>{
                         setImageurls(e.target.value);
                     }}/>
                 </div>
 
                 <div className="form-group mt-3">
                     <label for="description" >Description</label>
-                    <textarea  type="text" className="form-control" id="description" onChange ={(e)=>{
+                    <textarea  type="text" className="form-control" id="description" value={description} onChange ={(e)=>{
                         setDescription(e.target.value);
                     }}/>
                 </div>
@@ -97,4 +97,4 @@ import axios from 'axios';
     )
 }
 
-export default AddRoom;
+export default UpdateRoom;

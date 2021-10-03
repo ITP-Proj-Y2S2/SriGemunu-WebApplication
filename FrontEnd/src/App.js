@@ -14,6 +14,7 @@ import RoomAvailibilty from './booking/RoomAvailibilty';
 import BookingConfirmation from "./booking/BookingConfirmation";
 import AllBookings from './Admin/AdminBooking';
 import UserProfile from './components/UserProfile';
+import UpdateRoom from "../src/Admin/UpdateRoom"
 
 //channu's imports
 
@@ -87,11 +88,13 @@ function App() {
         {/* binath's imports */}
         <Route path="/admin/rooms" exact component={Homescreen} />
         <Route path="/admin/addRoom" exact component={AddRoom} />
+        <Route path="/admin/UpdateRoom" exact component={UpdateRoom} />
         <Route path="/booking/BookingAvailability" exact component={BookingScreen} />
         <Route path="/booking/BookingAvailability/RoomAvailibilty/:room/:basis/:fromDate/:toDate" exact component={RoomAvailibilty} />
         <Route path="/booking/BookingAvailability/BookingConfirmation" exact component={BookingConfirmation} />
         <Route path="/admin/bookings" exact component={AllBookings} />
         <PrivateRoute path="/user/userprofile" exact component={UserProfile} />
+        
         
 
 
