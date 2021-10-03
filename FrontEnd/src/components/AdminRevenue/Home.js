@@ -132,6 +132,13 @@ class Home extends React.Component {
     let invoiceIDChart=""
     let invoiceIDChartArray=[];
 
+    let invoiceName=""
+    let invoiceNameArray=[];
+
+    let totalDates=0;
+    let totalDatesArray=[];
+
+
     for (let index = 0; index < fetchTotal; index++) {
       console.log("num"+index)
       console.log("Amount " + posts[index].totalAmount); 
@@ -143,6 +150,12 @@ class Home extends React.Component {
 
       invoiceIDChart = (posts[index].invoiceID);
       invoiceIDChartArray[index] = invoiceIDChart
+
+      invoiceName = (posts[index].billingName);
+      invoiceNameArray[index] = invoiceName
+
+      totalDates = parseFloat(posts[index].totalDates);
+      totalDatesArray[index]= totalDates
       
     }
 
@@ -153,6 +166,9 @@ class Home extends React.Component {
     console.log(AmountArray);
     console.log(invoiceIDChartArray);
     console.log(invoiceIDChartArray[2]);
+
+    console.log(invoiceNameArray);
+    console.log(totalDatesArray);
 
   
 
@@ -168,6 +184,22 @@ class Home extends React.Component {
           borderColor: 'rgba(0,0,0,1)',
           borderWidth: 0,
           data: AmountArray
+        }
+      ]
+    }
+
+    const stateChartTWO = {
+
+    
+    
+      labels: invoiceNameArray,
+      datasets: [
+        {
+          label: 'Total Spent Dates',
+          backgroundColor: '#ffc006',
+          borderColor: 'rgba(0,0,0,1)',
+          borderWidth: 0,
+          data: totalDatesArray
         }
       ]
     }
@@ -285,7 +317,7 @@ class Home extends React.Component {
 
     <div><span style={{ color: "#27a844" }} class="spinner-border spinner-border-sm" role="status" aria-hidden="true">
             </span>
-            <p className="h6" style={{marginTop:"-23.4px", marginLeft:"25px", color: "#707070"}}>Invoice ID AND Amount in LKR</p>
+            <p className="h6" style={{marginTop:"-23.4px", marginLeft:"25px", color: "#707070"}}>Invoice ID & Amount in LKR</p>
             </div>
 
     <div  style={{width:"80%", marginLeft:"-20px", marginTop:"40px"}}>
@@ -313,7 +345,7 @@ class Home extends React.Component {
 
     <div><span style={{ color: "#27a844" }} class="spinner-border spinner-border-sm" role="status" aria-hidden="true">
             </span>
-            <p className="h6" style={{marginTop:"-23.4px", marginLeft:"25px", color: "#707070"}}>Invoice ID AND Amount in LKR</p>
+            <p className="h6" style={{marginTop:"-23.4px", marginLeft:"25px", color: "#707070"}}>Total Spent Days</p>
             </div>
 
     <div  style={{width:"80%", marginLeft:"-20px", marginTop:"40px"}}>
@@ -321,7 +353,7 @@ class Home extends React.Component {
 
 {/* CHART TWO */}
 <Bar
-          data={stateChart}
+          data={stateChartTWO}
           options={{
             title:{
               display:true,
