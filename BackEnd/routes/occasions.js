@@ -87,9 +87,10 @@ await occasion.findByIdAndDelete(userid)
 
 router.route("/get/:id").get(async(req,res)=> {
     let userid= req.params.id; 
-  const user=  await occasion.findById(userid)
-   .then((user)=>{
-       res.status(200).send({status: "occasion fetched", user})
+  const occasionObj=  await occasion.find({userId : userid})
+   .then((occasionObj)=>{
+       console.log(occasionObj)
+       res.status(200).send({status: "occasion fetched", occasionObj})
    }).catch((err) =>{
        console.log(err);
        res.status(500).send({status:"error"});
