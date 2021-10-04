@@ -80,7 +80,7 @@ export class RoomAvailibilty extends Component {
       this.setState({
         isSuccess: true,
       });
-      //using histort to navigate to booking succ page
+      //using histort to navigate to booking success page
       
 
     } catch (error) {
@@ -88,45 +88,6 @@ export class RoomAvailibilty extends Component {
     }
   }
 
-  // calculateTotal(totDays, roomType, basis){
-  //   let totalAmount;
-  //   switch(roomType){
-  //     case "King":
-  //       switch(basis){
-  //         case "BB":
-  //           totalAmount = totDays * 6000
-  //           break;
-
-  //         case "FB":
-  //           totalAmount = totDays * 7500
-  //           break;
-
-  //         case "RoomOnly":
-  //           totalAmount = totDays * 4000
-  //           break;
-  //       }
-  //       break;
-  //     case "Deluxe":{
-  //       switch(basis){
-  //         case "BB":
-  //           totalAmount = totDays * 500
-  //           break;
-
-  //         case "FB":
-  //           totalAmount = totDays * 6500
-  //           break;
-
-  //         case "RoomOnly":
-  //           totalAmount = totDays * 3000
-  //           break;
-  //       }
-  //       break;
-  //     }
-  //   }
-  //   this.setState({
-  //     totalAmount: totalAmount,
-  //   });
-  // }
 
   checkRoomAvailability() {
     const roomType = this.state.roomType;
@@ -143,8 +104,8 @@ export class RoomAvailibilty extends Component {
       totalDays: totalDays,
     });
 
-    //call calculate amount method
-    // calculateTotal(totalDays, roomType, basis);
+  
+    // calculating total ammounts
     let totalAmount;
     switch(roomType){
       case "King":
@@ -182,6 +143,7 @@ export class RoomAvailibilty extends Component {
     this.setState({
       totalAmount: totalAmount,
     });
+    // end of calculating total ammounts
 
 
     let rooms = this.state.roomDB;
