@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import { Tabs } from 'antd';
+import { Tag, Divider } from 'antd';
+import Swal from "sweetalert2"
 
 const { TabPane } = Tabs;
 
@@ -48,25 +50,39 @@ useEffect(async () => {
   
 }, [])
 
+function cancelBooking(id){
+    // console.log(id)
+    // console.log(bookings)
+    axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => Swal.fire("Success" , "Booking Cancelled", "success")).then(()=>{ window.location.href = "http://localhost:3000/user/userprofile"});
+    
+  }
+
     return (
         <div>
             
-           <div className="row">
+           <div className="row justify-content-center">
                <div class="col-md-6">
                    
                    {bookings && (bookings.map(booking =>{
                        return( 
-                       <div className ="roombox m-4">
-                        <h4>Room {booking.room}</h4>
-                        <h5>Check in Date {booking.fromDate}</h5>
-                        <h5>Check out Date {booking.toDate}</h5>
-                        <h5>Booking status {booking.status && "confirmed" }</h5>
+                       <div className ="roombox m-4 p-3">
+                        <h5>{booking.room}</h5>
+                        <p><b>Check in Date : </b>{booking.fromDate}</p>
+                        <p><b>Check out Date : </b> {booking.toDate}</p>
+                        <p><b>Booking status : </b>{booking.status == "cancelled" ?  <Tag color="orange">cancelled</Tag> :<Tag color="cyan">Success</Tag> }</p>
+
+                        {booking.status == "cancelled" ? "cancelled" : <div className = "text-right">
+                            <button className = "btn btn-dark" onClick = {()=>{cancelBooking(booking._id)}}>Cancel</button>
+                        </div>}
+                        
+
                         </div>
                         )  
                    }))}
 
                </div>
            </div>
+         
         </div>
     )
 }

@@ -85,7 +85,7 @@ const deleteBooking = async (req, res) => {
    const temp = roomBookings.filter(booking => booking.bookingId.toString()!==bookingID)
    tempRoom.currentbookings = temp;
     await tempRoom.save().then(() => {
-      res.status(200).send({ status: "delete success" });
+      res.status(200).send({ status: "Cancellation success" });
     });
     
 
