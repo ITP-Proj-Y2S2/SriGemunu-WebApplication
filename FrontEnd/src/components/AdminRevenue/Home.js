@@ -116,6 +116,21 @@ class Home extends React.Component {
       
   }
 
+
+  btnState = {
+    loading: false
+  }
+
+  fetchBtnData = () => {
+
+    this.setState({loading:true});
+
+    setTimeout(()=>{
+      this.setState({loading:false});
+
+    },2000)
+  }
+
   
 
  
@@ -124,7 +139,7 @@ class Home extends React.Component {
 
 
 
-     const { fetchLast, fetchTotal, posts } = this.state;
+     const { fetchLast, fetchTotal, posts, loading } = this.state;
 
     let TotalAmount = 0.0;
     let Amount = 0.0
@@ -249,6 +264,8 @@ class Home extends React.Component {
         }
       ]
     }
+
+
     
     
 
@@ -260,6 +277,7 @@ class Home extends React.Component {
     const LastInvoiceAmount = fetchLast.totalAmount;
     const NumOfInvoices = fetchTotal;
 
+    new Date().toLocaleString()
 
     return (
 
@@ -355,47 +373,7 @@ class Home extends React.Component {
         
         </div>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Generate Report</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h1 style={{textAlign:"center"}}>Generate Report</h1><br/>
-
-
-
-
-             <div class="col-md"  >
-  <div class="card bg-c-revenuePage order-card" style={{borderRadius:"20px"}}>
-      <div class="card-block">
-          <h6 class="m-b-20" style={{color:"white"}}>Payments</h6>   
-          <h2 class="text-right" style={{color:"white"}}><span>{"Total Revenue"}</span></h2>
-          <p class="card-text" style={{fontSize:"55px", marginBottom:"-19px"}}> {TotalAmount}<a style={{fontSize:"30px", color:"#8f8f8f"}}>{" LKR"}</a></p>
-          
-          <br/> <br/> 
-    
-      </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-        
-      </div>
-      <div class="modal-footer">
-        <Link type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</Link>
-        
-      </div>
-    </div>
-  </div>
-</div>
+ 
         
 
         <br/><br/><br/>
@@ -494,6 +472,177 @@ class Home extends React.Component {
   </div>
 
 </div>
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Generate Report</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h1 style={{textAlign:"center"}}>Generate Report</h1><br/>
+
+
+
+
+             <div class="col-md"  >
+  <div class="card bg-c-revenuePage order-card" style={{borderRadius:"20px"}}>
+      <div class="card-block">
+          <h6 class="m-b-20" style={{color:"white"}}>Payments</h6>   
+          <h2 class="text-right" style={{color:"white"}}><span>{"Total Revenue"}</span></h2>
+          <p class="card-text" style={{fontSize:"55px", marginBottom:"-19px"}}> {TotalAmount}<a style={{fontSize:"30px", color:"#8f8f8f"}}>{" LKR"}
+
+          
+
+          </a></p>
+          
+          
+          <br/> <br/> 
+    
+      </div>
+      <a ><img src="https://res.cloudinary.com/srigemunuwebapp/image/upload/v1633343686/monophy_jmgnns.gif"
+          style={{width:"25%", marginTop:"-255px", marginLeft:"480px"}} class="img-fluid" alt="Responsive image"/></a>
+  </div>
+</div>
+
+<h4 style={{textAlign:"center"}}>Sri Gemunu Beach Resort</h4>
+<p style={{textAlign:"center", marginTop:"-10px", color:"grey"}}>Auto Generated Invoice Report</p>
+
+<p style={{textAlign:"center"}}>
+  <button class="btn btn-warning" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"
+  onClick={this.fetchBtnData}
+  disabled={loading}
+
+  >
+  {loading && <i className="spinner-border spinner-border-sm" style={{ marginRight: "7px" }}></i>}
+    Generate Revenue Report
+  </button>
+
+  {/* <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" style={{marginLeft:"20px"}}>
+  Generate
+  </button> */}
+
+</p>
+
+{/* ////////////////////////////////////////////////// */}
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <h1 >Sri Gemunu Beach Resort</h1>
+    <p style={{marginTop:"-10px", color:"grey"}}>Official income statement ✔</p>
+
+
+    {/* //////////////////////////TABLE////////////////////// */}
+
+    <table class="table table-borderless table-dark">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Invoice ID</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Room ID</th>
+      <th scope="col">Amount LKR</th>
+    </tr>
+  </thead>
+  </table>
+
+    {
+                posts.length ?
+                posts.map((posts,index)=> <div key={index}><h1 class="h6"key={index}>
+
+                
+                {/* <tr>
+     
+      <td>{post._id}</td>
+      <td>{post.billingName}</td>
+      <td>{post.invoiceID}</td>
+    </tr> */}
+    <table class="table table-borderless table-dark" style={{marginTop:"-16px"}}>
+
+  <tbody>
+    <tr>
+      <th scope="row">{index}</th>
+      <td>{posts.invoiceID}</td>
+      <td>{posts.billingName}</td>
+      <td>{posts.roomNumber}</td>
+      <td>{posts.totalAmount}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+
+
+
+
+   
+
+
+                </h1></div>):null
+                
+            }
+           
+
+            <table class="table table-borderless table-dark">
+
+  <tbody>
+
+    <tr>
+      <th scope="row"></th>
+      <td style={{fontSize:"25px"}} colspan="2">Total Amount LKR</td>
+      <td style={{fontSize:"25px"}}>{TotalAmount+"LKR"}</td>
+      
+    </tr>
+
+    <tr>
+      <th scope="row"></th>
+      <td style={{fontSize:"25px"}} colspan="2">Total Invoices</td>
+      <td style={{fontSize:"25px"}}>{"0"+posts.length}</td> 
+       
+    </tr>
+
+    <tr>
+      <th scope="row"></th>
+      <td style={{fontSize:"25px"}} colspan="2">Date Issued</td>
+      <td style={{fontSize:"25px"}}>{new Date().toLocaleString() + ""}</td> 
+       
+    </tr>
+  </tbody>
+</table>
+
+
+
+    {/* //////////////////////////END OF TABLE////////////////////// */}
+
+  </div>
+</div>
+
+
+
+{/* ////////////////////////////////////////////////// */}
+<div class="collapse" id="collapseExample2">
+  <div class="card card-body">
+   ane ane
+  </div>
+</div>
+
+        
+      </div>
+      <div class="modal-footer">
+        <Link type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</Link>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <br/><br/><br/>
         
