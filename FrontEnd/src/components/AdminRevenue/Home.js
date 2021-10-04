@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component,PropTypes } from "react";
 import axios from "axios";
 import CounterClass from "./CounterClass";
 import Motion from "./Motion";
@@ -7,6 +7,8 @@ import RevenueCSS from "./Revenue.module.css"
 import {Link} from 'react-router-dom';
 import {Bar,Pie,Doughnut} from 'react-chartjs-2';
 import PinInput from "react-pin-input";
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas';
 
 class Home extends React.Component {
 
@@ -142,6 +144,28 @@ class Home extends React.Component {
     },2000)
   }
   
+
+  printDocument() {
+    const input = document.getElementById('collapseExample');
+    html2canvas(input)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        pdf.setFontSize(9)
+        pdf.addImage(imgData, 'JPEG', 0, 0);
+        pdf.text(60,270,'Verified by Head of Revenue Manager')
+        pdf.text(60,280,'© Sri Gemunu Beach Resort 2021')
+        // pdf.output('dataurlnewwindow');
+        pdf.save("RevenueData.pdf");
+      })
+    ;
+  }
+
+  // printDocument() { 
+
+  //   var doc = new jsPDF('landscape','px','a4','false')
+  //   doc.text
+  // }
 
  
 
@@ -612,6 +636,11 @@ class Home extends React.Component {
   </tbody>
 </table>
 
+
+
+
+
+
 <div className="container" style={{textAlign:"center"}}>
 <p style={{marginTop:"10px", color:"grey"}}>Enter Security PIN to Issue PDF</p>
         <PinInput style={{color:"grey"}}
@@ -636,18 +665,11 @@ class Home extends React.Component {
               
               )}/></a> </div>
 
-{/* <div style={{width:"10%", marginLeft:"330px", marginTop:"20px"}} 
-        >
-  <a><img src="https://res.cloudinary.com/srigemunuwebapp/image/upload/v1633357016/ezgif.com-gif-maker_1_zx51ld.gif"
-          class="img-fluid" alt="Responsive image" 
-            hidden={(
-              value!== !"9920"
-              
-              )}/></a> </div> */}
-
 
 
     {/* //////////////////////////END OF TABLE////////////////////// */}
+
+    
 
   </div>
 
@@ -659,10 +681,9 @@ class Home extends React.Component {
               value!=="9920" 
               
               )}
-
+              onClick={this.printDocument}
 >Issue PDF</button></div>
 </div>
-
 
 
 
@@ -670,9 +691,41 @@ class Home extends React.Component {
 {/* ////////////////////////////////////////////////// */}
 <div class="collapse" id="collapseExample2">
   <div class="card card-body">
-   ane ane
+   
+   
+
+{/* paste code here */}
+
+
+
+
+
+
+
+
   </div>
+
 </div>
+
+
+  {/* <div>
+      <div className="mb5">
+        <button onClick={this.printDocument}>Print</button>
+      </div>
+      <div id="divToPrint" className="mt4" style={{
+        
+        backgroundColor: 'grey',
+        width: '200mm',
+        minHeight: '297mm',
+        marginLeft: 'auto',
+        marginRight: 'auto'}}
+
+      
+      >
+        <div>Note: Here the dimensions of div are same as A4</div> 
+        <div>You Can add any component here</div>
+      </div>
+    </div> */}
 
         
       </div>
