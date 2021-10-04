@@ -6,6 +6,7 @@ import Motion from "./Motion";
 import RevenueCSS from "./Revenue.module.css"
 import {Link} from 'react-router-dom';
 import {Bar,Pie,Doughnut} from 'react-chartjs-2';
+import PinInput from "react-pin-input";
 
 class Home extends React.Component {
 
@@ -24,22 +25,9 @@ class Home extends React.Component {
 
       array:[],
       loading:true,
-
-      //chartJS  AmountArray invoiceIDChartArray
-//       labels: ['aneew', 'February', 'March',
-//       'April', 'May','june'],
-// datasets: [
-// {
-//  label: 'Rainfall',
-//  backgroundColor: '#e8b527',
-//  borderColor: 'rgba(0,0,0,1)',
-//  borderWidth: 2,
-//  data: [65, 59, 80, 81, 56,89]
- 
-// }
-// ]
-
+      successIcon:true,
       
+      value: ""
       
     };
 
@@ -132,6 +120,27 @@ class Home extends React.Component {
     },2000)
   }
 
+
+  onChange = value => {
+    this.setState({ value });
+  };
+
+  onClear = () => {
+    this.setState({
+      value: ""
+    });
+    this.pin.clear();
+  };
+
+  fetchSucessIconData = () => {
+
+    this.setState({successIcon:true});
+
+    setTimeout(()=>{
+      this.setState({successIcon:false});
+
+    },2000)
+  }
   
 
  
@@ -140,7 +149,7 @@ class Home extends React.Component {
 
 
 
-     const { fetchLast, fetchTotal, posts, loading } = this.state;
+     const { fetchLast, fetchTotal, posts, loading ,value,successIcon} = this.state;
 
     let TotalAmount = 0.0;
     let Amount = 0.0
@@ -267,7 +276,6 @@ class Home extends React.Component {
     }
 
 
-    
     
 
     //const LastData = JSON.stringify((posts[posts.length-1])) ;
@@ -604,12 +612,58 @@ class Home extends React.Component {
   </tbody>
 </table>
 
+<div className="container" style={{textAlign:"center"}}>
+<p style={{marginTop:"10px", color:"grey"}}>Enter Security PIN to Issue PDF</p>
+        <PinInput style={{color:"grey"}}
+          length={4}
+          focus
+         
+          secret
+          ref={p => (this.pin = p)}
+          type="numeric"
+          onChange={this.onChange}
+        />
+        </div>
+        
+
+        <div style={{width:"10%", marginLeft:"330px", marginTop:"20px"}} 
+        >
+  <a><img src="https://res.cloudinary.com/srigemunuwebapp/image/upload/v1633356610/ezgif.com-gif-maker_kcqce0.gif"
+          class="img-fluid" alt="Responsive image" 
+         
+            hidden={(
+              value!=="9920" 
+              
+              )}/></a> </div>
+
+{/* <div style={{width:"10%", marginLeft:"330px", marginTop:"20px"}} 
+        >
+  <a><img src="https://res.cloudinary.com/srigemunuwebapp/image/upload/v1633357016/ezgif.com-gif-maker_1_zx51ld.gif"
+          class="img-fluid" alt="Responsive image" 
+            hidden={(
+              value!== !"9920"
+              
+              )}/></a> </div> */}
+
 
 
     {/* //////////////////////////END OF TABLE////////////////////// */}
 
   </div>
+
+
+
+  <div style={{textAlign:"center"}}>
+<button type="button" class="btn btn-warning"
+            disabled={(
+              value!=="9920" 
+              
+              )}
+
+>Issue PDF</button></div>
 </div>
+
+
 
 
 
