@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./BookingScreen.css";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init({
+  duration : 500
+});
+
 
 export default class BookingConfirmation extends Component {
     constructor(props){
@@ -13,7 +20,7 @@ export default class BookingConfirmation extends Component {
 
     render() {
         return (
-            <div className="bgimg p-5">
+            <div className="bgimg p-5" data-aos ="fade-down">
         <section className="clean-block-booking dark p-5">
           <div className="container">
             <div className="text-center block-heading ">

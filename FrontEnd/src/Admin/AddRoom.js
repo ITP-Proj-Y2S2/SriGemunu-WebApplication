@@ -36,7 +36,7 @@ import axios from 'axios';
 
     return (
       
-        <div className = "container p-5 mt-5">
+        <div className = "container p-5 mt-5" >
            
            <h1 className = "text-center mt-5"> Add new Room </h1>
            <div className="parent-div">

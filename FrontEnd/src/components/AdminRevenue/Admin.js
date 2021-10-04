@@ -186,7 +186,7 @@ class Admin extends Component {
       <span class="stars"></span>
       <h5 class="java">Manage Rooms</h5>
       
-      <Link to="#" type="button" class="btn btn-outline-light">Manage</Link>
+      <Link to="/admin/rooms" type="button" class="btn btn-outline-light">Manage</Link>
     </div>
   </div>
   <div class="face face2">
@@ -221,7 +221,7 @@ class Admin extends Component {
       <span class="stars"></span>
       <h5 class="java">Manage Bookings</h5>
       
-      <Link to="#" type="button" class="btn btn-outline-light">Manage</Link>
+      <Link to="/admin/bookings" type="button" class="btn btn-outline-light">Manage</Link>
     </div>
   </div>
   <div class="face face2">
