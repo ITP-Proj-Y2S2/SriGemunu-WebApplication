@@ -43,6 +43,76 @@ export default function Addinvoice() {
 
     }
 
+    ////////////////////////////VALIDATION///////////////////
+    handleChange = handleChange.bind(this);
+
+    function myChangeHandler (event)  {
+      this.setState({ invoiceID: event.target.value });
+     
+    };
+
+    function handleChange(event) {
+      //this.setState({ email: event.target.value });
+      let input = event.target.value;
+      let inputLength = event.target.value.length;
+  
+      //RegExp patterns
+      const invoiceIDPattern = /^INV[0-9]{4}$/;
+      const mobileNumPattern = /^7[^+94][0-9]{7}$/;
+      const roomNumPattern = /^RM[0-9]{4}$/;
+      const amountPattern = /^[0-9]*$/;
+  
+      let htmlid = event.target.id;
+      let errMsg = "✅";
+      let MobileNumErrMsg = "✅";
+      let RoomErrMsg = "✅";
+      let AmountErrMsg="✅";
+      console.log("hello" + htmlid);
+      this.setState({ [htmlid]: input });
+      if (htmlid === "invoiceID") {
+        console.log("im id");
+        if (!invoiceIDPattern.test(input)) {
+          {
+            errMsg = "Invoice ID must be a valid format INVXXXX";
+          }
+        }
+      } else if (htmlid === "mobileNumber") {
+        console.log("im mobile");
+        if (!mobileNumPattern.test(input)) {
+          MobileNumErrMsg = "Mobile number must be a valid format 77XXXXXXX";
+        }
+      } else if (htmlid === "roomNumber") {
+        console.log("im in room");
+        if (!roomNumPattern.test(input)) {
+          RoomErrMsg = "Room ID must be a valid format RMXXXX";
+        }
+      } else if (htmlid === "totalAmount") {
+        console.log("im in room");
+        if (!amountPattern.test(input)) {
+          AmountErrMsg = "Amount must be a valid format";
+        }
+  
+      }
+  
+      console.log("IN handleChange");
+      console.log("id param -> " + event.target.id);
+  
+      console.log("States -> " + JSON.stringify(this.state));
+      // this.setState({formdata:{[html_id]: event.target.value}});
+  
+      this.setState({ errMsg: errMsg });
+      this.setState({ MobileNumErrMsg: MobileNumErrMsg });
+      this.setState({ RoomErrMsg: RoomErrMsg });
+      this.setState({ AmountErrMsg: AmountErrMsg });
+    }
+
+
+
+
+
+
+    ////////////////////////////END OF VALIDATION///////////////////
+
     console.log(NewInvoice);
 
     axios.post("/invoice/add",NewInvoice).then(()=>{
