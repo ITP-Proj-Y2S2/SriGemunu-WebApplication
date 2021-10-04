@@ -104,8 +104,10 @@ export class RoomAvailibilty extends Component {
       totalDays: totalDays,
     });
 
+
   
     // calculating total ammounts
+
     let totalAmount;
     switch(roomType){
       case "King":
@@ -144,6 +146,7 @@ export class RoomAvailibilty extends Component {
       totalAmount: totalAmount,
     });
     // end of calculating total ammounts
+
 
 
     let rooms = this.state.roomDB;

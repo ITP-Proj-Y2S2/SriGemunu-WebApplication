@@ -46,6 +46,7 @@ function AdminBooking() {
     
   <div style = {{marginTop: "80px"}}>
     { calculateBookingRevenue()}
+
     <div className="container mt-5 " >
       <h1 className="text-center mt-2 ">Current Bookings</h1>
       <h5 className="text-center mt-3">
