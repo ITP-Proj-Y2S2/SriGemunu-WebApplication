@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import CounterClass from "./CounterClass";
 import Motion from "./Motion";
-import RevenueHome from "./RevenueHome.module.scss";
+
+import RevenueCSS from "./Revenue.module.css"
 import {Link} from 'react-router-dom';
 import {Bar,Pie,Doughnut} from 'react-chartjs-2';
 
@@ -553,14 +554,7 @@ class Home extends React.Component {
                 posts.length ?
                 posts.map((posts,index)=> <div key={index}><h1 class="h6"key={index}>
 
-                
-                {/* <tr>
-     
-      <td>{post._id}</td>
-      <td>{post.billingName}</td>
-      <td>{post.invoiceID}</td>
-    </tr> */}
-    <table class="table table-borderless table-dark" style={{marginTop:"-16px"}}>
+    <table class="table table-borderless table-dark " style={{marginTop:"-16px"}}>
 
   <tbody>
     <tr>
@@ -568,16 +562,11 @@ class Home extends React.Component {
       <td>{posts.invoiceID}</td>
       <td>{posts.billingName}</td>
       <td>{posts.roomNumber}</td>
-      <td>{posts.totalAmount}</td>
+      <td className={RevenueCSS.td}>{posts.totalAmount}</td>
     </tr>
 
   </tbody>
 </table>
-
-
-
-
-
 
 
    
