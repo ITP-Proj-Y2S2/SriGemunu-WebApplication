@@ -1,10 +1,14 @@
-import React, { Component } from "react";
+import React, { Component,PropTypes } from "react";
 import axios from "axios";
 import CounterClass from "./CounterClass";
 import Motion from "./Motion";
-import RevenueHome from "./RevenueHome.module.scss";
+
+import RevenueCSS from "./Revenue.module.css"
 import {Link} from 'react-router-dom';
 import {Bar,Pie,Doughnut} from 'react-chartjs-2';
+import PinInput from "react-pin-input";
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas';
 
 class Home extends React.Component {
 
@@ -23,22 +27,9 @@ class Home extends React.Component {
 
       array:[],
       loading:true,
-
-      //chartJS  AmountArray invoiceIDChartArray
-//       labels: ['aneew', 'February', 'March',
-//       'April', 'May','june'],
-// datasets: [
-// {
-//  label: 'Rainfall',
-//  backgroundColor: '#e8b527',
-//  borderColor: 'rgba(0,0,0,1)',
-//  borderWidth: 2,
-//  data: [65, 59, 80, 81, 56,89]
- 
-// }
-// ]
-
+      successIcon:true,
       
+      value: ""
       
     };
 
@@ -131,7 +122,50 @@ class Home extends React.Component {
     },2000)
   }
 
+
+  onChange = value => {
+    this.setState({ value });
+  };
+
+  onClear = () => {
+    this.setState({
+      value: ""
+    });
+    this.pin.clear();
+  };
+
+  fetchSucessIconData = () => {
+
+    this.setState({successIcon:true});
+
+    setTimeout(()=>{
+      this.setState({successIcon:false});
+
+    },2000)
+  }
   
+
+  printDocument() {
+    const input = document.getElementById('collapseExample');
+    html2canvas(input)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        pdf.setFontSize(9)
+        pdf.addImage(imgData, 'JPEG', 0, 0);
+        pdf.text(60,270,'Verified by Head of Revenue Manager')
+        pdf.text(60,280,'© Sri Gemunu Beach Resort 2021')
+        // pdf.output('dataurlnewwindow');
+        pdf.save("RevenueData.pdf");
+      })
+    ;
+  }
+
+  // printDocument() { 
+
+  //   var doc = new jsPDF('landscape','px','a4','false')
+  //   doc.text
+  // }
 
  
 
@@ -139,7 +173,7 @@ class Home extends React.Component {
 
 
 
-     const { fetchLast, fetchTotal, posts, loading } = this.state;
+     const { fetchLast, fetchTotal, posts, loading ,value,successIcon} = this.state;
 
     let TotalAmount = 0.0;
     let Amount = 0.0
@@ -266,7 +300,6 @@ class Home extends React.Component {
     }
 
 
-    
     
 
     //const LastData = JSON.stringify((posts[posts.length-1])) ;
@@ -553,14 +586,7 @@ class Home extends React.Component {
                 posts.length ?
                 posts.map((posts,index)=> <div key={index}><h1 class="h6"key={index}>
 
-                
-                {/* <tr>
-     
-      <td>{post._id}</td>
-      <td>{post.billingName}</td>
-      <td>{post.invoiceID}</td>
-    </tr> */}
-    <table class="table table-borderless table-dark" style={{marginTop:"-16px"}}>
+    <table class="table table-borderless table-dark " style={{marginTop:"-16px"}}>
 
   <tbody>
     <tr>
@@ -568,16 +594,11 @@ class Home extends React.Component {
       <td>{posts.invoiceID}</td>
       <td>{posts.billingName}</td>
       <td>{posts.roomNumber}</td>
-      <td>{posts.totalAmount}</td>
+      <td className={RevenueCSS.td}>{posts.totalAmount}</td>
     </tr>
 
   </tbody>
 </table>
-
-
-
-
-
 
 
    
@@ -617,19 +638,94 @@ class Home extends React.Component {
 
 
 
+
+
+
+<div className="container" style={{textAlign:"center"}}>
+<p style={{marginTop:"10px", color:"grey"}}>Enter Security PIN to Issue PDF</p>
+        <PinInput style={{color:"grey"}}
+          length={4}
+          focus
+         
+          secret
+          ref={p => (this.pin = p)}
+          type="numeric"
+          onChange={this.onChange}
+        />
+        </div>
+        
+
+        <div style={{width:"10%", marginLeft:"330px", marginTop:"20px"}} 
+        >
+  <a><img src="https://res.cloudinary.com/srigemunuwebapp/image/upload/v1633356610/ezgif.com-gif-maker_kcqce0.gif"
+          class="img-fluid" alt="Responsive image" 
+         
+            hidden={(
+              value!=="9920" 
+              
+              )}/></a> </div>
+
+
+
     {/* //////////////////////////END OF TABLE////////////////////// */}
 
+    
+
   </div>
+
+
+
+  <div style={{textAlign:"center"}}>
+<button type="button" class="btn btn-warning"
+            disabled={(
+              value!=="9920" 
+              
+              )}
+              onClick={this.printDocument}
+>Issue PDF</button></div>
 </div>
+
 
 
 
 {/* ////////////////////////////////////////////////// */}
 <div class="collapse" id="collapseExample2">
   <div class="card card-body">
-   ane ane
+   
+   
+
+{/* paste code here */}
+
+
+
+
+
+
+
+
   </div>
+
 </div>
+
+
+  {/* <div>
+      <div className="mb5">
+        <button onClick={this.printDocument}>Print</button>
+      </div>
+      <div id="divToPrint" className="mt4" style={{
+        
+        backgroundColor: 'grey',
+        width: '200mm',
+        minHeight: '297mm',
+        marginLeft: 'auto',
+        marginRight: 'auto'}}
+
+      
+      >
+        <div>Note: Here the dimensions of div are same as A4</div> 
+        <div>You Can add any component here</div>
+      </div>
+    </div> */}
 
         
       </div>
