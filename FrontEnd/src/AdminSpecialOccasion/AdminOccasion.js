@@ -28,8 +28,10 @@ export default function AdminOccasion(){
 
   return(
       <div>
+     
         <div className="container">
-      <h1 className="text-center mt-2">Occasions</h1>
+      <br/><br/><br/>
+      <h1 className="text-center mt-2">Manage Booked Events</h1>
      
 
       <div className="row justify-content-center mt-5">

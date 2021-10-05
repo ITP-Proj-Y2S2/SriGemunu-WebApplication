@@ -132,3 +132,32 @@ const sendToken = (user, statusCode,res , userobj) =>{
   const token = user.getSignedJwtToken();
   res.status(statusCode).json({success: true, token , "userobj" : userobj})
 };
+
+
+exports.getUserByID = async (req, res) => {
+  let userID = req.params.id;
+
+  try {
+    const user = await User.findById(userID);
+    //console.log(user)
+    res.send(user);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+
+
+
+exports.deleteUser = async (req,res) =>{
+  let userID =  req.params.id;
+
+  await User.findByIdAndDelete(userID).then(()=>{
+
+      res.status(200).send({status: "User Account Deleted"});
+
+  }).catch((err)=>{
+      console.log(err);
+      res.status(500).send({status: "failed to delete", error: err.message})
+  })
+}
+
