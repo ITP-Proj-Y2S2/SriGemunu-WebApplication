@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import CustomerTableRow from './CustomerTableRow';
 import "../styles/CustomerRetr.css";
+import Button from 'react-bootstrap/Button';
 export default class CustomerRetr extends Component {
 
   constructor(props) {
@@ -43,7 +44,6 @@ export default class CustomerRetr extends Component {
           <th>Food Item</th>
           <th>Catergory</th>
           <th>Price</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
