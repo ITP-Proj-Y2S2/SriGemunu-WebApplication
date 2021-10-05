@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { Bar, Pie, Doughnut } from 'react-chartjs-2';
+import { Bar, Doughnut } from 'react-chartjs-2';
 import jsPDF from 'jspdf'
 import "jspdf-autotable";
-import html2canvas from 'html2canvas';
 
 import Booking from "../Admin/Booking";
 
 function AdminBooking() {
 
   const [bookings, setbookings] = useState([]);
+  const [users, setUsers] = useState([]);
   // const [roomTypeArray, setRoomTypeArray] = useState([10,20]);
 
   useEffect(async () => {
     try {
       const data = (await axios.get("http://localhost:8070/api/booking/getallbookings")).data;
-      console.log(data);
+      //console.log(data);
       setbookings(data);
+
+      const users = (await axios.get("http://localhost:8070/api/auth/users/getall")).data;
+      //console.log(users);
+      setUsers(users);
 
     } catch (error) {
       console.log(error);
@@ -38,13 +42,33 @@ function AdminBooking() {
   let bookingStatusAnalysis = [0, 0]
 
 
+
   bookings.map(booking => {
-
-    if (booking.status == "cancelled") {
-      bookingStatusAnalysis[0] = bookingStatusAnalysis[0] + 1
-
+    //matching user id with customer name
+    users.map(user=>{
+      if(booking.userId == user._id ){
+        booking.userName = user.cusname
+      }
+    })
+  
+    //setting booking basis
+    if(booking.basis == "RoomOnly"){
+      booking.basis="Room Only"
+    }
+    else if(booking.basis == "BB"){
+      booking.basis="Bed and Breakfast"
+    }
+    else if(booking.basis == "FB"){
+      booking.basis=" Full board"
     }
 
+
+    //counting cancelled bookings
+    if (booking.status == "cancelled") {
+      bookingStatusAnalysis[0] = bookingStatusAnalysis[0] + 1
+    }
+
+    //counting basis 
     if (booking.status == "booked") {
       profit = profit + parseInt(booking.totalAmount)
       // console.log(booking.totalAmount)
@@ -74,63 +98,38 @@ function AdminBooking() {
   //console.log(roomTypeArray)
 
 
+
+  //chart data
   const roomChart = {
-    labels: ['Room only', 'Bed and breakfast', 'Full board'],
+    labels: ["Room only", "Bed and breakfast", "Full board"],
     datasets: [
       {
-        backgroundColor: [
-          '#007aff',
-          '#34c759',
-          'red',
-
-        ],
-        hoverBackgroundColor: [
-          '#00438c',
-          '#1d6d31',
-          'red',
-
-        ],
-        data: roomTypeArray
-      }
-    ]
-  }
-
+        backgroundColor: ["#007aff", "#34c759", "red"],
+        hoverBackgroundColor: ["#00438c", "#1d6d31", "red"],
+        data: roomTypeArray,
+      },
+    ],
+  };
 
   const confirmedroomType = {
-    labels: ['Room only', 'Bed and breakfast', 'Full board'],
+    labels: ["Room only", "Bed and breakfast", "Full board"],
     datasets: [
       {
-        backgroundColor: [
-          '#007aff',
-          '#34c759',
-          'red',
-
-        ],
-        hoverBackgroundColor: [
-          '#00438c',
-          '#1d6d31',
-          'red',
-
-        ],
-        data: confirmedroomTypeArray
-      }
-    ]
-  }
+        backgroundColor: ["#007aff", "#34c759", "red"],
+        hoverBackgroundColor: ["#00438c", "#1d6d31", "red"],
+        data: confirmedroomTypeArray,
+      },
+    ],
+  };
 
   const bookingChart = {
-    labels: ['Cancelled', 'Booked'],
+    labels: ["Cancelled", "Booked"],
     datasets: [
       {
-        label: 'Booking Status',
+        label: "Booking Status",
         data: bookingStatusAnalysis,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-        ],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
         borderWidth: 1,
       },
     ],
@@ -147,27 +146,31 @@ function AdminBooking() {
       ],
     },
   };
+  
 
 
 
  function generatePDFBooking(bookings) {
     const doc = new jsPDF();
-    const tableColumn = ["Room", "User ID","From", "To", "Basis", "Total Amount"];
+    const tableColumn = [ "Customer" ,"Room","From", "To", "Basis", "Amount (LKR)" ,"Status"];
     const tableRows = [];
     bookings
       .map((booking) => {
+
+
         const bookingDetails = [
+          booking.userName,
           booking.room,
-          booking.userId,
           booking.fromDate,
           booking.toDate,
           booking.basis,
-          booking.totalAmount
+          booking.totalAmount,
+          booking.status
         ];
         tableRows.push(bookingDetails);
       });
-    doc.text("Room Bookings ", 14, 20).setFontSize(12);
-   // doc.addImage(Logo, "JPEG", 135, 2, 60, 30);
+      doc.text("Sri Gemunu Beach Resort ", 14, 15).setFontSize(15);
+    doc.text("Room Bookings ", 14, 22).setFontSize(12);
     doc.autoTable(tableColumn, tableRows, {
       styles: { fontSize: 12, halign: "center" },
       startY: 35,
@@ -208,7 +211,7 @@ function AdminBooking() {
                 return (
                   <tr>
                     <td style={{ paddingBottom: "20px" }}> {booking._id}</td>
-                    <td> {booking.userId}</td>
+                    <td> {booking.userName}</td>
                     <td> {booking.room}</td>
                     <td> {booking.fromDate}</td>
                     <td> {booking.toDate}</td>
@@ -223,11 +226,11 @@ function AdminBooking() {
           </table>
 
         </div>
-        <div>
-          <button className = "btn btn-warning" onClick = {()=>{generatePDFBooking(bookings)}} >Generate PDF</button>
+        <div className = "d-flex justify-content-center mt-3 ">
+          <button className = "btn btn-warning btn-lg" onClick = {()=>{generatePDFBooking(bookings)}} >Generate PDF</button>
         </div>
       </div>
-      <div className="container mt-5" style={{ marginBottom: "100px" }}>
+      <div className="container" style={{ marginBottom: "100px", marginTop: "75px" }}>
         <h3 align="center"> Booking Analysis</h3>
         <h5 align="center"> Room Basis Analysis</h5>
         <div className="row ">
