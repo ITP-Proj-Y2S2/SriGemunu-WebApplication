@@ -4,24 +4,26 @@ import axios from "axios";
 import { Bar, Doughnut } from 'react-chartjs-2';
 import jsPDF from 'jspdf'
 import "jspdf-autotable";
-
 import Booking from "../Admin/Booking";
 
 function AdminBooking() {
 
   const [bookings, setbookings] = useState([]);
   const [users, setUsers] = useState([]);
+
   // const [roomTypeArray, setRoomTypeArray] = useState([10,20]);
 
   useEffect(async () => {
     try {
       const data = (await axios.get("http://localhost:8070/api/booking/getallbookings")).data;
+
       //console.log(data);
       setbookings(data);
 
       const users = (await axios.get("http://localhost:8070/api/auth/users/getall")).data;
       //console.log(users);
       setUsers(users);
+
 
     } catch (error) {
       console.log(error);
@@ -40,7 +42,6 @@ function AdminBooking() {
   let roomTypeArray = [0, 0, 0]
   let confirmedroomTypeArray = [0, 0, 0]
   let bookingStatusAnalysis = [0, 0]
-
 
 
   bookings.map(booking => {
@@ -99,6 +100,7 @@ function AdminBooking() {
 
 
 
+
   //chart data
   const roomChart = {
     labels: ["Room only", "Bed and breakfast", "Full board"],
@@ -148,8 +150,6 @@ function AdminBooking() {
   };
   
 
-
-
  function generatePDFBooking(bookings) {
     const doc = new jsPDF();
     const tableColumn = [ "Customer" ,"Room","From", "To", "Basis", "Amount (LKR)" ,"Status"];
@@ -179,7 +179,7 @@ function AdminBooking() {
     doc.save("booking_Report.pdf");
   }
 
-
+  
   return (
 
     <div style={{ marginTop: "80px" }}>
@@ -226,6 +226,7 @@ function AdminBooking() {
           </table>
 
         </div>
+
         <div className = "d-flex justify-content-center mt-3 ">
           <button className = "btn btn-warning btn-lg" onClick = {()=>{generatePDFBooking(bookings)}} >Generate PDF</button>
         </div>
