@@ -128,7 +128,7 @@ export class RoomAvailibilty extends Component {
       case "Deluxe":{
         switch(basis){
           case "BB":
-            totalAmount = totalDays * 500
+            totalAmount = totalDays * 5000
             break;
 
           case "FB":
@@ -253,7 +253,7 @@ export class RoomAvailibilty extends Component {
                     </p>
                     <p className="lead">Total Days {this.state.totalDays}</p>
                     <p className="lead">Room type:{ this.state.roomType == "King" ? "  King Room" : this.state.roomType == "Deluxe" ?  " Deluxe Room" : ""}  </p>
-                    <p className="lead">Basis: { this.state.basis == "RoomOnly" ? " Room Only" : this.state.basis == "BB" ?  " Bead and Breakfast" :this.state.basis == "FB" ? "  Full board" : ""} </p>
+                    <p className="lead">Basis: { this.state.basis == "RoomOnly" ? " Room Only" : this.state.basis == "BB" ?  " Bed and Breakfast" :this.state.basis == "FB" ? "  Full board" : ""} </p>
                     <p className="h5"><b>You will have to pay {this.state.totalAmount} LKR upon arrival </b></p>
                   </div >
                   <div className >
