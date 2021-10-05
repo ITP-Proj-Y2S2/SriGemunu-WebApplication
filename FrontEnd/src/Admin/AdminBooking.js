@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import {Bar,Pie,Doughnut} from 'react-chartjs-2';
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas';
 
 import Booking from "../Admin/Booking";
 
@@ -16,6 +19,7 @@ function AdminBooking() {
     } catch (error) {
       console.log(error);
     }
+   
   }, []);
 
 
@@ -25,8 +29,24 @@ function AdminBooking() {
     axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => alert("cancellation success")).then(()=>{window.location.href = "http://localhost:3000/admin/bookings"});
   }
 
+  function calculateBookingRevenue(){
+    let profit = 0;
+    bookings.map(booking=>{
+      
+        if(booking.status=="booked"){
+          profit = profit+ parseInt(booking.totalAmount)
+          console.log(booking.totalAmount)
+        }
+      
+    })
+    console.log(profit)
+  }
+
   return (
+    
   <div style = {{marginTop: "80px"}}>
+    { calculateBookingRevenue()}
+
     <div className="container mt-5 " >
       <h1 className="text-center mt-2 ">Current Bookings</h1>
       <h5 className="text-center mt-3">
