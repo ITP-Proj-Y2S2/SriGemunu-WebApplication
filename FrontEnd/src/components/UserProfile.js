@@ -125,11 +125,13 @@ export function MyProfile() {
                 <p> Email {userobj.email}</p>
                 <p> Telephone {userobj.telnum}</p>
 
+
                 <div className = "md-5"  style = {{marginBottom:"500px"}}>
                     <button className = "btn btn-danger" onClick = {()=>{deleteAccount()}}> Delete Account</button>
                 </div>
 
                 </div>
+
               
             </div>
         )
