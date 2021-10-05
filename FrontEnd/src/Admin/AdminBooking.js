@@ -150,6 +150,32 @@ function AdminBooking() {
 
 
 
+ function generatePDFBooking(bookings) {
+    const doc = new jsPDF();
+    const tableColumn = ["Room", "User ID","From", "To", "Basis", "Total Amount"];
+    const tableRows = [];
+    bookings
+      .map((booking) => {
+        const bookingDetails = [
+          booking.room,
+          booking.userId,
+          booking.fromDate,
+          booking.toDate,
+          booking.basis,
+          booking.totalAmount
+        ];
+        tableRows.push(bookingDetails);
+      });
+    doc.text("Room Bookings ", 14, 20).setFontSize(12);
+   // doc.addImage(Logo, "JPEG", 135, 2, 60, 30);
+    doc.autoTable(tableColumn, tableRows, {
+      styles: { fontSize: 12, halign: "center" },
+      startY: 35,
+    });
+    window.open(URL.createObjectURL(doc.output("blob")));
+    doc.save("booking_Report.pdf");
+  }
+
 
   return (
 
@@ -196,6 +222,9 @@ function AdminBooking() {
             </tbody>
           </table>
 
+        </div>
+        <div>
+          <button className = "btn btn-warning" onClick = {()=>{generatePDFBooking(bookings)}} >Generate PDF</button>
         </div>
       </div>
       <div className="container mt-5" style={{ marginBottom: "100px" }}>
