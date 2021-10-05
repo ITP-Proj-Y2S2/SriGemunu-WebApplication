@@ -14,6 +14,7 @@ import RoomAvailibilty from './booking/RoomAvailibilty';
 import BookingConfirmation from "./booking/BookingConfirmation";
 import AllBookings from './Admin/AdminBooking';
 import UserProfile from './components/UserProfile';
+import UpdateRoom from "../src/Admin/UpdateRoom"
 
 //channu's imports
 
@@ -22,6 +23,8 @@ import OccasionType from './specialOccasion/OccasionType';
 import OccasionHome from './specialOccasion/OccasionHome';
 import ViewOccasion from './specialOccasion/ViewOccasion';
 import AdminOccasion from './AdminSpecialOccasion/AdminOccasion';
+import ChangeOccassion from './specialOccasion/ChangeOccassion';
+
 
 //Isi's imports
 import RestNavbar from "./RestaurantComponents/RestNavbar";
@@ -32,6 +35,7 @@ import Contact from "./pages/Contact";
 import AddFood from "./RestaurantComponents/AddFood";
 import RetrFood from "./RestaurantComponents/RetrFood";
 import EditFood from "./RestaurantComponents/EditFood";
+import CusFood from "./RestaurantComponents/CustomerRetr";
 
 //Chamudi's imports
 import EmpMain from './Employee/EmployeeMain';
@@ -70,6 +74,7 @@ import Data from './components/AdminRevenue/Data';
 import tempCus from './components/AdminRevenue/tempCus';
 import Admin from './components/AdminRevenue/Admin';
 import TempChart from './components/AdminRevenue/TempChart'
+
 //import Motion from './components/AdminRevenue/Motion';
 
 
@@ -86,11 +91,13 @@ function App() {
         {/* binath's imports */}
         <Route path="/admin/rooms" exact component={Homescreen} />
         <Route path="/admin/addRoom" exact component={AddRoom} />
+        <Route path="/admin/UpdateRoom" exact component={UpdateRoom} />
         <Route path="/booking/BookingAvailability" exact component={BookingScreen} />
         <Route path="/booking/BookingAvailability/RoomAvailibilty/:room/:basis/:fromDate/:toDate" exact component={RoomAvailibilty} />
         <Route path="/booking/BookingAvailability/BookingConfirmation" exact component={BookingConfirmation} />
         <Route path="/admin/bookings" exact component={AllBookings} />
         <PrivateRoute path="/user/userprofile" exact component={UserProfile} />
+        
         
 
 
@@ -102,17 +109,17 @@ function App() {
         <Route path="/specialoccasion/OccasionHome/OccasionType/AddOccasion/:eventtype" exact component={AddOccasion} />
         <Route path="/specialoccasion/OccasionHome/OccasionType/AddOccasion" exact component={AddOccasion} />
         <Route path="/admin/occasion/" exact component={AdminOccasion} />
+        <Route path="/specialoccasion/OccasionHome/ViewOccasion/Change/:id" exact component={ChangeOccassion} />
        
 
         {/* Isi's Imports   */}
-        {/* <RestNavbar/> */}
-        {/* <Route path="/restaurant" exact component={RestNavbar} /> */}
         <Route path="/restaurant" exact component={Home} />
         <Route path="/restaurant/menu" exact component={Menu} />
         <Route path="/restaurant/about" exact component={About} />
         <Route path="/restaurant/contact" exact component={Contact} />
         <Route path="/restaurant/addfood" exact component={AddFood} />
         <Route path="/restaurant/retrfood" exact component={RetrFood} />
+        <Route path="/restaurant/cusretr" exact component={CusFood} />
         <Route path="/restaurant/editfood/:id" exact component={EditFood} />
 
 

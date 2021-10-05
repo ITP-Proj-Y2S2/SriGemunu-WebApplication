@@ -3,6 +3,23 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const Room = (props) => {
+
+  const history = useHistory();
+  const onEditClick = () => history.push(
+    {
+      pathname: "/admin/UpdateRoom",
+      state: {
+        roomId: room._id,
+        roomName: room.name,
+        roomType: room.type,
+        roomSize: room.size,
+        roomNumber: room.number,
+        roomImageURLs: room.imageurls,
+        roomdescription: room.description,
+
+      }
+  });
+
   let room = props.data;
   console.log(room);
 
@@ -18,7 +35,7 @@ const Room = (props) => {
         <p className="card-text">Room Size : {room.size}</p>
         <p className="card-text">{room.number}</p>
         <div style={{ float: "right" }}>
-          <button className="btn btn-dark m-1">Edit</button>
+          <button className="btn btn-dark m-1"  onClick={onEditClick}>Edit</button>
           <button className="btn btn-dark m-1" onClick={() => props.deleteRoom(room._id)}>Delete</button>
         </div>
       </div>

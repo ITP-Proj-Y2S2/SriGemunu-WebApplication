@@ -4,7 +4,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./BookingScreen.css";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 var moment = require("moment");
+
+AOS.init({
+  duration : 500
+});
+
 
 export class RoomAvailibilty extends Component {
   constructor(props) {
@@ -40,6 +48,8 @@ export class RoomAvailibilty extends Component {
 
     let x = localStorage.getItem("_id");
     console.log(x)
+
+
     
   }
 
@@ -70,13 +80,14 @@ export class RoomAvailibilty extends Component {
       this.setState({
         isSuccess: true,
       });
-      //using histort to navigate to booking succ page
+      //using histort to navigate to booking success page
       
 
     } catch (error) {
       alert(error);
     }
   }
+
 
   checkRoomAvailability() {
     const roomType = this.state.roomType;
@@ -93,10 +104,50 @@ export class RoomAvailibilty extends Component {
       totalDays: totalDays,
     });
 
-    const totalAmount = totalDays * 5000;
+
+  
+    // calculating total ammounts
+
+    let totalAmount;
+    switch(roomType){
+      case "King":
+        switch(basis){
+          case "BB":
+            totalAmount = totalDays * 6000
+            break;
+
+          case "FB":
+            totalAmount = totalDays * 7500
+            break;
+
+          case "RoomOnly":
+            totalAmount = totalDays * 4000
+            break;
+        }
+        break;
+      case "Deluxe":{
+        switch(basis){
+          case "BB":
+            totalAmount = totalDays * 500
+            break;
+
+          case "FB":
+            totalAmount = totalDays * 6500
+            break;
+
+          case "RoomOnly":
+            totalAmount = totalDays * 3000
+            break;
+        }
+        break;
+      }
+    }
     this.setState({
       totalAmount: totalAmount,
     });
+    // end of calculating total ammounts
+
+
 
     let rooms = this.state.roomDB;
     let roomSelect = [];
@@ -164,6 +215,8 @@ export class RoomAvailibilty extends Component {
     //console.log(this.state.sendDBroom);
   }
 
+  
+
   render() {
     
     //console.log(this.state.roomDB)
@@ -175,7 +228,7 @@ export class RoomAvailibilty extends Component {
     }
 
     return (
-      <div className="bgimg p-5">
+      <div className="bgimg p-5" data-aos ="fade-down">
         <section className="clean-block-booking dark p-5">
           <div className="container">
             <div className="text-center block-heading ">
@@ -199,8 +252,9 @@ export class RoomAvailibilty extends Component {
                       {this.state.toDate}
                     </p>
                     <p className="lead">Total Days {this.state.totalDays}</p>
-                    <p className="lead">Room type: {this.state.roomType} </p>
-                    <p className="lead">Basis: {this.state.basis} </p>
+                    <p className="lead">Room type:{ this.state.roomType == "King" ? "  King Room" : this.state.roomType == "Deluxe" ?  " Deluxe Room" : ""}  </p>
+                    <p className="lead">Basis: { this.state.basis == "RoomOnly" ? " Room Only" : this.state.basis == "BB" ?  " Bead and Breakfast" :this.state.basis == "FB" ? "  Full board" : ""} </p>
+                    <p className="h5"><b>You will have to pay {this.state.totalAmount} LKR upon arrival </b></p>
                   </div >
                   <div className >
                   {this.state.sendDBroom !==null &&
@@ -212,15 +266,15 @@ export class RoomAvailibilty extends Component {
             </div>
 
             {this.state.sendDBroom ? (
-              <div className="col-12 d-flex justify-content-center mt-5 ">
+              <div className="col-12 d-flex justify-content-center mt-5 " style = {{marginBottom: "50px"}}>
                 <button className="btn btn-dark btn-lg" onClick={this.bookRoom}>
                   Proceed with the Booking!
                 </button>
               </div>
             ) : (
-              <div className="col-12 d-flex justify-content-center mt-5">
+              <div className="col-12 d-flex justify-content-center mt-5"  >
                 
-                  <button className="btn btn-dark btn-lg" onClick ={this.props.history.goBack}>
+                  <button   className="btn btn-dark btn-lg"  onClick ={this.props.history.goBack}>
                     Click here to check other dates!
                   </button>
                 

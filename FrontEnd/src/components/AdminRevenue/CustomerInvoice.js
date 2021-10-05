@@ -11,15 +11,15 @@ class CustomerInvoice extends Component {
 
     this.state = {
       invoiceFetchedData: [],
-      invoiceID: "",
-      billingName: "",
-      billingAddress: "",
-      mobileNumber: "",
-      roomNumber: "",
-      numberOfAdults: "",
-      numberOfChildern: "",
-      totalDates: "",
-      totalAmount: "",
+      // invoiceID: "",
+      // billingName: "",
+      // billingAddress: "",
+      // mobileNumber: "",
+      // roomNumber: "",
+      // numberOfAdults: "",
+      // numberOfChildern: "",
+      // totalDates: "",
+      // totalAmount: "",
       visibleAlert: true
       
     };
@@ -54,12 +54,13 @@ class CustomerInvoice extends Component {
     const invoiceIDPattern = /^INV[0-9]{4}$/;
     const mobileNumPattern = /^7[^+94][0-9]{7}$/;
     const roomNumPattern = /^RM[0-9]{4}$/;
-    const amountPattern = "";
+    const amountPattern = /^[0-9]*$/;
 
     let htmlid = event.target.id;
-    let errMsg = "";
-    let MobileNumErrMsg = "";
-    let RoomErrMsg = "";
+    let errMsg = "✅";
+    let MobileNumErrMsg = "✅";
+    let RoomErrMsg = "✅";
+    let AmountErrMsg="✅";
     console.log("hello" + htmlid);
     this.setState({ [htmlid]: input });
     if (htmlid === "invoiceID") {
@@ -79,6 +80,12 @@ class CustomerInvoice extends Component {
       if (!roomNumPattern.test(input)) {
         RoomErrMsg = "Room ID must be a valid format RMXXXX";
       }
+    } else if (htmlid === "totalAmount") {
+      console.log("im in room");
+      if (!amountPattern.test(input)) {
+        AmountErrMsg = "Amount must be a valid format";
+      }
+
     }
 
     console.log("IN handleChange");
@@ -90,6 +97,7 @@ class CustomerInvoice extends Component {
     this.setState({ errMsg: errMsg });
     this.setState({ MobileNumErrMsg: MobileNumErrMsg });
     this.setState({ RoomErrMsg: RoomErrMsg });
+    this.setState({ AmountErrMsg: AmountErrMsg });
   }
 
   handleSubmit(event) {
@@ -134,7 +142,7 @@ class CustomerInvoice extends Component {
         this.setState({ noOfChildern: response.data.noOfChildern });
         this.setState({ totalDates: response.data.totalDates });
         this.setState({ totalAmount: response.data.totalAmount });
-        console.log(this.state.invoice);
+        console.log("");
       })
       .catch((error) => {
         console.log(error);
@@ -175,11 +183,25 @@ class CustomerInvoice extends Component {
     console.log(this.props.match.params.id);
     const invoiceRefID = this.props.match.params.id;
 
+  //   function EnableDisable(invoiceID) {
+  //     //Reference the Button.
+  //     var updateBtn = document.getElementById("updateBtn");
+
+  //     //Verify the TextBox value.
+  //     if (invoiceID.value.trim() != "") {
+  //         //Enable the TextBox when TextBox has value.
+  //         updateBtn.disabled = false;
+  //     } else {
+  //         //Disable the TextBox when TextBox is empty.
+  //         updateBtn.disabled = true;
+  //     }
+  // };
+
     return (
       
       <div className="container">
         <br></br>
-
+        
         <h1 class="display-2">
           {/* {"Invoice" + " " + "#" + invoiceFetchedData.invoiceID} */}
           {"INVOICE" + " " + "#" + this.state.invoiceID}
@@ -242,6 +264,7 @@ class CustomerInvoice extends Component {
               onChange={this.handleChange}
               value={this.state.invoiceID}
               maxLength="7"
+              onkeyup="EnableDisable(this)"
               //   onChange={(event) => {
               //     setID(event.target.value);
               //   }}
@@ -413,7 +436,13 @@ class CustomerInvoice extends Component {
 
           <div class="col-md-8">
             <label for="totalAmount" class="form-label">
-              Total Amount
+            {"Total Amount "}{" "}
+            <label
+                class="form-label"
+                style={{ color: "red", marginLeft: "10px" }}
+              >
+                {this.state.AmountErrMsg}
+              </label>
             </label>
             <div class="input-group has-validation">
               <span class="input-group-text" id="inputGroupPrepend">
@@ -437,10 +466,19 @@ class CustomerInvoice extends Component {
           <br></br>
           <br></br>
 
+      
+
           <div>
-            <button type="submit" class="btn btn-outline-primary" onClick={this.toggle.bind(this)}>
+            <button type="submit" id="updateBtn" class="btn btn-outline-primary" onClick={this.toggle.bind(this)} 
+            disabled={(
+              this.state.AmountErrMsg!=="✅" 
               
-              Update Invoice
+              )}
+
+            
+            >
+              
+              Update Invoice 
             </button>
             
             {/* <button type="reset" class="btn btn-danger" value="reset" > Reset </button> */}

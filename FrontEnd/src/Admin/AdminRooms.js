@@ -33,7 +33,7 @@ export default function AdminRooms() {
 
 
   return (
-    <div className="container">
+    <div className="container " style = {{marginTop: "80px"}}>
       <h1 className="text-center mt-2">Hotel Rooms</h1>
       <h5 className="text-center mt-3">
         There are currently {rooms.length} rooms in the system
