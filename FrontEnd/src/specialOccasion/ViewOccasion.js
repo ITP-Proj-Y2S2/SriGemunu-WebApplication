@@ -53,7 +53,7 @@ export default function ViewOccasion() {
                                return( 
      
                                 <div class="col-md">
-        <div class="card bg-c-blue order-card">
+        <div class="card bg-c-blue order-card" style={{borderRadius:"20px"}}>
             <div class="card-block">
                     <h4>{occasion.type}</h4>   
                     <p><b>Menu type : </b>{occasion.menu}</p>   
