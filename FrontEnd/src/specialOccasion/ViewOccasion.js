@@ -50,22 +50,19 @@ export default function ViewOccasion() {
                            
                            {occasions && (occasions.map(occasion =>{
                                return( 
-                               <div className ="m-4 p-3">
-                                <h5>{occasion.type}</h5>
-                                <p><b>Menu type : </b>{occasion.menu}</p>
-                                <p><b>occ time: </b> {occasion.time}</p>
-                                <p><b> Num of guest : </b>{occasion.guests }</p>
-                                {console.log("ID is "+occasion._id)}
+     
+                                <div class="col-md">
+        <div class="card bg-c-blue order-card">
+            <div class="card-block">
+                    <h5>{occasion.type}</h5>   
+                    <p><b>Menu type : </b>{occasion.menu}</p>   
+                    <p><b>occ time: </b> {occasion.time}</p>
+                    <p><b> Num of guest : </b>{occasion.guests }</p>
 
-                                
-                                <Link to={"/specialoccasion/OccasionHome/ViewOccasion/Change/"+occasion._id} className="btn btn-outline-primary" value={occasion._id}>{"Update"}</Link>
-        
-                                {/* {booking.status == "cancelled" ? "cancelled" : <div className = "text-right">
-                                    <button className = "btn btn-dark" onClick = {()=>{cancelBooking(booking._id)}}>Cancel</button>
-                                </div>} */}
-                                
-        
-                                </div>
+                    <Link to={"/specialoccasion/OccasionHome/ViewOccasion/Change/"+occasion._id} className="btn btn-outline-light" value={occasion._id}>{"Update"}</Link>
+            </div>
+        </div>
+    </div>
                                 )  
                            }
                            ))}
