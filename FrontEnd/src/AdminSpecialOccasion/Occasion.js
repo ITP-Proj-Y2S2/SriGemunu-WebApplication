@@ -11,7 +11,7 @@ const Ocassion = (props) => {
    
     
     <div class="col-md">
-    <div className="card bg-c-blue order-card">
+    <div className="card bg-c-blue order-card" style={{borderRadius:"20px"}}>
       
       <div className="card-block">
         <h5 className="card-title">{occasion.email}</h5>
