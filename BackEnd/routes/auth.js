@@ -8,7 +8,8 @@ const{
     resetpassword,
 
     getUserByID,
-    deleteUser
+    deleteUser,
+    getAllUser
 
 } = require("../controllers/auth");
 
@@ -25,6 +26,8 @@ router.route("/user/:id").get(getUserByID);
 
 
 router.route("/user/delete/:id").delete(deleteUser);
+
+router.route("/users/getall").get(getAllUser);
 
 
 
