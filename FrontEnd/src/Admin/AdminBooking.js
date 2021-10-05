@@ -10,12 +10,14 @@ import Booking from "../Admin/Booking";
 function AdminBooking() {
 
   const [bookings, setbookings] = useState([]);
+  // const [roomTypeArray, setRoomTypeArray] = useState([10,20]);
 
   useEffect(async () => {
     try {
       const data = (await axios.get("http://localhost:8070/api/booking/getallbookings")).data;
        console.log(data);
       setbookings(data);
+      
     } catch (error) {
       console.log(error);
     }
@@ -29,28 +31,79 @@ function AdminBooking() {
     axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => alert("cancellation success")).then(()=>{window.location.href = "http://localhost:3000/admin/bookings"});
   }
 
-  function calculateBookingRevenue(){
-    let profit = 0;
+
+  let profit = 0;
+  let roomOnly = 0
+  let BB = 0
+  let FB =0 ;
+  let roomTypeArray = []
+  
+
+  // function calculateBookingRevenue(){
+    
     bookings.map(booking=>{
+      //console.log(booking.basis)
+
       
         if(booking.status=="booked"){
           profit = profit+ parseInt(booking.totalAmount)
           console.log(booking.totalAmount)
         }
+        if(booking.basis == "RoomOnly" ){
+          roomOnly+=1
+        }
+        else if(booking.basis == "BB" ){
+          BB+=1
+        }
+        else if(booking.basis == "FB"){
+          FB+=1
+        }
+
+       // { ? " Room Only" : ?  " Bead and Breakfast" : ? "  Full board" : ""}
       
     })
+    roomTypeArray = [roomOnly, BB, FB]
     console.log(profit)
+    console.log(BB)
+    console.log(FB)
+    console.log(roomOnly)
+    console.log(roomTypeArray)  
+  // }
+
+  const statePieChart = {
+    labels: ['Room only', 'Bead and breakfast', 'Full board'],
+    datasets: [
+      {
+        label: 'Room Kids',
+        backgroundColor: [
+          '#007aff',
+          '#34c759',
+          'red',
+          
+        ],
+        hoverBackgroundColor: [
+        '#00438c',
+        '#1d6d31',
+        'red',
+        
+        ],
+        data: roomTypeArray
+      }
+    ]
   }
+
+
+  
 
   return (
     
   <div style = {{marginTop: "80px"}}>
-    { calculateBookingRevenue()}
 
     <div className="container mt-5 " >
       <h1 className="text-center mt-2 ">Current Bookings</h1>
       <h5 className="text-center mt-3">
         Total {bookings.length} bookings
+        
       </h5>
 
       <div className="row justify-content-center mt-5 " style = {{marginBottom: "350px"}}>
@@ -85,16 +138,24 @@ function AdminBooking() {
             </tbody>
           </table>
 
-
-
-
-        {/* {bookings.map((booking) => {
-          return (
-            <div className="col-md-9 mt-2">
-              <Booking data={booking} deleteBooking = {deleteBookingHandler}/>
-            </div>
-          );
-        })} */}
+      </div>
+      <div className= "row">
+      <div className= "col-md-5">
+      <Doughnut
+          data={statePieChart}
+          options={{
+            title:{
+              display:true,
+              text:'Pie Chart',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+      </div>
       </div>
     </div>
 
