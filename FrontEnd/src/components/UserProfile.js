@@ -90,10 +90,29 @@ function cancelBooking(id){
 
 export function MyProfile() {
     const user = JSON.parse(localStorage.getItem("currentUser"))
+    const [userobj, setUserobj] = useState([])
+
+
+    useEffect(async () => {
+        try {
+            const data = await (await (axios.get(`http://localhost:8070/api/auth/user/${ user._id}`))).data;
+            //console.log(data)
+            setUserobj(data)
+    
+        } catch (error) {
+            console.log(error)
+            
+        }
+      
+    }, [])
+
  
         return (
             <div>
                 <h1>My Profile</h1>
+                <p> Name {userobj.cusname}</p>
+                <p> Email {userobj.email}</p>
+                <p> Telephone {userobj.telnum}</p>
               
             </div>
         )

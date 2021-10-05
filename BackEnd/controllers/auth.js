@@ -132,3 +132,16 @@ const sendToken = (user, statusCode,res , userobj) =>{
   const token = user.getSignedJwtToken();
   res.status(statusCode).json({success: true, token , "userobj" : userobj})
 };
+
+
+exports.getUserByID = async (req, res) => {
+  let userID = req.params.id;
+
+  try {
+    const user = await User.findById(userID);
+    //console.log(user)
+    res.send(user);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
