@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import CustomerTableRow from './CustomerTableRow';
+import Sidebar from "../RestaurantComponents/Sidebar"
+import { GiHamburgerMenu } from 'react-icons/gi'
+import {useState} from 'react'
 import "../styles/CustomerRetr.css";
 import Button from 'react-bootstrap/Button';
+
 export default class CustomerRetr extends Component {
 
   constructor(props) {
@@ -33,11 +37,11 @@ export default class CustomerRetr extends Component {
     });
   }
 
-
   render() {
-    return (
+    return ( 
     <div className="container">
       <div className="cusdisplay">
+        
     <table class="table">
       <thead>
         <tr>
