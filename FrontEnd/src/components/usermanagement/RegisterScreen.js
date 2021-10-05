@@ -49,7 +49,7 @@ const RegisterScreen = ({ history }) => {
         config
       );
 
-      localStorage.setItem("authToken", data.token);
+      //localStorage.setItem("authToken", data.token);
 
       history.push("/");
     } catch (error) {
