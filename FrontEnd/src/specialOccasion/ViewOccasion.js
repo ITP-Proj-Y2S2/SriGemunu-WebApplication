@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import './EventDesign.css';
 
 export default function ViewOccasion() {
     return(
-        <div className = "textCenter">
+        <div className = "bgimg textCenter">
             <div className="d-flex justify-content-center p-5"></div>
-            <h1 className="display-1">Your Events</h1>
+            <h1 className="display-1" style={{color:"white"}}>Your Events</h1>
             <div  className = "container">
             <SpecialOccassion/>
             </div>
@@ -43,7 +44,7 @@ export default function ViewOccasion() {
         //   }
         
             return (
-                <div>
+                <div className="container">
                     
                    <div className="row justify-content-center">
                        <div class="col-md-6">
@@ -54,7 +55,7 @@ export default function ViewOccasion() {
                                 <div class="col-md">
         <div class="card bg-c-blue order-card">
             <div class="card-block">
-                    <h5>{occasion.type}</h5>   
+                    <h4>{occasion.type}</h4>   
                     <p><b>Menu type : </b>{occasion.menu}</p>   
                     <p><b>occ time: </b> {occasion.time}</p>
                     <p><b> Num of guest : </b>{occasion.guests }</p>

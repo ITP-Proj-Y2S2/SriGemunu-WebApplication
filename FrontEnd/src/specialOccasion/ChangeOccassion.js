@@ -9,8 +9,6 @@ class ChangeOccassion extends Component {
 
         this.state = {
             EventFetchedData:[],
-
-
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -100,19 +98,21 @@ class ChangeOccassion extends Component {
 
         const {  } = this.state;
         const EventRefID = this.props.match.params.id;
+        console.log(this.props.match.params.id)
 
         return(
 
-            <div className="container">
+            <div className="container" >
             <br/><br/><br/><br/>
                 <h1 >Change Your Event Details</h1>
                 <button className="btn btn-secondary " disabled style={{borderRadius:"20px"}}><h4 style={{marginTop:"17px"}}>{"Selected Type: "+this.state.type}</h4></button>
                 <br/><br/>
-
+                <Link to="/specialoccasion/OccasionHome/ViewOccasion" type="button" class="btn btn-secondary btn-sm">{"< Back to Events"}</Link>
+                <br/><br/>
                 {/* /////////////////IMPORTING FORM/////////////////// */}
 
-                <form onSubmit={this.handleSubmit}>
-  <div class="mb-3 col-md-4">
+                <form onSubmit={this.handleSubmit} >
+  <div class="mb-3 col-md-4" >
     <label for="exampleInputEmail1" class="form-label">Menu Type</label>
     <input type="text" class="form-control" id="menu"
     required
@@ -120,22 +120,49 @@ class ChangeOccassion extends Component {
         maxLength="5"
         value={this.state.menu}
         onChange={this.handleChange}
+        disabled
     />
 
 
-{/* 
-<select class="form-select" aria-label="Default select example" >
+
+{/* <select class="form-select" aria-label="Default select example" >
   
   <option value={this.state.menu} onChange={this.handleChange} >1000LKR Per per plate</option>
   <option value={this.state.menu} onChange={this.handleChange}>2000LKR Per per plate</option>
-  
+  <
 </select> */}
+<br/>
+<div className="form-check">
+                                <input className="form-check-input" type="radio" name="menu" id="flexRadioDefault1" value="Menu1" onChange={(e) => {
+                                    this.setState({menu : e.target.value})
+                                }
+                                } />
+                                <label className="form-check-label" for="flexRadioDefault1">
+                                    MENU 1
+                                    <p className="lead">
+                                        1000LKR Per per plate
+                                    </p>
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="menu" id="flexRadioDefault2" value="Menu2" onChange={(e) => {
+                                     this.setState({ menu: e.target.value })
+                                }
+                                } />
+                                <label className="form-check-label" for="flexRadioDefault2">
+                                    MENU 2
+                                    <p className="lead">
+                                        2000LKR Per per plate
+                                    </p>
+                                </label>
+                            </div>
 
     
   </div>
   <div class="mb-3 col-md-4">
     <label for="exampleInputPassword1" class="form-label">Event Time</label>
-    <input type="text" class="form-control" id="time"
+    <input type="time" class="form-control" id="time"
+        
         required
         value={this.state.time}
         onChange={this.handleChange}
