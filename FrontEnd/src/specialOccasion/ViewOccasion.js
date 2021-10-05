@@ -16,6 +16,7 @@ export default function ViewOccasion() {
 
     export function SpecialOccassion() {
         const user = JSON.parse(localStorage.getItem("currentUser"))
+        console.log(user._id)
         const [occasions, setOccasions] = useState([])
         
         useEffect(async () => {
@@ -54,6 +55,10 @@ export default function ViewOccasion() {
                                 <p><b>Menu type : </b>{occasion.menu}</p>
                                 <p><b>occ time: </b> {occasion.time}</p>
                                 <p><b> Num of guest : </b>{occasion.guests }</p>
+                                {console.log("ID is "+occasion._id)}
+
+                                
+                                <Link to={"/specialoccasion/OccasionHome/ViewOccasion/Change/"+occasion._id} className="btn btn-outline-primary" value={occasion._id}>{"Update"}</Link>
         
                                 {/* {booking.status == "cancelled" ? "cancelled" : <div className = "text-right">
                                     <button className = "btn btn-dark" onClick = {()=>{cancelBooking(booking._id)}}>Cancel</button>
