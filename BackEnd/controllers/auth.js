@@ -145,3 +145,17 @@ exports.getUserByID = async (req, res) => {
     return res.status(400).json({ message: error });
   }
 };
+
+
+exports.deleteUser = async (req,res) =>{
+  let userID =  req.params.id;
+
+  await User.findByIdAndDelete(userID).then(()=>{
+
+      res.status(200).send({status: "User Account Deleted"});
+
+  }).catch((err)=>{
+      console.log(err);
+      res.status(500).send({status: "failed to delete", error: err.message})
+  })
+}

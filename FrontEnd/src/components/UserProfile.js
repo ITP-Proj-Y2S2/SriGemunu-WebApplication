@@ -106,13 +106,30 @@ export function MyProfile() {
       
     }, [])
 
+    function deleteAccount(){
+        axios.delete(`http://localhost:8070/api/auth/user/delete/${user._id}`).then(() => alert("Account Deleted")).then(()=>{
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("_id");
+            localStorage.removeItem("currentUser");    
+             window.location.href = "/"}
+            );
+
+    }
+
  
         return (
             <div>
+                <div classsName = "container">
                 <h1>My Profile</h1>
                 <p> Name {userobj.cusname}</p>
                 <p> Email {userobj.email}</p>
                 <p> Telephone {userobj.telnum}</p>
+
+                <div className = "md-5"  style = {{marginBottom:"500px"}}>
+                    <button className = "btn btn-danger" onClick = {()=>{deleteAccount()}}> Delete Account</button>
+                </div>
+
+                </div>
               
             </div>
         )
