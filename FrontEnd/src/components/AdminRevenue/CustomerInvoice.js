@@ -11,15 +11,15 @@ class CustomerInvoice extends Component {
 
     this.state = {
       invoiceFetchedData: [],
-      invoiceID: "",
-      billingName: "",
-      billingAddress: "",
-      mobileNumber: "",
-      roomNumber: "",
-      numberOfAdults: "",
-      numberOfChildern: "",
-      totalDates: "",
-      totalAmount: "",
+      // invoiceID: "",
+      // billingName: "",
+      // billingAddress: "",
+      // mobileNumber: "",
+      // roomNumber: "",
+      // numberOfAdults: "",
+      // numberOfChildern: "",
+      // totalDates: "",
+      // totalAmount: "",
       visibleAlert: true
       
     };
@@ -142,7 +142,7 @@ class CustomerInvoice extends Component {
         this.setState({ noOfChildern: response.data.noOfChildern });
         this.setState({ totalDates: response.data.totalDates });
         this.setState({ totalAmount: response.data.totalAmount });
-        console.log(this.state.invoice);
+        console.log("");
       })
       .catch((error) => {
         console.log(error);

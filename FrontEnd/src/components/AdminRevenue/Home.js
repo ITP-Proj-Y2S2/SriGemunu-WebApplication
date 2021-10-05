@@ -145,7 +145,7 @@ class Home extends React.Component {
   }
   
 
-  printDocument() {
+  issuePDF() {
     const input = document.getElementById('collapseExample');
     html2canvas(input)
       .then((canvas) => {
@@ -160,6 +160,7 @@ class Home extends React.Component {
       })
     ;
   }
+
 
   // printDocument() { 
 
@@ -318,7 +319,7 @@ class Home extends React.Component {
       
       <div className="container">
         <br></br>
- 
+
         <h1>
           <span class="badge bg-secondary" >Revenue Management Dashboard</span>
           <a ><img src="https://res.cloudinary.com/srigemunuwebapp/image/upload/v1633254573/paymentsbilling_z9rno8.gif"
@@ -681,8 +682,12 @@ class Home extends React.Component {
               value!=="9920" 
               
               )}
-              onClick={this.printDocument}
->Issue PDF</button></div>
+              onClick={this.issuePDF}
+>Issue PDF</button>
+
+
+</div>
+
 </div>
 
 

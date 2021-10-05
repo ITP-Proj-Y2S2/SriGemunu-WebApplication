@@ -9,7 +9,7 @@ export default function OccasionHome() {
     <div className="bgimg textCenter" >
       <div className="d-flex justify-content-center p-5 m-5"></div>
       <h1 className="display-1 fontcolor-white md-5">Events</h1>
-
+      <div className = "container">
       <div className="row md-5  align-items-top">
         <div className="col-sm-6">
           <div className="d-flex justify-content-start p-5"></div>
@@ -33,6 +33,7 @@ export default function OccasionHome() {
           </div>
         </div>
        
+      </div>
       </div>
 
     </div>

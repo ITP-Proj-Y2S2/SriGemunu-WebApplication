@@ -23,6 +23,8 @@ import OccasionType from './specialOccasion/OccasionType';
 import OccasionHome from './specialOccasion/OccasionHome';
 import ViewOccasion from './specialOccasion/ViewOccasion';
 import AdminOccasion from './AdminSpecialOccasion/AdminOccasion';
+import ChangeOccassion from './specialOccasion/ChangeOccassion';
+
 
 //Isi's imports
 import RestNavbar from "./RestaurantComponents/RestNavbar";
@@ -72,6 +74,7 @@ import Data from './components/AdminRevenue/Data';
 import tempCus from './components/AdminRevenue/tempCus';
 import Admin from './components/AdminRevenue/Admin';
 import TempChart from './components/AdminRevenue/TempChart'
+
 //import Motion from './components/AdminRevenue/Motion';
 
 
@@ -106,6 +109,7 @@ function App() {
         <Route path="/specialoccasion/OccasionHome/OccasionType/AddOccasion/:eventtype" exact component={AddOccasion} />
         <Route path="/specialoccasion/OccasionHome/OccasionType/AddOccasion" exact component={AddOccasion} />
         <Route path="/admin/occasion/" exact component={AdminOccasion} />
+        <Route path="/specialoccasion/OccasionHome/ViewOccasion/Change/:id" exact component={ChangeOccassion} />
        
 
         {/* Isi's Imports   */}

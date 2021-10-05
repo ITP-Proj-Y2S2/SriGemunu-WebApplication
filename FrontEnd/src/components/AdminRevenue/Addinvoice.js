@@ -43,6 +43,9 @@ export default function Addinvoice() {
 
     }
 
+    ////////////////////////////VALIDATION///////////////////
+    
+
     console.log(NewInvoice);
 
     axios.post("/invoice/add",NewInvoice).then(()=>{
@@ -84,14 +87,26 @@ export default function Addinvoice() {
      <form onSubmit={sendData} class="row g-3 needs-validation" target="_blank">
 
   <div class="col-md-4">
-    <label for="invoiceID" class="form-label">Invoice ID</label>
+    <label for="invoiceID" class="form-label">{"Invoice ID "}{" "}
+
+    {/* <label for="invoiceID" class="form-label"
+
+    hidden={(
+      Event.target.pattern!==true
+    )}
+    >{"Invoice ID "}{" "}</label> */}
+
+    </label>
     <input type="text" class="form-control" id="invoiceID" placeholder="INVXXXXID"
-    
+    maxLength="7"
+    pattern="^INV[0-9]{4}$"
     onChange={(event)=>{
-
+      
       setID(event.target.value);
-
+     
     }} required/>
+
+
 
   </div>
 
@@ -100,6 +115,8 @@ export default function Addinvoice() {
   <div class="col-md-8">
     <label for="billingName" class="form-label">Customer Name</label>
     <input type="text"  class="form-control" id="billingName" placeholder="A.P.Perera"
+    maxLength="40"
+    
     onChange={(event)=>{
 
       setName(event.target.value);
@@ -112,9 +129,10 @@ export default function Addinvoice() {
   <div class="col-md-8">
     <label for="billingAddress" class="form-label">Billing Address</label>
     <input type="text" class="form-control" id="billingAddress" placeholder="No.1234,Main St,Colombo"
-    
+    maxLength="70"
+    // pattern="[a-zA-Z0-9\s]+"
     onChange={(event)=>{
-
+      
       setAddress(event.target.value);
 
 }}required/>
@@ -127,7 +145,8 @@ export default function Addinvoice() {
     <div class="input-group has-validation">
       <span class="input-group-text" id="inputGroupPrepend">+94</span>
       <input type="text" class="form-control" id="validationCustomUsername"  placeholder="77XXXXXXX"
-      
+       maxLength="9"
+       pattern="^7[^+94][0-9]{7}$"
       onChange={(event)=>{
 
         setMobile(event.target.value);
@@ -145,7 +164,8 @@ export default function Addinvoice() {
     <div class="input-group has-validation">
       <span class="input-group-text" id="inputGroupPrepend">RM_ID</span>
       <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" placeholder="RM0023"
-      
+      maxLength="6"
+      pattern="^RM[0-9]{4}$"
       onChange={(event)=>{
 
         setRoomNum(event.target.value);
@@ -159,7 +179,8 @@ export default function Addinvoice() {
   <div class="col-md-4">
     <label for="noOfAdults" class="form-label">No of Adults</label>
     <input type="text" class="form-control" id="noOfAdults" placeholder="00"
-    
+    maxLength="2"
+    pattern="\d{2}"
     onChange={(event)=>{
 
       setAdults(event.target.value);
@@ -172,7 +193,8 @@ export default function Addinvoice() {
   <div class="col-md-4">
     <label for="noOfChildern" class="form-label">No of Children</label>
     <input type="text" class="form-control" id="noOfChildern" placeholder="00"
-    
+    maxLength="2"
+    pattern="\d{2}"
     onChange={(event)=>{
 
       setChildern(event.target.value);
@@ -184,7 +206,8 @@ export default function Addinvoice() {
   <div class="col-md-4">
     <label for="totalDates" class="form-label">Total Dates</label>
     <input type="text" class="form-control" id="totalDates" placeholder="00"
-    
+    maxLength="2"
+    pattern="[0-9]{2}"
     onChange={(event)=>{
 
       setDates(event.target.value);
@@ -199,7 +222,8 @@ export default function Addinvoice() {
     <div class="input-group has-validation">
       <span class="input-group-text" id="inputGroupPrepend">LKR</span>
       <input type="text" class="form-control" id="totalAmount" placeholder="74000LKR"
-      
+      maxLength="10"
+      pattern="[0-9]+"
       onChange={(event)=>{
 
     setAmount(event.target.value);
