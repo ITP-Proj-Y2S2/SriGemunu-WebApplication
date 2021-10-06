@@ -94,7 +94,7 @@ function App() {
         <Route path="/admin/UpdateRoom" exact component={UpdateRoom} />
         <Route path="/booking/BookingAvailability" exact component={BookingScreen} />
         <Route path="/booking/BookingAvailability/RoomAvailibilty/:room/:basis/:fromDate/:toDate" exact component={RoomAvailibilty} />
-        <Route path="/booking/BookingAvailability/BookingConfirmation" exact component={BookingConfirmation} />
+        <PrivateRoute path="/booking/BookingAvailability/BookingConfirmation" exact component={BookingConfirmation} />
         <Route path="/admin/bookings" exact component={AllBookings} />
         <PrivateRoute path="/user/userprofile" exact component={UserProfile} />
         

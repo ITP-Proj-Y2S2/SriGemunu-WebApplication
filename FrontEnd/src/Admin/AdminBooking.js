@@ -54,13 +54,13 @@ function AdminBooking() {
   
     //setting booking basis
     if(booking.basis == "RoomOnly"){
-      booking.basis="Room Only"
+      booking.basisName="Room Only"
     }
     else if(booking.basis == "BB"){
-      booking.basis="Bed and Breakfast"
+      booking.basisName="Bed and Breakfast"
     }
     else if(booking.basis == "FB"){
-      booking.basis=" Full board"
+      booking.basisName=" Full board"
     }
 
 
@@ -95,8 +95,8 @@ function AdminBooking() {
     }
 
   })
-  // console.log(bookingStatusAnalysis)
-  //console.log(roomTypeArray)
+  console.log(bookingStatusAnalysis)
+  console.log(roomTypeArray)
 
 
 
@@ -163,7 +163,7 @@ function AdminBooking() {
           booking.room,
           booking.fromDate,
           booking.toDate,
-          booking.basis,
+          booking.basisName,
           booking.totalAmount,
           booking.status
         ];
@@ -215,7 +215,7 @@ function AdminBooking() {
                     <td> {booking.room}</td>
                     <td> {booking.fromDate}</td>
                     <td> {booking.toDate}</td>
-                    <td> {booking.basis}</td>
+                    <td> {booking.basisName}</td>
                     <td> {booking.status}</td>
                     <td> {booking.totalAmount} LKR</td>
                     <td>{booking.status == "cancelled" ? "" : <button className="btn btn-warning m-1" onClick={() => deleteBookingHandler(booking._id)}>Cancel</button>}</td>
