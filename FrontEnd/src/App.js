@@ -29,13 +29,13 @@ import ChangeOccassion from './specialOccasion/ChangeOccassion';
 //Isi's imports
 import RestNavbar from "./RestaurantComponents/RestNavbar";
 import Home from "./pages/Home";
-import Menu from "./pages/Menu";
 import About from "./pages/About";
+import Report from "./RestaurantComponents/ReportGen";
 import Contact from "./pages/Contact";
 import AddFood from "./RestaurantComponents/AddFood";
 import RetrFood from "./RestaurantComponents/RetrFood";
 import EditFood from "./RestaurantComponents/EditFood";
-import CusFood from "./RestaurantComponents/CustomerRetr";
+import Menu from "./RestaurantComponents/CustomerRetr";
 
 //Chamudi's imports
 import EmpMain from './Employee/EmployeeMain';
@@ -75,6 +75,7 @@ import tempCus from './components/AdminRevenue/tempCus';
 import Admin from './components/AdminRevenue/Admin';
 import TempChart from './components/AdminRevenue/TempChart'
 
+
 //import Motion from './components/AdminRevenue/Motion';
 
 
@@ -94,7 +95,7 @@ function App() {
         <Route path="/admin/UpdateRoom" exact component={UpdateRoom} />
         <Route path="/booking/BookingAvailability" exact component={BookingScreen} />
         <Route path="/booking/BookingAvailability/RoomAvailibilty/:room/:basis/:fromDate/:toDate" exact component={RoomAvailibilty} />
-        <Route path="/booking/BookingAvailability/BookingConfirmation" exact component={BookingConfirmation} />
+        <PrivateRoute path="/booking/BookingAvailability/BookingConfirmation" exact component={BookingConfirmation} />
         <Route path="/admin/bookings" exact component={AllBookings} />
         <PrivateRoute path="/user/userprofile" exact component={UserProfile} />
         
@@ -114,12 +115,12 @@ function App() {
 
         {/* Isi's Imports   */}
         <Route path="/restaurant" exact component={Home} />
-        <Route path="/restaurant/menu" exact component={Menu} />
         <Route path="/restaurant/about" exact component={About} />
         <Route path="/restaurant/contact" exact component={Contact} />
         <Route path="/restaurant/addfood" exact component={AddFood} />
-        <Route path="/restaurant/retrfood" exact component={RetrFood} />
-        <Route path="/restaurant/cusretr" exact component={CusFood} />
+        <Route path="/restaurant/admin/retrfood" exact component={RetrFood} />
+        <Route path="/restaurant/report" exact component={Report} />
+        <Route path="/restaurant/menu" exact component={Menu} />
         <Route path="/restaurant/editfood/:id" exact component={EditFood} />
 
 
@@ -139,18 +140,18 @@ function App() {
         <Route exact path="/passwordreset/:resetToken" component={ResetPasswordScreen}/>
 
         {/*chama's imports*/}
-        {/* <Route path="/admin/revenue" exact component={HeaderRevenue}/> */}
+        
         <Route path="/admin/" exact component={Admin} />
         <Route path={["/admin/revenue","/admin/revenue/add","/admin/revenue/ViewInvoice","/admin/revenue/ViewInvoice/CustomerInvoice/:id"]} exact component={HeaderRevenue}/>
         <Route path={["/admin/revenue","/admin/revenue/Clock"]} exact component={Clock}/>
-    <Route path="/admin/revenue/Home" exact component={HomeRevenue}/>   
-    <Route path="/admin/revenue/TempCus" exact component={tempCus}/>  
-    <Route path="/admin/revenue/ViewInvoice" exact component={ViewInvoice}/>
-    <Route path="/admin/revenue/" exact component={HomeRevenue}/>
-    <Route path="/admin/revenue/ViewInvoice/CustomerInvoice/:id?" exact component={CustomerInvoice}/>
-    <Route path="/admin/revenue/add" exact component={Addinvoice} />
-    <Route path="/admin/revenue/ViewInvoice/CustomerInvoice/:id/Update" exact component={Update}/>
-    <Route path="/admin/revenue/TempChart" exact component={TempChart}/>
+        <Route path="/admin/revenue/Home" exact component={HomeRevenue}/>   
+        <Route path="/admin/revenue/TempCus" exact component={tempCus}/>  
+        <Route path="/admin/revenue/ViewInvoice" exact component={ViewInvoice}/>
+        <Route path="/admin/revenue/" exact component={HomeRevenue}/>
+        <Route path="/admin/revenue/ViewInvoice/CustomerInvoice/:id?" exact component={CustomerInvoice}/>
+        <Route path="/admin/revenue/add" exact component={Addinvoice} />
+        <Route path="/admin/revenue/ViewInvoice/CustomerInvoice/:id/Update" exact component={Update}/>  
+        <Route path="/admin/revenue/TempChart" exact component={TempChart}/>
 
     
     
