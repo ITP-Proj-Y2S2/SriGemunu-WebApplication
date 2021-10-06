@@ -1,4 +1,4 @@
- input[type=text]{
+ /* input[type=text]{
   width: 100%;
   padding: 15px 20px;
   margin: 8px 0;
@@ -6,23 +6,23 @@
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 1rem;
-} 
+}  */
 
-form{
+formemp{
   font-size: 1.2rem;
 }
 
-.addButton{
+.addButtonemp{
 
   margin-left: 500px;
 }
 
-  .btn-flat {
+  .btnemp-flatemp {
     background-color: black;
     color: white;
   }
 
-  .btn-m {
+  .btnemp-memp {
     padding: 0.5rem 1.5rem;
     font-size: 1.5rem;
   }

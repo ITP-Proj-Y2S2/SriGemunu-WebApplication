@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BannerImage from "../resources/bannerEmp.jpg";
-import "../styles/EmployeeMain.css";
+// import "../styles/EmployeeMain.css";
 import Button from 'react-bootstrap/Button';
 
 function Home() {
