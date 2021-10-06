@@ -217,7 +217,7 @@ function AdminBooking() {
             <thead className="roombox thead-dark">
               <tr >
                 <th >Boooking ID</th>
-                <th>User ID</th>
+                <th>User Name</th>
                 <th>Room</th>
                 <th>From</th>
                 <th>To</th>
