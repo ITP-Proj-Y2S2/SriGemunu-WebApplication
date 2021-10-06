@@ -44,14 +44,14 @@ import axios from 'axios';
             <form onSubmit={senddata}>
                 <div className="form-group mt-3">
                     <label for="name"  >Name</label>
-                    <input type="text" className="form-control" id="name" value={name} onChange = {(e)=>{
+                    <input type="text" className="form-control" required  id="name" value={name} onChange = {(e)=>{
                         setName(e.target.value);
                     }} />
                 </div>
 
                 <div className="form-group mt-3">
                 <label for="name"  >Room Type</label><br/>
-                <input type="radio"  className="form-check-input" value="Deluxe" name="type" onChange ={(e)=>{setType(e.target.value) }}/> Deluxe <br/>
+                <input type="radio"  className="form-check-input" value="Deluxe" required name="type" onChange ={(e)=>{setType(e.target.value) }}/> Deluxe <br/>
                 <input type="radio"  className="form-check-input" value="King" name="type" onChange ={(e)=>{setType(e.target.value) }}/> King
 
                  
@@ -59,21 +59,22 @@ import axios from 'axios';
 
                 <div className="form-group mt-3">
                     <label for="size"  >Size</label>
-                    <input type="text" className="form-control" id="size"  value={size} onChange = {(e)=>{
+                    <input type="text" className="form-control" required pattern="^[2-4]{1}$" id="size"  value={size} onChange = {(e)=>{
                         setSize(e.target.value);
                     }} />
                 </div>
 
                 <div className="form-group mt-3">
                     <label for="number"  >Number</label>
-                    <input type="text" className="form-control" id="number" value={number}  onChange = {(e)=>{
+                    <input type="text" className="form-control" required pattern="^[0-9]{4}$" id="number" value={number}  onChange = {(e)=>{
                         setNumber(e.target.value);
                     }} />
                 </div>
 
                 <div className="form-group mt-3">
                     <label for="imageurls" >Image URL</label>
-                    <input type="text" className="form-control" id="imageurls"  value={imageurls} onChange = {(e)=>{
+                    <input type="text" className="form-control" id="imageurls" required 
+                    pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"   value={imageurls} onChange = {(e)=>{
                         setImageurls(e.target.value);
                     }}/>
                 </div>

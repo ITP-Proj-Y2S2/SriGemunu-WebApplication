@@ -46,7 +46,7 @@ import axios from 'axios';
             <form onSubmit={senddata}>
                 <div className="form-group mt-3">
                     <label for="name"  >Name</label>
-                    <input type="text" className="form-control" required pattern = "^[a-zA-Z]+$" id="name" onChange = {(e)=>{
+                    <input type="text" className="form-control" required  id="name" onChange = {(e)=>{
                         setName(e.target.value);
                     }} />
                 </div>
