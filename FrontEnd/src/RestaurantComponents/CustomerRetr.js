@@ -52,11 +52,9 @@ export default class CustomerRetr extends Component {
     <h1 data-aos = "fade-up"> IT'S TIME TO INDULGE </h1>
     <table class="menutable">
       <thead>
-        <tr>
           <th>Food Item</th>
           <th>Catergory</th>
           <th>Price</th>
-        </tr>
       </thead>
       <tbody>
         {this.DataTable()}

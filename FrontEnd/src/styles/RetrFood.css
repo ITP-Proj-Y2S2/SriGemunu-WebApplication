@@ -1,11 +1,44 @@
 .retrdisplay{
-  width: 90%;
   margin-top: 80px;
-  margin-bottom: 100px;
+  margin-bottom: 40px;
+}
+
+
+
+.retrdisplay table{
+text-align: center;
+}
+
+.retrdisplay table td{
+  padding:15px 1rem;
+  font-size: 1rem;
+}
+
+.retrdisplay table th{
+  background-color:#121619;
+  font-size: 1.1rem;
+  padding:15px 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.retrdisplay Button{
+  width: 100px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
 .repocontainer{
   margin: 20px;
   text-align: center;
-  padding-right: 52px
+  padding-right: 52px;
+
+}
+
+.repocontainer Button{
+  text-transform: uppercase;
+  text-align: center;
+  margin: 20px;
+  width: 300px;
+  font-size: 1.1rem;
 }
