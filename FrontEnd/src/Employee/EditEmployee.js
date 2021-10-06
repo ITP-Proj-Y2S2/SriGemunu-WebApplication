@@ -107,7 +107,7 @@ export default class EditEmployee extends Component {
       };
   
 
-      axios.put('http://localhost:8070/employee/update' + this.props.match.params.id, employeeObject)
+      axios.put('http://localhost:8070/employee/update/' + this.props.match.params.id, employeeObject)
       .then((res) => {
         console.log(res.data)
        
@@ -115,7 +115,7 @@ export default class EditEmployee extends Component {
         console.log(error)
       })
       alert('Employee successfully updated')
-    this.props.history.push('/getemployee')
+    this.props.history.push('/admin/employee/getEmp')
     window.location.reload(false);
   }
 

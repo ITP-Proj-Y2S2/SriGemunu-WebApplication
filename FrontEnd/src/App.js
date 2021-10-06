@@ -36,7 +36,7 @@ import EmpMain from './Employee/EmployeeMain';
 import AddEmployee from './Employee/AddEmployee';
 import GetEmployee from "./Employee/GetEmployee";
 import EditEmployee from "./Employee/EditEmployee";
-import EmployeeTable from "./Employee/EmployeeTable";
+
 
 
 
@@ -82,9 +82,9 @@ function App() {
         
         <Route path = "/admin/employee/addEmp" exact component={AddEmployee}/>
         <Route path="/admin/employee/getEmp" exact component={GetEmployee} />
-        <Route path="/admin/employee/editEmp" exact component={EditEmployee} />
+        <Route path="/admin/employee/editEmp/:id" exact component={EditEmployee} />
         <Route path="/admin/employee" exact component={EmpMain} />
-        <Route path="/admin/employee/tableEmp" exact component={EmployeeTable} />
+       
 
         <Footer />
       </Router>

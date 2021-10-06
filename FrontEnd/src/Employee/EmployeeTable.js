@@ -35,7 +35,7 @@ export default class EmployeeTable extends Component {
                 <td>{this.props.obj.salary}</td>
                 <td>{this.props.obj.availability}</td>
                 <td>
-                    <Link to={"/update/" + this.props.obj._id}>
+                    <Link to={"/admin/employee/editEmp/" + this.props.obj._id}>
                     <Button size="sm" variant="primary" >Edit</Button>{' '}
                     </Link>
                     <Button onClick={this.deleteItem} size="sm" variant="danger">Delete</Button>
