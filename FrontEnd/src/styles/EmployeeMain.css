@@ -1,0 +1,89 @@
+.home2 {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  }
+  
+  .headerContainerEmp {
+    width: 100%;
+    margin-left: 250px;
+  }
+  
+  .headerContainerEmp h1 {
+    font-size: 90px;
+    height: 60px;
+    font-weight: 50;
+    color: whitesmoke;
+    margin-bottom:50px;
+  }
+  
+  .headerContainerEmp button {
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: center;
+    background-color: #121619;
+    height: 50px;
+    width: 180px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-left:400px;
+  }
+  
+  .headerContainer2 button:hover {
+    background-color: grey;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+  }
+  
+  @media only screen and (max-width: 650px) {
+    .home {
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .headerContainer2 {
+      margin-left: 0px;
+      border-radius: 10px;
+      padding: 10px;
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #121619;
+      color: white;
+    }
+  
+    .headerContainer2 h1 {
+      font-size: 40px;
+      height: 30px;
+      color: white;
+    }
+  
+    .headerContainer2 p {
+      font-size: 30px;
+      color: white;
+    }
+  
+    .headerContainer2 button {
+      background-color: white;
+      color: #121619;
+      margin-bottom: 30px;
+    }
+  
+    .headerContainer2 button:hover {
+      background-color: rgb(225, 225, 225);
+      color: #121619;
+    }
+  }
+  

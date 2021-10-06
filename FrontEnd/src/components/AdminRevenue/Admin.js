@@ -298,7 +298,7 @@ class Admin extends Component {
       <span class="stars"></span>
       <h5 class="java">Manage Employee</h5>
       
-      <Link to="#" type="button" class="btn btn-outline-light">Manage</Link>
+      <Link to="/admin/employee/getEmp" type="button" class="btn btn-outline-light">Manage</Link>
     </div>
   </div>
   <div class="face face2">
