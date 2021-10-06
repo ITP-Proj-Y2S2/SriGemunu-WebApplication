@@ -145,7 +145,7 @@ export function MyProfile() {
             </div>
 
 
-        </div>
+       
     )
 }
 
