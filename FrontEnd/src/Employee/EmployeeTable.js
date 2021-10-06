@@ -23,7 +23,7 @@ export default class EmployeeTable extends Component {
 
     render() {
         return (
-            <div className="container mt-5 pt-5">
+           
             <tr>
                 <td>{this.props.obj.firstName}</td>
                 <td>{this.props.obj.lastName}</td>
@@ -41,7 +41,7 @@ export default class EmployeeTable extends Component {
                     <Button onClick={this.deleteItem} size="sm" variant="danger">Delete</Button>
                 </td>
             </tr>
-            </div>
+            
         );
     }
 }
