@@ -1,6 +1,7 @@
 import React, {useState,Component} from "react";
 import axios from "axios";
 import {Link, useHistory} from 'react-router-dom';
+import Swal from "sweetalert2"
 
 
 
@@ -18,6 +19,9 @@ export default function Addinvoice() {
   const [noOfChildern, setChildern] = useState("");
   const [totalDates, setDates] = useState("");
   const [totalAmount, setAmount] = useState("");
+
+  
+ 
 
   function handleHistory () {
 
@@ -43,13 +47,22 @@ export default function Addinvoice() {
 
     }
 
+
     ////////////////////////////VALIDATION///////////////////
     
 
     console.log(NewInvoice);
 
     axios.post("/invoice/add",NewInvoice).then(()=>{
-      alert("Invoice Added Successfully")
+     
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Invoice has been issued',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
       history.push("/admin/revenue/ViewInvoice");
 
       
@@ -69,18 +82,19 @@ export default function Addinvoice() {
        //this.setState({alert_message:"error"})
     })
 
+
+
   }
 
 
    return (
       
-       <div className="container">
+       <div className="container" >
        <br/><br/>
        <h1 class="display-2">Issue Customer Invoice</h1>
        <br></br>
 
-       {/* {this.state.alert_message=="success"?<SuccessAlert/>:null}
-       {this.state.alert_message=="error"?<ErrorAlert/>:null} */}
+
 
 
 
@@ -89,12 +103,6 @@ export default function Addinvoice() {
   <div class="col-md-4">
     <label for="invoiceID" class="form-label">{"Invoice ID "}{" "}
 
-    {/* <label for="invoiceID" class="form-label"
-
-    hidden={(
-      Event.target.pattern!==true
-    )}
-    >{"Invoice ID "}{" "}</label> */}
 
     </label>
     <input type="text" class="form-control" id="invoiceID" placeholder="INVXXXXID"
@@ -105,8 +113,6 @@ export default function Addinvoice() {
       setID(event.target.value);
      
     }} required/>
-
-
 
   </div>
 
@@ -121,7 +127,7 @@ export default function Addinvoice() {
 
       setName(event.target.value);
 
-}}required/>
+}} required/>
    
     </div>
 
@@ -135,7 +141,7 @@ export default function Addinvoice() {
       
       setAddress(event.target.value);
 
-}}required/>
+}} required/>
   </div>
 
   <br></br>
@@ -151,7 +157,7 @@ export default function Addinvoice() {
 
         setMobile(event.target.value);
 
-}}required/>
+}} required/>
       
     </div>
   </div>
@@ -170,7 +176,7 @@ export default function Addinvoice() {
 
         setRoomNum(event.target.value);
 
-}}required/>
+}} required/>
       
     </div>
   </div>
@@ -221,14 +227,14 @@ export default function Addinvoice() {
     <label for="totalAmount" class="form-label">Total Amount</label>
     <div class="input-group has-validation">
       <span class="input-group-text" id="inputGroupPrepend">LKR</span>
-      <input type="text" class="form-control" id="totalAmount" placeholder="74000LKR"
+      <input type="text" class="form-control" id="totalAmount" placeholder="74000"
       maxLength="10"
       pattern="[0-9]+"
       onChange={(event)=>{
 
     setAmount(event.target.value);
 
-}}required/>
+}} required/>
       
     </div>
   </div>
@@ -247,7 +253,9 @@ export default function Addinvoice() {
   <br></br>
   <br></br>
   
-  <button type="submit" class="btn btn-primary">Issue Invoice</button>
+  <button type="submit" class="btn btn-primary" 
+  
+  >Issue Invoice</button>
   <button type="reset" class="btn btn-outline-danger">Reset Invoice</button>
 
 

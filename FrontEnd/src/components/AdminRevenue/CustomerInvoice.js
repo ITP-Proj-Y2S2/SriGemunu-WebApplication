@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link, useHistory } from 'react-router-dom';
 import { Container, Button, Alert} from 'react-bootstrap'
+import Swal from "sweetalert2"
 
 
 
@@ -41,6 +42,14 @@ class CustomerInvoice extends Component {
     this.setState({
       visibleAlert: !this.state.visibleAlert
     });
+
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'You have successfully updated the invoice',
+      showConfirmButton: false,
+      timer: 2000
+    })
   }
 
 
@@ -61,36 +70,35 @@ class CustomerInvoice extends Component {
     let MobileNumErrMsg = "✅";
     let RoomErrMsg = "✅";
     let AmountErrMsg="✅";
-    console.log("hello" + htmlid);
+    
     this.setState({ [htmlid]: input });
     if (htmlid === "invoiceID") {
-      console.log("im id");
+      
       if (!invoiceIDPattern.test(input)) {
         {
           errMsg = "Invoice ID must be a valid format INVXXXX";
         }
       }
     } else if (htmlid === "mobileNumber") {
-      console.log("im mobile");
+      
       if (!mobileNumPattern.test(input)) {
         MobileNumErrMsg = "Mobile number must be a valid format 77XXXXXXX";
       }
     } else if (htmlid === "roomNumber") {
-      console.log("im in room");
+      
       if (!roomNumPattern.test(input)) {
         RoomErrMsg = "Room ID must be a valid format RMXXXX";
       }
     } else if (htmlid === "totalAmount") {
-      console.log("im in room");
+      
       if (!amountPattern.test(input)) {
         AmountErrMsg = "Amount must be a valid format";
       }
 
     }
 
-    console.log("IN handleChange");
+    
     console.log("id param -> " + event.target.id);
-
     console.log("States -> " + JSON.stringify(this.state));
     // this.setState({formdata:{[html_id]: event.target.value}});
 
@@ -113,8 +121,7 @@ class CustomerInvoice extends Component {
       .post("http://localhost:8070/invoice/update/" + FetchedRefID, this.state)
       .then(function (response) {
         console.log(response.data)
-        
-        
+    
         
       })
       .catch(function (error) {
@@ -154,27 +161,41 @@ class CustomerInvoice extends Component {
     //const FetchedRefID = this.props.match.params.id;
     //console.log("ref " + this.post._id)
     console.log("delete func in");
-    //const FetchedRefID = this.props.match.params.id;
     const btnValue = e.target.value;
     console.log("ref id: " + btnValue);
 
-    axios
-      .delete("http://localhost:8070/invoice/delete/" + btnValue)
-      .then(() => {
-        console.log("IN then");
-        this.props.history.push({
+    Swal.fire({
+      title: 'Are you sure you want to delete this invoice?',
+      text: "This action cannot be undone",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d9534f',
+      cancelButtonColor: '#292b2c',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        axios
+        .delete("http://localhost:8070/invoice/delete/" + btnValue)
+        .then(() => {    
+          this.props.history.push({
           pathname: "/admin/revenue/ViewInvoice",
           state: this.state,
+          });
+  
+  
         });
-      });
-      
+    
+        Swal.fire(
+          'Successfully Deleted!',
+          'Invoice has been deleted.',
+          'success'
+        )
+      }
+    })
 
-     //.catch((error)=>{
-    //console.log(error);
-    //   this.setState({DeleteError: "something went wrong with deleting the invoice"})
-    // })
-
-    alert("deleted");
+ 
+    
   }
 
   render() {
@@ -183,19 +204,6 @@ class CustomerInvoice extends Component {
     console.log(this.props.match.params.id);
     const invoiceRefID = this.props.match.params.id;
 
-  //   function EnableDisable(invoiceID) {
-  //     //Reference the Button.
-  //     var updateBtn = document.getElementById("updateBtn");
-
-  //     //Verify the TextBox value.
-  //     if (invoiceID.value.trim() != "") {
-  //         //Enable the TextBox when TextBox has value.
-  //         updateBtn.disabled = false;
-  //     } else {
-  //         //Disable the TextBox when TextBox is empty.
-  //         updateBtn.disabled = true;
-  //     }
-  // };
 
     return (
       
@@ -203,7 +211,7 @@ class CustomerInvoice extends Component {
         <br></br>
         
         <h1 class="display-2">
-          {/* {"Invoice" + " " + "#" + invoiceFetchedData.invoiceID} */}
+          
           {"INVOICE" + " " + "#" + this.state.invoiceID}
         </h1>
         <p class="h6" style={{ color: "grey" }}>
@@ -481,7 +489,7 @@ class CustomerInvoice extends Component {
               Update Invoice 
             </button>
             
-            {/* <button type="reset" class="btn btn-danger" value="reset" > Reset </button> */}
+            
 
             <button
               class="btn btn-outline-success"
