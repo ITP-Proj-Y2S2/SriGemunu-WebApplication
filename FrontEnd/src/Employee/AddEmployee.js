@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import "../styles/AddEmployee.css";
+import BannerImage from "../resources/bannerEmp.jpg";
 
 export default class AddEmployee extends Component {
 
@@ -109,11 +110,12 @@ export default class AddEmployee extends Component {
     });
 
   }
-
+  
   render() {
     return (
+    
     <div className="form-wrapper mt-5">
-    <div className="container mt-5 pt-5">
+    <div className="container mt-5 pt-5" >
       <Form onSubmit={this.onSubmit} className = "mt-5">
 
       <Form.Group controlId="firstName">
@@ -160,15 +162,16 @@ export default class AddEmployee extends Component {
           <Form.Label>availability</Form.Label>
           <Form.Control type="text" value={this.state.availability} onChange={this.onChangeavailability} />
         </Form.Group>
-
-        <div className="addButton">
-        <Button variant="primary" size="sm" block="block" type="submit">
+<br/><br/><br/>
+        <div className="addButton" >
+        <Button   type="submit" variant="flat" size="m">
           Add Employee
         </Button>
         </div>
       </Form>
       </div>
     </div>
+  
     );
   }
 }

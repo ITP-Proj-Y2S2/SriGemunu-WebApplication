@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import "../styles/AddEmployee.css";
+import "../styles/EditEmployee.css";
 
 export default class EditEmployee extends Component {
 
@@ -169,10 +169,10 @@ export default class EditEmployee extends Component {
         </Form.Group>
 
         <div className="updateButton">
-        <div className="d-grid gap-2"><Button variant="primary" size="lg" block="block" type="submit">
+        
+        <Button type="submit" variant="flat" size="m">
           Update Employee
         </Button></div>
-        </div>
       </Form>
       </div>
     </div>);
