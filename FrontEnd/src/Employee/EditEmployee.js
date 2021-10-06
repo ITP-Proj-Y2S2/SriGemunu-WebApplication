@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import "../styles/AddEmployee.css";
+import "../styles/EditEmployee.css";
 
 export default class EditEmployee extends Component {
 
@@ -107,7 +107,7 @@ export default class EditEmployee extends Component {
       };
   
 
-      axios.put('http://localhost:8070/employee/update' + this.props.match.params.id, employeeObject)
+      axios.put('http://localhost:8070/employee/update/' + this.props.match.params.id, employeeObject)
       .then((res) => {
         console.log(res.data)
        
@@ -115,7 +115,7 @@ export default class EditEmployee extends Component {
         console.log(error)
       })
       alert('Employee successfully updated')
-    this.props.history.push('/getemployee')
+    this.props.history.push('/admin/employee/getEmp')
     window.location.reload(false);
   }
 
@@ -169,10 +169,10 @@ export default class EditEmployee extends Component {
         </Form.Group>
 
         <div className="updateButton">
-        <div className="d-grid gap-2"><Button variant="primary" size="lg" block="block" type="submit">
+        
+        <Button type="submit" variant="flat" size="m">
           Update Employee
         </Button></div>
-        </div>
       </Form>
       </div>
     </div>);

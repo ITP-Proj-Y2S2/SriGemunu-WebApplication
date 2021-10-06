@@ -1,13 +1,33 @@
 import React from "react";
 import banneraabout from "../resources/banner4.jpg";
 import "../styles/About.css";
+import Sidebar from "../RestaurantComponents/Sidebar"
+import { GiHamburgerMenu } from 'react-icons/gi'
+import {useState} from 'react'
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init({
+  duration : 1500
+});
+
+
 function About() {
+  const [ showSide,setshowSide] = useState(false);
   return (
     <div className="about">
       <div
         className="aboutTop"
         style={{ backgroundImage: `url(${banneraabout})` }}
       ></div>
+                 <div className="sidebar">
+                 <header data-aos = "fade-right">
+        <a><GiHamburgerMenu onClick={() => setshowSide(!showSide)}
+        /></a>
+        </header>
+          <Sidebar show={showSide}/>
+          </div>
       <div className="aboutBottom">
         <h1> ABOUT US</h1>
         <p>
