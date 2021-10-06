@@ -5,13 +5,9 @@
   margin-bottom: 600px;
   font-size: 1.2rem;
  } */
- .btnemp-flatemp {
-    
-    background-color: black;
-    color: white;
-  }
 
-  .btnemp-memp {
-    padding: 0.5rem 1.5rem;
-    font-size: 1.5rem;
+  .contemp{
+    margin: 20px;
+    text-align: center;
+    padding-right: 52px
   }

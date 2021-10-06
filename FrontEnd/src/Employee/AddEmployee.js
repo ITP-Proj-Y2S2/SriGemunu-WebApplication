@@ -28,6 +28,7 @@ export default class AddEmployee extends Component {
         address:'',
         NIC:'',
         email:'',
+        emailError: "",
         employeeType:'',
         salary:'',
         availability:''
@@ -70,8 +71,31 @@ export default class AddEmployee extends Component {
     this.setState({ availability: e.target.value })
   }
 
+  validate = () => {
+    let isError = false;
+    const errors = {
+      emailError: "",
+    };
+
+
+    if (this.state.email.indexOf("@") === -1) {
+      isError = true;
+      errors.emailError = "Requires valid email";
+      alert("Answer of your question XD");
+    }
+
+    this.setState({
+      ...this.state,
+      ...errors
+    });
+
+    return isError;
+  };
+
   onSubmit(e) {
     e.preventDefault()
+    const err = this.validate();
+    if (!err) {
 
     const employeeObject = {
         firstName: this.state.firstName,
@@ -109,6 +133,7 @@ export default class AddEmployee extends Component {
         salary:'',
         availability:''
     });
+  }
 
   }
   
@@ -117,7 +142,7 @@ export default class AddEmployee extends Component {
     
     <div className="form-wrapper mt-5">
     <div className="container mt-5 pt-5" >
-      <Form onSubmit={this.onSubmit} className = "mt-5">
+      <Form onSubmit={this.onSubmit} className = "formemp">
 
       <Form.Group controlId="firstName">
           <Form.Label>firstName</Form.Label>
@@ -146,7 +171,7 @@ export default class AddEmployee extends Component {
 
         <Form.Group controlId="email">
           <Form.Label>email</Form.Label>
-          <Form.Control type="text" value={this.state.email} onChange={this.onChangeemail} />
+          <Form.Control type="text" value={this.state.email} onChange={this.onChangeemail} errorText={this.state.emailError} />
         </Form.Group>
 
         <Form.Group controlId="employeeType">
@@ -163,12 +188,13 @@ export default class AddEmployee extends Component {
           <Form.Label>availability</Form.Label>
           <Form.Control type="text" value={this.state.availability} onChange={this.onChangeavailability} />
         </Form.Group>
-<br/><br/><br/>
-        <div className="addButton" >
-        <Button type="submit" variant="flat" size="m">
+<br/><br/>
+        <div className="addButtonemp" >
+        <Button type="submit" variant="dark" size="lg">
           Add Employee
         </Button>
         </div>
+        <br/><br/>
       </Form>
       </div>
     </div>
