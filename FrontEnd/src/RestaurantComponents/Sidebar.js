@@ -7,7 +7,7 @@ const Sidebar = ({show}) => {
             <div className="list">
             <ul>
                 <li><a href="/restaurant">Home</a></li>
-                <li><a href="/restaurant/cusretr">Menu</a></li>
+                <li><a href="/restaurant/menu">Menu</a></li>
                 <li><a href="/restaurant/about">About</a></li>
                 <li><a href="/restaurant/contact">Contact</a></li>
             </ul>
