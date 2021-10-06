@@ -72,6 +72,7 @@ export default function AddOccasion(props) {
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend">@</span>
                                     <input type="text" class="form-control" id="validationEmail" pattern = "" aria-describedby="inputGroupPrepend" required onChange={(e) => {
+
                                         setEmail(e.target.value)
                                     }
                                     } 
