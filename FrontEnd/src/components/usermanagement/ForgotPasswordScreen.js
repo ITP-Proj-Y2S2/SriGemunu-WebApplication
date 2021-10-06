@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import {forgotpasswordscreen} from "./ForgotPasswordScreen.css";
+// import {forgotpasswordscreen} from "./ForgotPasswordScreen.css";
+import "./ForgotPasswordScreen.css";
 
 const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState("");
@@ -34,7 +35,7 @@ const ForgotPasswordScreen = () => {
   };
 
   return (
-    <div className={forgotpasswordscreen}>
+    <div className={"forgotpassword-screen" }>
       <form
         onSubmit={forgotPasswordHandler}
         className="forgotpassword-screen__form"
@@ -58,7 +59,7 @@ const ForgotPasswordScreen = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-dark mt-3">
           Send Email
         </button>
       </form>
