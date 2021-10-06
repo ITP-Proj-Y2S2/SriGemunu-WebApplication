@@ -22,9 +22,12 @@ export default class AddEmployee extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-        firstName:'',      
+        firstName:'',
+        firstNameError:'',      
         lastName:'',
+        lastNameError:'',   
         contactNumber:'',
+        contactNumberError:'',   
         address:'',
         NIC:'',
         email:'',
@@ -32,6 +35,7 @@ export default class AddEmployee extends Component {
         employeeType:'',
         salary:'',
         availability:''
+        // availabilityError:''
       }
   }
 
@@ -75,13 +79,38 @@ export default class AddEmployee extends Component {
     let isError = false;
     const errors = {
       emailError: "",
+      firstNameError:"",
+      lastNameError:"",
+      // availabilityError:'',
+      contactNumberError:'' 
     };
 
 
     if (this.state.email.indexOf("@") === -1) {
       isError = true;
       errors.emailError = "Requires valid email";
-      alert("Answer of your question XD");
+      alert("Enter a valid Email");
+    }
+    if (this.state.firstName.length <1) {
+      isError = true;
+      errors.firstNameError = "First name cannot be null";
+      alert("First name cannot be null");
+    }
+    if (this.state.lastName.length <1) {
+      isError = true;
+      errors.lastNameError = "Last name cannot be null";
+      alert("Last name cannot be null");
+    }
+    // if (this.state.availability.indexOf("yes")=== -1) {
+    //   isError = true;
+    //   errors.availabilityError= "Answer should be yes or no";
+    //   alert("Answer should be yes or no");
+    // }
+    
+    if (this.state.contactNumber.length != 10) {
+      isError = true;
+      errors.contactNumberError = "Contact number should be a number and should have more than 10 characters";
+      alert("Contact number should be a number and should have more than 10 characters");
     }
 
     this.setState({
@@ -146,17 +175,17 @@ export default class AddEmployee extends Component {
 
       <Form.Group controlId="firstName">
           <Form.Label>firstName</Form.Label>
-          <Form.Control type="text" value={this.state.firstName} onChange={this.onChangefirstName} />
+          <Form.Control type="text" value={this.state.firstName} onChange={this.onChangefirstName} errorText={this.state.firstNameError}/>
         </Form.Group>
 
         <Form.Group controlId="lastName">
           <Form.Label>lastName</Form.Label>
-          <Form.Control type="text" value={this.state.lastName} onChange={this.onChangelastName} />
+          <Form.Control type="text" value={this.state.lastName} onChange={this.onChangelastName} errorText={this.state.lastNameError}/>
         </Form.Group>
 
         <Form.Group controlId="contactNumber">
           <Form.Label>contactNumber</Form.Label>
-          <Form.Control type="text" value={this.state.contactNumber} onChange={this.onChangecontactNumber} />
+          <Form.Control type="text" value={this.state.contactNumber} onChange={this.onChangecontactNumber} errorText={this.state.contactNumberError} />
         </Form.Group>
 
         <Form.Group controlId="address">
