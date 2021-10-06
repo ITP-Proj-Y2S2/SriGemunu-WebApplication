@@ -44,13 +44,17 @@ export default UserProfile;
 export function UserBookings() {
     const user = JSON.parse(localStorage.getItem("currentUser"))
     const [bookings, setBookings] = useState([])
+    const [rooms, setRooms] = useState([])
 
     useEffect(async () => {
         try {
             const data = await (await (axios.post("http://localhost:8070/api/booking/getuserbooking", { userId: user._id }))).data;
-            console.log(data)
+            //console.log(data)
             // console.log(user._id)
             setBookings(data)
+            const roomsObj = (await axios.get("/api/rooms/getallrooms")).data;
+            // console.log(data);
+            setRooms(roomsObj);
 
         } catch (error) {
             console.log(error)
@@ -70,19 +74,36 @@ export function UserBookings() {
         <div>
 
             <div className="row justify-content-center">
-                <div class="col-md-6">
+                <div class="col-md-8">
 
                     {bookings && (bookings.map(booking => {
+                        
+                        rooms.map((room)=>{
+                            if(booking.roomId == room._id){
+                                booking.roomImg = room.imageurls[0]
+                                booking.roomType =  room.type
+                            }
+                        })
+                        //console.log(booking.fromDate)
+
+
                         return (
-                            <div className="roombox m-4 p-3">
+                            <div className=" row roombox m-4 p-3">
+                                <div className="col-md-5 ">
+                                    <img src={booking.roomImg} className="smallimage " alt="" />
+                                </div>
+                                <div className="col-md-5 ">
                                 <h5>{booking.room}</h5>
+                                <p><b>Room Type : </b>{booking.roomType}</p>
                                 <p><b>Check in Date : </b>{booking.fromDate}</p>
                                 <p><b>Check out Date : </b> {booking.toDate}</p>
                                 <p><b>Booking status : </b>{booking.status == "cancelled" ? <Tag color="orange">cancelled</Tag> : <Tag color="cyan">Success</Tag>}</p>
 
-                                {booking.status == "cancelled" ? "cancelled" : <div className="text-right">
+                                {booking.status == "cancelled" ? "" : <div className="text-right">
                                     <button className="btn btn-dark" onClick={() => { cancelBooking(booking._id) }}>Cancel</button>
                                 </div>}
+
+                                </div>
 
 
                             </div>
