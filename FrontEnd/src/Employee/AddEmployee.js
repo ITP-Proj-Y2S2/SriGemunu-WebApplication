@@ -22,7 +22,7 @@ export default class AddEmployee extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-        firstName:'',
+        firstName:'',      
         lastName:'',
         contactNumber:'',
         address:'',
@@ -84,18 +84,20 @@ export default class AddEmployee extends Component {
         salary: this.state.salary,
         availability: this.state.availability
       };
+      console.log(employeeObject)
   
 
     axios.post('http://localhost:8070/employee/add', employeeObject)
       .then(res => {
           console.log(res.data)
           alert('Employee successfully added')
+          this.props.history.push('/admin/employee/getEmp')
+          window.location.reload(false);
         }).catch(e=>{
-          alert('Aula ',e);
+          alert('Error',e);
         });
         
-    this.props.history.push('/admin/employee/getEmp')
-    window.location.reload(false);
+   
     this.setState({
         firstName:'',
         lastName:'',
@@ -109,11 +111,12 @@ export default class AddEmployee extends Component {
     });
 
   }
-
+  
   render() {
     return (
+    
     <div className="form-wrapper mt-5">
-    <div className="container mt-5 pt-5">
+    <div className="container mt-5 pt-5" >
       <Form onSubmit={this.onSubmit} className = "mt-5">
 
       <Form.Group controlId="firstName">
@@ -160,15 +163,16 @@ export default class AddEmployee extends Component {
           <Form.Label>availability</Form.Label>
           <Form.Control type="text" value={this.state.availability} onChange={this.onChangeavailability} />
         </Form.Group>
-
-        <div className="addButton">
-        <Button variant="primary" size="sm" block="block" type="submit">
+<br/><br/><br/>
+        <div className="addButton" >
+        <Button type="submit" variant="flat" size="m">
           Add Employee
         </Button>
         </div>
       </Form>
       </div>
     </div>
+  
     );
   }
 }
