@@ -24,6 +24,7 @@ export default class AddEmployee extends Component {
 
     this.state = {
         firstName:'',
+        
         lastName:'',
         contactNumber:'',
         address:'',
