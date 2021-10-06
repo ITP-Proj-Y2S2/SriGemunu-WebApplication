@@ -1,6 +1,11 @@
 .retrdisplay{
-  width: 60%;
-  margin-left: 350px;
+  width: 90%;
   margin-top: 80px;
-  margin-bottom: 600px;
+  margin-bottom: 100px;
+}
+
+.repocontainer{
+  margin: 20px;
+  text-align: center;
+  padding-right: 52px
 }
