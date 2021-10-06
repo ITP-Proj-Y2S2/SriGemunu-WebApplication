@@ -8,11 +8,11 @@
   } 
 
 .updateButton{
-    margin-bottom: 350px;
+    margin-bottom: 550px;
   }
 
 .updateButton Button{
-    margin-left: 40px;
+  float: left;
     background-color: #121619;
     border: none;
     margin-top: 40px;
