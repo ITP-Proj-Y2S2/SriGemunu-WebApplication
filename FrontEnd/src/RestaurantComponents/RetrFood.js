@@ -76,10 +76,8 @@ export default class RetrFood extends Component {
       </tbody>    
     </table>
     <div className="repocontainer">
-    <Button size="sm" variant="danger" size="m" onClick={this.jspdfgenerator}>Generate Report</Button>
-      </div>
-      <div className="repocontainer">
-      <Link to={"/restaurant/addfood"}><Button size="m" variant="danger" >Add New</Button>{' '}</Link>
+    <Link to={"/restaurant/addfood"}><Button size="m" variant="warning" >Add New</Button>{' '}</Link>
+    <Button size="sm" variant="danger" size="m" variant="warning" onClick={this.jspdfgenerator}>Generate Report</Button>
       </div>
   </div>
   </div>);

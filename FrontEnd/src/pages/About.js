@@ -29,15 +29,15 @@ function About() {
           <Sidebar show={showSide}/>
           </div>
       <div className="aboutBottom">
-        <h1> ABOUT US</h1>
-        <p>
+        <h1 data-aos = "fade-in"> ABOUT US</h1>
+        <p data-aos = "fade-left">
         Sri Lanka, pearl of the Indian ocean, is often called the “Garden of Eden”. Our hotel is situated on the southern tip of this paradise.
 We welcome you with the hospitality typical of our country, coupled with a special service and a unique informal flair.
 The well-kept house occupies the best location on the border of the small village of Unawatuna and offers a fascinating view of the Indian ocean from every room.
 Secured by an offshore coral reef our beach offers secure swimming in the Indian ocean. Undisturbed walks along the beach and through the countryside, the encounter of our ancient culture and much more ensure an unforgettable experience.
 </p>
 
-<p>Our restaurant offers a range of Asian and international specialities à-la-carte, daily from 7 a.m. – 10 p.m.
+<p data-aos = "fade-right">Our restaurant offers a range of Asian and international specialities à-la-carte, daily from 7 a.m. – 10 p.m.
 
 Interesting breakfast variations, exotic fruits and exquisite curries guarantee a culinary experience out of the ordinary. Fish, lobster and other sea food are daily supplied by local fishermen, fresh from the ocean.
 
