@@ -3,7 +3,6 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import "../styles/AddEmployee.css";
-import BannerImage from "../resources/bannerEmp.jpg";
 
 export default class AddEmployee extends Component {
 
@@ -23,8 +22,7 @@ export default class AddEmployee extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-        firstName:'',
-        
+        firstName:'',      
         lastName:'',
         contactNumber:'',
         address:'',
@@ -86,18 +84,20 @@ export default class AddEmployee extends Component {
         salary: this.state.salary,
         availability: this.state.availability
       };
+      console.log(employeeObject)
   
 
     axios.post('http://localhost:8070/employee/add', employeeObject)
       .then(res => {
           console.log(res.data)
           alert('Employee successfully added')
+          this.props.history.push('/admin/employee/getEmp')
+          window.location.reload(false);
         }).catch(e=>{
-          alert('Aula ',e);
+          alert('Error',e);
         });
         
-    this.props.history.push('/admin/employee/getEmp')
-    window.location.reload(false);
+   
     this.setState({
         firstName:'',
         lastName:'',
@@ -165,7 +165,7 @@ export default class AddEmployee extends Component {
         </Form.Group>
 <br/><br/><br/>
         <div className="addButton" >
-        <Button   type="submit" variant="flat" size="m">
+        <Button type="submit" variant="flat" size="m">
           Add Employee
         </Button>
         </div>
