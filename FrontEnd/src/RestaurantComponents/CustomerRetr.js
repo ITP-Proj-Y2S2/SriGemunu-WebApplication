@@ -4,7 +4,9 @@ import CustomerTableRow from './CustomerTableRow';
 import Sidebar from "../RestaurantComponents/Sidebar"
 import { GiHamburgerMenu } from 'react-icons/gi'
 import {useState} from 'react'
+import { Link } from 'react-router-dom';
 import "../styles/CustomerRetr.css";
+import { AiFillHome } from "react-icons/ai"
 import Button from 'react-bootstrap/Button';
 
 import AOS from 'aos';
@@ -49,7 +51,7 @@ export default class CustomerRetr extends Component {
     <div className="container">
       
       <div className="cusdisplay">
-    <h1 data-aos = "fade-right"> IT'S TIME TO INDULGE </h1>
+    <h1 class=" mb-4" data-aos = "fade-right"> IT'S TIME TO INDULGE </h1>
     <table class="menutable" data-aos="fade-up"
      data-aos-duration="1500">
       <thead>
@@ -61,7 +63,9 @@ export default class CustomerRetr extends Component {
         {this.DataTable()}
       </tbody>
     </table>
-    
+    <div className="homebuttn" >
+    < Link to={"/restaurant/"}><Button variant="light" data-aos = "fade-left" size="m" ><AiFillHome /></Button></Link>
+    </div>
   </div>
   </div>);
   }
