@@ -22,6 +22,13 @@ export default function AddOccasion(props) {
 
     function sendData(e) {
         e.preventDefault();
+        const guests_int =  parseInt(guests);
+        console.log("guests_int" + guests_int);
+        if(guests_int > 100 || guests_int < 1 || isNaN(guests_int))
+        {
+            alert("Invalid Guest Count");
+            return;
+        }
         const newEvent = {
             guests,
             time,
@@ -71,7 +78,7 @@ export default function AddOccasion(props) {
                             <div className="mb-3">
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                    <input type="text" class="form-control" id="validationEmail" pattern = "" aria-describedby="inputGroupPrepend" required onChange={(e) => {
+                                    <input type="email" class="form-control" id="validationEmail" aria-describedby="inputGroupPrepend" required onChange={(e) => {
                                         setEmail(e.target.value)
                                     }
                                     } 
@@ -84,14 +91,14 @@ export default function AddOccasion(props) {
                             </div>
                             <div className="mb-3">
                                 <label for="guests" className="form-label">Number of Guests</label>
-                                <input type="text" className="form-control" id="guests" onChange={(e) => {
+                                <input type="text" className="form-control"  id="guests"  pattern="^[0-9]*$" onChange={(e) => {
                                     setGuests(e.target.value)
                                 }
-                                } />
+                                } required/>
                             </div>
                             <div className="mb-3">
                                 <label for="time" className="form-label">time</label>
-                                <input type="text" className="form-control" id="time" onChange={(e) => {
+                                <input type="time" className="form-control" id="time" onChange={(e) => {
                                     setTime(e.target.value)
                                 }
                                 } />
@@ -121,6 +128,7 @@ export default function AddOccasion(props) {
                                     </p>
                                     <div class="col-12">
                                         <button class="btn btn-primary m-3" type="submit" onClick={sendData}>Submit form</button>
+            
                                     </div>
                                 </label>
                             </div>
