@@ -71,10 +71,11 @@ export default function AddOccasion(props) {
                             <div className="mb-3">
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                    <input type="text" class="form-control" id="validationEmail" aria-describedby="inputGroupPrepend" required onChange={(e) => {
+                                    <input type="text" class="form-control" id="validationEmail" pattern = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/" aria-describedby="inputGroupPrepend" required onChange={(e) => {
                                         setEmail(e.target.value)
                                     }
-                                    } />
+                                    } 
+                                    />
                                     <div class="invalid-feedback">
                                         Please enter the email.
                                     </div>
