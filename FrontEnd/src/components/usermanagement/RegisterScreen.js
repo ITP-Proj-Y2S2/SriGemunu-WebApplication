@@ -144,7 +144,7 @@ const RegisterScreen = ({ history }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary mt-4">
+        <button type="submit" className="btn btn-dark mt-4">
           Register
         </button>
 
