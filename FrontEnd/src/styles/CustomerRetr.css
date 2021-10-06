@@ -1,6 +1,6 @@
 .cusdisplay{
     width: 100%;
-    margin-top: 80px;
+    margin-top: 100px;
     margin-bottom: 190px;
   }
 .menutable thead {
@@ -13,17 +13,19 @@
     text-align: left;
     border-radius: 10px;
     width: 100%;
+    text-align: center;
   }
   
 .menutable th {
       padding: 1rem 5rem;
       text-transform: uppercase;
       letter-spacing: 0.1rem;
-      font-size: 0.7rem;
+      font-size: 1.05rem;
 }
   
 .menutable td {
       padding:15px 5rem;
+      font-size: 1rem;
 }
   
 
@@ -37,3 +39,22 @@
   transform: scale(1.02);
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
+
+.homebuttn Button{
+  margin-top:20px;
+  float: right;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  color: black;
+  padding-top: 2px;
+  padding-bottom: 8px;
+  font-size: 1.7rem;
+}
+
+.homebuttn Button:hover{
+  background-color: transparent;
+  color:grey;
+  border: none;
+}
+
