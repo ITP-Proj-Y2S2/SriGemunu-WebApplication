@@ -106,6 +106,7 @@ export function UserBookings() {
 
                                 {booking.status == "cancelled" ? "" : <div className="text-right">
                                     <button className="btn btn-dark btn-block" onClick={() => { cancelBooking(booking._id) }}>Cancel Booking</button>
+
                                 </div>}
 
                                 </div>
