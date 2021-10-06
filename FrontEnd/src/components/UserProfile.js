@@ -143,9 +143,6 @@ export function MyProfile() {
                 </div>
 
             </div>
-
-
-        </div>
     )
 }
 
