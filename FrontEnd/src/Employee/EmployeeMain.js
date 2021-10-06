@@ -19,7 +19,7 @@ function Home() {
         </Link>
         <br/><br/>
         <Link to="/admin/employee/editEmp">
-          <Button variant="flat" size="m"> Edit and Delete </Button>
+          <Button variant="flat" size="m"> Availability </Button>
         </Link>
       </div>
     </div>
