@@ -177,6 +177,7 @@ class ChangeOccassion extends Component {
         maxLength="3"
          value={this.state.guests}
          onChange={this.handleChange}
+         pattern="^[0-9]*$"
     />
   </div>
 

@@ -23,23 +23,25 @@ export default class EmployeeTable extends Component {
 
     render() {
         return (
+           
             <tr>
-                <td>{this.props.obj.item}</td>
-                <td>{this.props.obj.itemno}</td>
-                <td>{this.props.obj.price}</td>
-                <td>{this.props.obj.item}</td>
-                <td>{this.props.obj.itemno}</td>
-                <td>{this.props.obj.price}</td>
-                <td>{this.props.obj.item}</td>
-                <td>{this.props.obj.itemno}</td>
-                <td>{this.props.obj.price}</td>
+                <td>{this.props.obj.firstName}</td>
+                <td>{this.props.obj.lastName}</td>
+                <td>{this.props.obj.contactNumber}</td>
+                <td>{this.props.obj.address}</td>
+                <td>{this.props.obj.NIC}</td>
+                <td>{this.props.obj.email}</td>
+                <td>{this.props.obj.employeeType}</td>
+                <td>{this.props.obj.salary}</td>
+                <td>{this.props.obj.availability}</td>
                 <td>
-                    <Link to={"/update/" + this.props.obj._id}>
-                    <Button size="sm" variant="primary" >Edit</Button>{' '}
+                    <Link to={"/admin/employee/editEmp/" + this.props.obj._id}>
+                    <Button size="sm" variant="dark" >Edit</Button>{' '}
                     </Link>
                     <Button onClick={this.deleteItem} size="sm" variant="danger">Delete</Button>
                 </td>
             </tr>
+            
         );
     }
 }

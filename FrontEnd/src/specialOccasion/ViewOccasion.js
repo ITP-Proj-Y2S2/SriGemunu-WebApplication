@@ -59,6 +59,8 @@ export default function ViewOccasion() {
                     <p><b>Menu type : </b>{occasion.menu}</p>   
                     <p><b>occ time: </b> {occasion.time}</p>
                     <p><b> Num of guest : </b>{occasion.guests }</p>
+                    <p><b> email : </b>{occasion.email }</p>
+
 
                     <Link to={"/specialoccasion/OccasionHome/ViewOccasion/Change/"+occasion._id} className="btn btn-outline-light" value={occasion._id}>{"Update"}</Link>
             </div>

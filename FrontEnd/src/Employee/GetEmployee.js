@@ -34,7 +34,7 @@ export default class GetEmployee extends Component {
 
 
   render() {
-    return (<div>
+    return (<div className="container mt-5 pt-5">
     <table class="table">
       <thead>
         <tr>
