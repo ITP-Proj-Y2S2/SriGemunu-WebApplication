@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import EmployeeTable from './EmployeeTable';
 import "../styles/GetEmployee.css";
 export default class GetEmployee extends Component {
@@ -52,7 +54,8 @@ export default class GetEmployee extends Component {
       <tbody>
         {this.DataTable()}
       </tbody>
-    </table>
-  </div>);
+    </table><div className="contemp">
+    <Link to={"/admin/employee/addEmp"}><Button size="lg" variant="dark" >Add New</Button>{' '}</Link>
+  </div></div>);
   }
 }
