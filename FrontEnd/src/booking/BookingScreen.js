@@ -142,7 +142,7 @@ class BookingScreen extends Component {
                                             onChange={this.onValueChangeBasis} /><label className="form-check-label" htmlFor="formCheck-3" >Room Only</label></div>
 
                                         <div className="form-check mt-3"><input className="form-check-input" type="radio" id="formCheck-4" value="BB" checked={this.state.selectedOptionBasis === "BB"}
-                                            onChange={this.onValueChangeBasis} /><label className="form-check-label" htmlFor="formCheck-4" >Bead and Breakfast</label></div>
+                                            onChange={this.onValueChangeBasis} /><label className="form-check-label" htmlFor="formCheck-4" >Bed and Breakfast</label></div>
 
                                         <div className="form-check mt-3"><input className="form-check-input" type="radio" id="formCheck-5" value="FB" checked={this.state.selectedOptionBasis === "FB"}
                                             onChange={this.onValueChangeBasis} /><label className="form-check-label" htmlFor="formCheck-5" >Full Board</label></div>

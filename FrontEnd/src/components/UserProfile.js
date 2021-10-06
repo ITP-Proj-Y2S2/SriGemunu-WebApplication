@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Tabs } from 'antd';
 import { Tag, Divider } from 'antd';
@@ -10,20 +10,29 @@ function UserProfile() {
     const user = JSON.parse(localStorage.getItem("currentUser"))
 
     return (
-        <div className = "mt-5">
-            <div className = "container pt-5">
+        <div className="mt-5">
+            <div className="container pt-5">
 
-            <Tabs defaultActiveKey="1" centered>
-                <TabPane tab="Profile" key="1" >
-                   <MyProfile/>
-                </TabPane>
-                <TabPane tab="Room Bookings" key="2">
-                <UserBookings/>
-                </TabPane>
-                <TabPane tab="Special Occassion Bookings" key="3">
-                <h1>Special Occassion Bookings</h1>
-                </TabPane>
-            </Tabs>
+                <Tabs defaultActiveKey="1" centered>
+                    <TabPane tab="Profile" key="1" >
+                        <MyProfile />
+                    </TabPane>
+                    <TabPane tab="Room Bookings" key="2">
+                        <UserBookings />
+                    </TabPane>
+                    <TabPane tab="Special Occassion Bookings" key="3">
+                        <div class="container" style = {{marginBottom : "600px"}}>
+                            <div class="row row justify-content-center">
+                                <div class="col align-self-center">
+                                <h3>Special Occassion Bookings</h3>
+                                <button className="btn btn-dark btn-lg btn-block" onClick={() => { window.location.href = "http://localhost:3000/specialoccasion/OccasionHome/ViewOccasion" }}>View All Your Occasions!</button>
+                                </div>
+                            </div>
+                        </div>
+                       
+
+                    </TabPane>
+                </Tabs>
             </div>
         </div>
     )
@@ -33,56 +42,56 @@ export default UserProfile;
 
 
 export function UserBookings() {
-const user = JSON.parse(localStorage.getItem("currentUser"))
-const [bookings, setBookings] = useState([])
+    const user = JSON.parse(localStorage.getItem("currentUser"))
+    const [bookings, setBookings] = useState([])
 
-useEffect(async () => {
-    try {
-        const data = await (await (axios.post("http://localhost:8070/api/booking/getuserbooking", {userId : user._id}))).data;
-        console.log(data)
-        // console.log(user._id)
-        setBookings(data)
+    useEffect(async () => {
+        try {
+            const data = await (await (axios.post("http://localhost:8070/api/booking/getuserbooking", { userId: user._id }))).data;
+            console.log(data)
+            // console.log(user._id)
+            setBookings(data)
 
-    } catch (error) {
-        console.log(error)
-        
+        } catch (error) {
+            console.log(error)
+
+        }
+
+    }, [])
+
+    function cancelBooking(id) {
+        // console.log(id)
+        // console.log(bookings)
+        axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => Swal.fire("Success", "Booking Cancelled", "success")).then(() => { window.location.href = "http://localhost:3000/user/userprofile" });
+
     }
-  
-}, [])
-
-function cancelBooking(id){
-    // console.log(id)
-    // console.log(bookings)
-    axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => Swal.fire("Success" , "Booking Cancelled", "success")).then(()=>{ window.location.href = "http://localhost:3000/user/userprofile"});
-    
-  }
 
     return (
         <div>
-            
-           <div className="row justify-content-center">
-               <div class="col-md-6">
-                   
-                   {bookings && (bookings.map(booking =>{
-                       return( 
-                       <div className ="roombox m-4 p-3">
-                        <h5>{booking.room}</h5>
-                        <p><b>Check in Date : </b>{booking.fromDate}</p>
-                        <p><b>Check out Date : </b> {booking.toDate}</p>
-                        <p><b>Booking status : </b>{booking.status == "cancelled" ?  <Tag color="orange">cancelled</Tag> :<Tag color="cyan">Success</Tag> }</p>
 
-                        {booking.status == "cancelled" ? "cancelled" : <div className = "text-right">
-                            <button className = "btn btn-dark" onClick = {()=>{cancelBooking(booking._id)}}>Cancel</button>
-                        </div>}
-                        
+            <div className="row justify-content-center">
+                <div class="col-md-6">
 
-                        </div>
-                        )  
-                   }))}
+                    {bookings && (bookings.map(booking => {
+                        return (
+                            <div className="roombox m-4 p-3">
+                                <h5>{booking.room}</h5>
+                                <p><b>Check in Date : </b>{booking.fromDate}</p>
+                                <p><b>Check out Date : </b> {booking.toDate}</p>
+                                <p><b>Booking status : </b>{booking.status == "cancelled" ? <Tag color="orange">cancelled</Tag> : <Tag color="cyan">Success</Tag>}</p>
 
-               </div>
-           </div>
-         
+                                {booking.status == "cancelled" ? "cancelled" : <div className="text-right">
+                                    <button className="btn btn-dark" onClick={() => { cancelBooking(booking._id) }}>Cancel</button>
+                                </div>}
+
+
+                            </div>
+                        )
+                    }))}
+
+                </div>
+            </div>
+
         </div>
     )
 }
@@ -95,24 +104,25 @@ export function MyProfile() {
 
     useEffect(async () => {
         try {
-            const data = await (await (axios.get(`http://localhost:8070/api/auth/user/${ user._id}`))).data;
+            const data = await (await (axios.get(`http://localhost:8070/api/auth/user/${user._id}`))).data;
             //console.log(data)
             setUserobj(data)
-    
+
         } catch (error) {
             console.log(error)
-            
+
         }
-      
+
     }, [])
 
-    function deleteAccount(){
-        axios.delete(`http://localhost:8070/api/auth/user/delete/${user._id}`).then(() => alert("Account Deleted")).then(()=>{
+    function deleteAccount() {
+        axios.delete(`http://localhost:8070/api/auth/user/delete/${user._id}`).then(() => alert("Account Deleted")).then(() => {
             localStorage.removeItem("authToken");
             localStorage.removeItem("_id");
-            localStorage.removeItem("currentUser");    
-             window.location.href = "/"}
-            );
+            localStorage.removeItem("currentUser");
+            window.location.href = "/"
+        }
+        );
 
     }
 
@@ -129,9 +139,13 @@ export function MyProfile() {
                     <button style = {{paddingLeft:"10px", paddingBottom:"10px", paddingTop:"10px", fontSize:"15px"}} className = "btn btn-danger" onClick = {()=>{deleteAccount()}}> <i className ="far fa-trash-alt"></i>&nbsp;&nbsp;Delete Account</button>
                 </div>
 
+
                 </div>
 
             </div>
-        )
-    }
+
+
+        </div>
+    )
+}
 

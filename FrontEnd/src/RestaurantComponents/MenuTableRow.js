@@ -29,9 +29,9 @@ export default class MenuTableRow extends Component {
                 <td>{this.props.obj.itemCat}</td>
                 <td>{this.props.obj.price}</td>
                 <td>
-                    <Link to={"/restaurant/editfood/" + this.props.obj._id}>
-                    <Button size="sm" variant="primary" >Edit</Button>{' '}
-                    </Link>
+                    <Link to={"/restaurant/editfood/" + this.props.obj._id}><Button size="sm" variant="primary" >Edit</Button>{''}</Link>
+                </td>   
+                <td>
                     <Button onClick={this.deleteItem} size="sm" variant="danger">Delete</Button>
                 </td>
             </tr>

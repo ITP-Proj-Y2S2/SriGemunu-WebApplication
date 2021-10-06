@@ -1,0 +1,43 @@
+.sidenav{
+    width:240px;
+    background: #011627;;
+    position:fixed;
+    height:60%;
+    padding:20px 20px;
+    padding-left: 2px;
+    left: -100%;
+    transition: all 1s;
+    border-start-end-radius: 10px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    transform: translate(-10px, -240px);
+}
+.sidenav.active{
+    left:20px;
+}
+
+.list{
+    padding:0;
+}
+.list ul li{
+    list-style-type: none;
+}
+.list ul li a{
+    color: #eaeaea;
+    text-decoration: none;
+    font-size: 26px;
+    display: block;
+    padding: 10px 15px;
+    border-radius:6px;
+}
+.list ul li a:hover, 
+.list ul li a.active{
+    background:#172b4d;
+}
+header svg{
+    position: fixed;
+    font-size:40px;
+    transform: translate(-10px, -290px);
+    margin-left: 20px;
+    color: #eaeaea;
+}
