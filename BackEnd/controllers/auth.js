@@ -147,6 +147,7 @@ exports.getUserByID = async (req, res) => {
 };
 
 
+
 exports.deleteUser = async (req,res) =>{
   let userID =  req.params.id;
 
@@ -159,3 +160,4 @@ exports.deleteUser = async (req,res) =>{
       res.status(500).send({status: "failed to delete", error: err.message})
   })
 }
+
