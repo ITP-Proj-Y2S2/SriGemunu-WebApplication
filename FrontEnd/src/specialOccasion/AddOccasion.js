@@ -126,7 +126,7 @@ export default function AddOccasion(props) {
                                     <p className="lead">
                                         2000LKR Per per plate
                                     </p>
-                                    <div class="col-12">
+                                    <div class="col-12" style = {{marginBottom: "120px"}}>
                                         <button class="btn btn-primary m-3" type="submit" onClick={sendData}>Submit form</button>
             
                                     </div>

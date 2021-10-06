@@ -13,7 +13,7 @@ function UserProfile() {
         <div className="mt-5">
             <div className="container pt-5">
 
-                <Tabs defaultActiveKey="1" centered>
+                <Tabs defaultActiveKey="2 " size="large" centered>
                     <TabPane tab="Profile" key="1" >
                         <MyProfile />
                     </TabPane>
@@ -66,18 +66,35 @@ export function UserBookings() {
     function cancelBooking(id) {
         // console.log(id)
         // console.log(bookings)
-        axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => Swal.fire("Success", "Booking Cancelled", "success")).then(() => { window.location.href = "http://localhost:3000/user/userprofile" });
 
-    }
+        Swal.fire({
+            title: "Are you sure you want to cancel this booking?",
+            text: "This action cannot be undone",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d9534f",
+            cancelButtonColor: "#292b2c",
+            confirmButtonText: "Yes, cancel booking!",
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => Swal.fire("Success", "Booking Cancelled", "success")).then(() => { window.location.href = "http://localhost:3000/user/userprofile" });
+            }
+          });
+        }
+
 
     return (
         <div>
 
+            <div>
+                <h3  align = "center">Hello, {user.cusname}!</h3>
+                <h5  align = "center">You can find all your bookings below</h5>
+            </div>
             <div className="row justify-content-center">
                 <div class="col-md-8">
 
                     {bookings && (bookings.map(booking => {
-                        
+
                         rooms.map((room)=>{
                             if(booking.roomId == room._id){
                                 booking.roomImg = room.imageurls[0]
@@ -100,7 +117,8 @@ export function UserBookings() {
                                 <p><b>Booking status : </b>{booking.status == "cancelled" ? <Tag color="orange">cancelled</Tag> : <Tag color="cyan">Success</Tag>}</p>
 
                                 {booking.status == "cancelled" ? "" : <div className="text-right">
-                                    <button className="btn btn-dark" onClick={() => { cancelBooking(booking._id) }}>Cancel</button>
+                                    <button className="btn btn-dark btn-block" onClick={() => { cancelBooking(booking._id) }}>Cancel Booking</button>
+
                                 </div>}
 
                                 </div>
