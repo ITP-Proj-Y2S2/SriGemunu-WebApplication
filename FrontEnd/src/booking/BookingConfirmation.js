@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./BookingScreen.css";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init({
+  duration : 500
+});
+
 
 export default class BookingConfirmation extends Component {
     constructor(props){
@@ -12,8 +19,10 @@ export default class BookingConfirmation extends Component {
 
 
     render() {
+      const user = JSON.parse(localStorage.getItem("currentUser"))
+
         return (
-            <div className="bgimg p-5">
+            <div className="bgimg p-5" data-aos ="fade-down">
         <section className="clean-block-booking dark p-5">
           <div className="container">
             <div className="text-center block-heading ">
@@ -27,7 +36,7 @@ export default class BookingConfirmation extends Component {
                 >
                   <div className="  text-center">
                     {this.state.isSuccess ==true ? (
-                      <h2>Booking Successful !</h2>
+                      <h2>Hello {user.cusname}! <br/> Your Booking is Successful !</h2>
                     ) : (
                       <h2>Booking Unsuccessful!</h2>
                     )}
@@ -37,8 +46,9 @@ export default class BookingConfirmation extends Component {
                       {this.state.toDate}
                     </p>
                     <p className="lead">Total Days {this.state.totalDays}</p>
-                    <p className="lead">Room type: {this.state.roomType} </p>
-                    <p className="lead">Basis: {this.state.basis} </p>
+                    <p className="lead">Room type:{ this.state.roomType == "King" ? "  King Room" : this.state.roomType == "Deluxe" ?  " Deluxe Room" : ""}  </p>
+                    <p className="lead">Basis: { this.state.basis == "RoomOnly" ? " Room Only" : this.state.basis == "BB" ?  " Bed and Breakfast" :this.state.basis == "FB" ? "  Full board" : ""} </p>
+                    <p className="h5"><b>Pay {this.state.totalAmount} LKR upon arrival </b></p>
                   </div>
                 </div>
               </div>

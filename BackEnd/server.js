@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const app = express();
+const errorHandler = require('./middleware/error');
 
 const morgan = require("morgan"); 
 app.use(morgan("dev"));
@@ -56,3 +57,20 @@ app.use("/restaurant",restaurantRouter);
 //Chamudi's part
 const employeeRouter = require("./routes/employeeRoute.js");
 app.use("/employee",employeeRouter);
+
+//Yasas's part
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/private", require("./routes/private"));
+
+app.use(errorHandler);
+
+//Chama's Routes
+const invoiceRouter = require("./routes/invoices.js");
+app.use("/invoice",invoiceRouter);
+
+
+//Chama's viewAllPostData
+app.post("/viewall", (req, res) => {
+    res.status(200).send(req.body);
+    console.log(req.body);
+  });

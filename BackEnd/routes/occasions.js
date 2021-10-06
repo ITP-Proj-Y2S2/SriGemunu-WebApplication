@@ -10,6 +10,9 @@ router.route("/add").post((req,res)=>{
     const menu = String(req.body.menu);
     const type = String(req.body.type);
     const bookedDate = String(req.body.bookedDate);
+    const userId = String(req.body.userId);
+
+
 
 
     const newOccasion = new occasion({
@@ -19,6 +22,7 @@ router.route("/add").post((req,res)=>{
         menu,
         type,
         bookedDate,
+        userId
     
     })
 
@@ -45,27 +49,68 @@ router.route("/").get((req,res)=>{
 
 
 
-router.route("/update/:id").put(async(req,res)=>{
-    let userid = req.params.id;
-    const {time,email, guests, menu, type, bookedDate}= req.body;
+// router.route("/update/:id").put(async(req,res)=>{
+//     let userid = req.params.id;
+//     const {time,email, guests, menu, type, bookedDate, userId}= req.body;
 
-    const updateOccasion  = {
-        guests,
-        time, 
+//     const updateOccasion  = {
+//         guests,
+//         time, 
+//         email,
+//         menu,
+//         type,
+//         bookedDate,
+//         uerId
+//     }
+
+//     const update = await occasion.findByIdAndUpdate(userid, updateOccasion)
+//     .then(()=> {
+//         res.status(200).send({status: "event updated", user: update})
+//     }) .catch((err) => { 
+//         console.log(err);
+//         res.status(500).send({status:"error with updating", error: err.message});
+//     })
+// })
+
+
+//updating route
+router.route("/updateEvent/:id").post(async (req, res) => {
+    let userID = req.params.id;
+    const {
+        time,
         email,
+        guests,
         menu,
         type,
         bookedDate,
-    }
-
-    const update = await occasion.findByIdAndUpdate(userid, updateOccasion)
-    .then(()=> {
-        res.status(200).send({status: "event updated", user: update})
-    }) .catch((err) => { 
-        console.log(err);
-        res.status(500).send({status:"error with updating", error: err.message});
-    })
-})
+        userId
+    } = req.body;
+    
+  
+    const updateOccasion = {
+        time,
+        email,
+        guests,
+        menu,
+        type,
+        bookedDate,
+        userId
+    };
+  
+    const update = await occasion.findByIdAndUpdate(userID, updateOccasion)
+      .then(() => {
+        res.status(200).send({ status: " Updated Sucessfully " });
+      })
+      .catch((error3) => {
+        console.log(error3);
+        res
+          .status(500)
+          .send({
+            status: "Failed to update data",
+            error3: error3.message,
+          });
+      });
+  });
 
 
 router.route("/delete/:id").delete(async (req,res) =>{
@@ -82,9 +127,10 @@ await occasion.findByIdAndDelete(userid)
 
 router.route("/get/:id").get(async(req,res)=> {
     let userid= req.params.id; 
-  const user=  await occasion.findById(userid)
-   .then((user)=>{
-       res.status(200).send({status: "occasion fetched", user})
+  const occasionObj=  await occasion.find({userId : userid})
+   .then((occasionObj)=>{
+       console.log(occasionObj)
+       res.status(200).send({status: "occasion fetched", occasionObj})
    }).catch((err) =>{
        console.log(err);
        res.status(500).send({status:"error"});
@@ -92,7 +138,23 @@ router.route("/get/:id").get(async(req,res)=> {
 })
 
 
-
+//fetch requested data
+router.route("/view/:id").get(async (req, res) => {
+    let userId = req.params.id;
+    const occasionObj = await occasion.findById(userId)
+  
+      .then((occasionObj) => {
+        res.status(200).send(occasionObj)
+        }).catch((error5) => {
+        console.log(error5);
+        res
+          .status(500)
+          .send({
+            status: "Something went wrong with invoice",
+            error5: error5.message,
+          });
+      });
+  });
  
 
 

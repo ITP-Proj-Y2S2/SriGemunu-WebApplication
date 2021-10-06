@@ -8,6 +8,9 @@ import cov2 from '../Assets/temp2.jpg'
 import cov3 from '../Assets/temp3.jpg'
 import room1 from '../Assets/room1.png'
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 import { DatePicker, Space } from 'antd';
 import 'antd/dist/antd.css';
@@ -15,6 +18,10 @@ import 'antd/dist/antd.css';
 import moment from "moment";
 
 const { RangePicker } = DatePicker;
+
+AOS.init({
+    duration : 750
+  });
 
 
 class BookingScreen extends Component {
@@ -63,7 +70,7 @@ class BookingScreen extends Component {
 
         return (
     <div >
-    <  div className="bgimg pb-5 pt-5">
+    <  div className="bgimg pb-5 pt-5" data-aos ="fade-down">
         <form onSubmit={this.formSubmit} >
         <section className="clean-block clean-blog-list dark">
             <div className="container">
@@ -73,9 +80,9 @@ class BookingScreen extends Component {
                 <div>
                     <div className="m-5">
                         <div className="row justify-content-center">
-                            <div className="col-3 m-5"><img className="rounded img-fluid" src={cov3} alt="" /></div>
-                            <div className="col-3 m-5"><img className="rounded img-fluid" src={cov2} alt="" /></div>
-                            <div className="col-3 m-5"><img className="rounded img-fluid" src={cov1} alt="" /></div>
+                            <div className="col-3 m-5"  data-aos="fade-right"><img className="rounded img-fluid" src={cov3} alt="" /></div>
+                            <div className="col-3 m-5" data-aos="fade-down"><img className="rounded img-fluid" src={cov2} alt="" /></div>
+                            <div className="col-3 m-5"  data-aos="fade-left"><img className="rounded img-fluid" src={cov1} alt="" /></div>
                         </div>
                     </div>
                 </div>
@@ -109,7 +116,7 @@ class BookingScreen extends Component {
                                         <label className="form-check-label" htmlFor="formCheck-2">Select Room</label></div>
                                 </div>
                                 <div>
-                                    Selected option is : {this.state.selectedOptionRoom}
+                                     {/* { this.state.selectedOptionRoom == "King" ? " Selected option is King Room" : this.state.selectedOptionRoom == "Deluxe" ?  "Selected option is Deluxe Room" : ""} */}
                                 </div>
                             </div>
                         </div>
@@ -135,13 +142,13 @@ class BookingScreen extends Component {
                                             onChange={this.onValueChangeBasis} /><label className="form-check-label" htmlFor="formCheck-3" >Room Only</label></div>
 
                                         <div className="form-check mt-3"><input className="form-check-input" type="radio" id="formCheck-4" value="BB" checked={this.state.selectedOptionBasis === "BB"}
-                                            onChange={this.onValueChangeBasis} /><label className="form-check-label" htmlFor="formCheck-4" >Bread and Breakfast</label></div>
+                                            onChange={this.onValueChangeBasis} /><label className="form-check-label" htmlFor="formCheck-4" >Bed and Breakfast</label></div>
 
                                         <div className="form-check mt-3"><input className="form-check-input" type="radio" id="formCheck-5" value="FB" checked={this.state.selectedOptionBasis === "FB"}
                                             onChange={this.onValueChangeBasis} /><label className="form-check-label" htmlFor="formCheck-5" >Full Board</label></div>
                                     </div>
                                     <div>
-                                        Selected option is : {this.state.selectedOptionBasis}
+                                    {/* { this.state.selectedOptionBasis == "RoomOnly" ? " Selected option is Room Only" : this.state.selectedOptionBasis == "BB" ?  "Selected option is Bead and Breakfast" :this.state.selectedOptionBasis == "FB" ? " Selected option is Full board" : ""} */}
                                     </div>
                                 </div>
                             </div>

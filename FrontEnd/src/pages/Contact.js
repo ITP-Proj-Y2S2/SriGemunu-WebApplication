@@ -1,15 +1,34 @@
 import React from "react";
-import bannercont from "../resources/banner3.jpg";
-import "../styles/Contact.css";
+import banneraabout from "../resources/banner4.jpg";
+import "../styles/About.css";
+import Sidebar from "../RestaurantComponents/Sidebar"
+import { GiHamburgerMenu } from 'react-icons/gi'
+import {useState} from 'react'
 
-function Contact() {
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init({
+  duration : 1500
+});
+
+
+function About() {
+  const [ showSide,setshowSide] = useState(false);
   return (
-    <div className="contact">
+    <div className="about">
       <div
-        className="leftSide"
-        style={{ backgroundImage: `url(${bannercont})` }}
+        className="aboutTop"
+        style={{ backgroundImage: `url(${banneraabout})` }}
       ></div>
-      <div className="rightSide">
+        <div className="sidebar">
+        <header data-aos = "fade-right">
+        <a><GiHamburgerMenu onClick={() => setshowSide(!showSide)}
+        /></a>
+        </header>
+          <Sidebar show={showSide}/>
+          </div>
+      <div className="aboutBottom">
         <h1> Contact Us</h1>
 
         <form id="contact-form" method="POST">
@@ -31,4 +50,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default About;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './EventDesign.css';
@@ -16,7 +16,9 @@ export default function AddOccasion(props) {
     const [guests, setGuests] = useState("")
     const [time, setTime] = useState("")
     const [menu, setMenu] = useState("")
-    const [eventType, setEventType] = useState(props.match.params.eventtype)
+    const [type, setType] = useState(props.match.params.eventtype)
+    const [userId, setUserId] = useState("")
+
 
     function sendData(e) {
         e.preventDefault();
@@ -25,8 +27,9 @@ export default function AddOccasion(props) {
             time,
             email,
             menu,
-            eventType,
+            type,
             bookedDate,
+            userId
         }
 
         axios.post("http://localhost:8070/occasion/add", newEvent).then(() => {
@@ -35,6 +38,19 @@ export default function AddOccasion(props) {
             alert(err)
         })
     }
+
+    useEffect( () => {
+        try {
+            const user = JSON.parse(localStorage.getItem("currentUser"))
+            setUserId(user._id)
+            console.log(userId)
+    
+        } catch (error) {
+            console.log(error)
+            
+        }
+      
+    }, []) 
 
 
 
@@ -46,7 +62,7 @@ export default function AddOccasion(props) {
         <div className="bgimg textCenter ">
             <div className = "mt-5">
             <h1 className="display-1 fontcolor-white">Events</h1>
-            <h5 className="fontcolor-white">Selected Event Type : {eventType}</h5>
+            <h5 className="fontcolor-white">Selected Event Type : {type}</h5>
             </div>
             <div class="row">
                 <div class="col-6">
@@ -55,10 +71,11 @@ export default function AddOccasion(props) {
                             <div className="mb-3">
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                    <input type="text" class="form-control" id="validationEmail" aria-describedby="inputGroupPrepend" required onChange={(e) => {
+                                    <input type="text" class="form-control" id="validationEmail" pattern = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/" aria-describedby="inputGroupPrepend" required onChange={(e) => {
                                         setEmail(e.target.value)
                                     }
-                                    } />
+                                    } 
+                                    />
                                     <div class="invalid-feedback">
                                         Please enter the email.
                                     </div>

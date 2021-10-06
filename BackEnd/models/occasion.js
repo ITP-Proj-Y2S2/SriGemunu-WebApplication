@@ -6,6 +6,7 @@ const occasionSchema = new Schema({
 
     type: {
         type: String,
+        required : true
         
 
     },
@@ -35,6 +36,10 @@ const occasionSchema = new Schema({
             type: String,
             required: true
         },
+        userId :{
+            type: String,
+            required : true,
+        }
 
     })
 
