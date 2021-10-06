@@ -10,12 +10,19 @@ export default function AdminRooms() {
   const handleClick = () => history.push("/admin/addRoom");
 
   const [rooms, setRooms] = useState([]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const [duplicaterooms, setDuplicaterooms] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
+  const [type, setType] = useState("all");
+
+
+
+
   useEffect(async () => {
     try {
       const data = (await axios.get("/api/rooms/getallrooms")).data;
       // console.log(data);
       setRooms(data);
+      setDuplicaterooms(data);
     } catch (error) {
       console.log(error);
     }
@@ -30,6 +37,11 @@ export default function AdminRooms() {
     });
   }
 
+  function filterSearch(){
+    const temprooms = duplicaterooms.filter(room => room.name.toLowerCase().includes(searchKey.toLowerCase()))
+    setRooms(temprooms)
+  }
+
 
 
   return (
@@ -42,6 +54,17 @@ export default function AdminRooms() {
         <button className="btn btn-dark mt-4" onClick={handleClick}>
           Add New Room
         </button>
+      </div>
+
+      <div className ="container mt-5">
+        <div className ="row justify-content-center">
+        <div className = " col-5">
+        <input type = "text" className = "form-control" 
+          placeholder = "search rooms" value ={searchKey} onChange={(e)=>{setSearchKey(e.target.value)}} onKeyUp = {filterSearch}>
+
+        </input>
+        </div>
+        </div>
       </div>
 
       <div className="row justify-content-center mt-5">
