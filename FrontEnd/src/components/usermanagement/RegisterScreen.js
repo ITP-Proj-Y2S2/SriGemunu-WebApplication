@@ -74,6 +74,7 @@ const RegisterScreen = ({ history }) => {
             id="name"
             class="form-control"
             placeholder="Enter Name"
+            pattern="[a-z A-Z.]+"
             value={cusname}
             onChange={(e) => setName(e.target.value)}
           />
@@ -87,6 +88,7 @@ const RegisterScreen = ({ history }) => {
             id="telnum"
             class="form-control"
             placeholder="Enter Contact Number"
+            pattern="[0-9]{10}"
             value={telnum}
             onChange={(e) => setTelnum(e.target.value)}
           />
@@ -142,7 +144,7 @@ const RegisterScreen = ({ history }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary mt-4">
+        <button type="submit" className="btn btn-dark mt-4">
           Register
         </button>
 

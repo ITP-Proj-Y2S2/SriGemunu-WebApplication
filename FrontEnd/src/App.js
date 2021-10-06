@@ -45,6 +45,7 @@ import EditEmployee from "./Employee/EditEmployee";
 
 
 
+
 //Yasas's imports
 //Routing
 import PrivateRoute from './routing/PrivateRoute'; 
@@ -77,6 +78,7 @@ import TempChart from './components/AdminRevenue/TempChart'
 
 
 //import Motion from './components/AdminRevenue/Motion';
+
 
 
 
@@ -128,8 +130,9 @@ function App() {
         
         <Route path = "/admin/employee/addEmp" exact component={AddEmployee}/>
         <Route path="/admin/employee/getEmp" exact component={GetEmployee} />
-        <Route path="/admin/employee/editEmp" exact component={EditEmployee} />
+        <Route path="/admin/employee/editEmp/:id" exact component={EditEmployee} />
         <Route path="/admin/employee" exact component={EmpMain} />
+       
 
 
         {/* Yasas */}

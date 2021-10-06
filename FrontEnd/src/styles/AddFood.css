@@ -1,13 +1,20 @@
-/* input[type=text]{
-    width: 100%;
-    padding: 15px 20px;
-    margin: 8px 0;
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 4px;
-    box-sizing: border-box;
-  } */
-
 .addButton{
-  margin-left: 870px;
-  margin-bottom: 350px;
+  margin-bottom: 250px;
+  color: #121619;
 }
+
+.addButton Button{
+  margin-left: 50px;
+  background-color: #121619;
+  border: none;
+  margin-top: 40px;
+  font-size:1.1rem;
+}
+
+.addButton Button:hover{
+  background-color: grey;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+

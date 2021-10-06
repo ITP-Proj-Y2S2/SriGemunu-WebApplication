@@ -16,7 +16,6 @@ const Sidebar = ({show}) => {
         </div>
 
     )
-
 }
 
 export default Sidebar

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link, useHistory } from 'react-router-dom';
-import { Container, Button, Alert} from 'react-bootstrap'
-import Swal from "sweetalert2"
-
-
+import { Link, useHistory } from "react-router-dom";
+import { Container, Button, Alert } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 class CustomerInvoice extends Component {
   constructor(props) {
@@ -21,39 +19,31 @@ class CustomerInvoice extends Component {
       // numberOfChildern: "",
       // totalDates: "",
       // totalAmount: "",
-      visibleAlert: true
-      
+      visibleAlert: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
-
-
-    
   }
 
   myChangeHandler = (event) => {
     this.setState({ invoiceID: event.target.value });
-   
   };
 
   toggle() {
     this.setState({
-      visibleAlert: !this.state.visibleAlert
+      visibleAlert: !this.state.visibleAlert,
     });
 
     Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'You have successfully updated the invoice',
+      position: "center",
+      icon: "success",
+      title: "You have successfully updated the invoice",
       showConfirmButton: false,
-      timer: 2000
-    })
+      timer: 2000,
+    });
   }
 
-
- 
   handleChange(event) {
     //this.setState({ email: event.target.value });
     let input = event.target.value;
@@ -69,35 +59,29 @@ class CustomerInvoice extends Component {
     let errMsg = "✅";
     let MobileNumErrMsg = "✅";
     let RoomErrMsg = "✅";
-    let AmountErrMsg="✅";
-    
+    let AmountErrMsg = "✅";
+
     this.setState({ [htmlid]: input });
     if (htmlid === "invoiceID") {
-      
       if (!invoiceIDPattern.test(input)) {
         {
           errMsg = "Invoice ID must be a valid format INVXXXX";
         }
       }
     } else if (htmlid === "mobileNumber") {
-      
       if (!mobileNumPattern.test(input)) {
         MobileNumErrMsg = "Mobile number must be a valid format 77XXXXXXX";
       }
     } else if (htmlid === "roomNumber") {
-      
       if (!roomNumPattern.test(input)) {
         RoomErrMsg = "Room ID must be a valid format RMXXXX";
       }
     } else if (htmlid === "totalAmount") {
-      
       if (!amountPattern.test(input)) {
         AmountErrMsg = "Amount must be a valid format";
       }
-
     }
 
-    
     console.log("id param -> " + event.target.id);
     console.log("States -> " + JSON.stringify(this.state));
     // this.setState({formdata:{[html_id]: event.target.value}});
@@ -120,15 +104,12 @@ class CustomerInvoice extends Component {
     axios
       .post("http://localhost:8070/invoice/update/" + FetchedRefID, this.state)
       .then(function (response) {
-        console.log(response.data)
-    
-        
+        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
       });
   }
-
 
   componentDidMount() {
     const FetchedRefID = this.props.match.params.id;
@@ -165,37 +146,31 @@ class CustomerInvoice extends Component {
     console.log("ref id: " + btnValue);
 
     Swal.fire({
-      title: 'Are you sure you want to delete this invoice?',
+      title: "Are you sure you want to delete this invoice?",
       text: "This action cannot be undone",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#d9534f',
-      cancelButtonColor: '#292b2c',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: "#d9534f",
+      cancelButtonColor: "#292b2c",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-
         axios
-        .delete("http://localhost:8070/invoice/delete/" + btnValue)
-        .then(() => {    
-          this.props.history.push({
-          pathname: "/admin/revenue/ViewInvoice",
-          state: this.state,
+          .delete("http://localhost:8070/invoice/delete/" + btnValue)
+          .then(() => {
+            this.props.history.push({
+              pathname: "/admin/revenue/ViewInvoice",
+              state: this.state,
+            });
           });
-  
-  
-        });
-    
-        Swal.fire(
-          'Successfully Deleted!',
-          'Invoice has been deleted.',
-          'success'
-        )
-      }
-    })
 
- 
-    
+        Swal.fire(
+          "Successfully Deleted!",
+          "Invoice has been deleted.",
+          "success"
+        );
+      }
+    });
   }
 
   render() {
@@ -204,24 +179,33 @@ class CustomerInvoice extends Component {
     console.log(this.props.match.params.id);
     const invoiceRefID = this.props.match.params.id;
 
-
     return (
-      
       <div className="container">
         <br></br>
-        
+
         <h1 class="display-2">
-          
           {"INVOICE" + " " + "#" + this.state.invoiceID}
         </h1>
         <p class="h6" style={{ color: "grey" }}>
           {"Customer Name: " + this.state.billingName}{" "}
         </p>
-        <Link to="/admin/revenue/ViewInvoice" type="button" class="btn btn-secondary btn-sm">{"< Back to All Invoices"}</Link>
-        <br></br><br/>
-        <div id="hideDiv" class="alert alert-success" hidden={this.state.visibleAlert}  role="alert">
-  You have successfully updated the invoice
-</div>
+        <Link
+          to="/admin/revenue/ViewInvoice"
+          type="button"
+          class="btn btn-secondary btn-sm"
+        >
+          {"< Back to All Invoices"}
+        </Link>
+        <br></br>
+        <br />
+        <div
+          id="hideDiv"
+          class="alert alert-success"
+          hidden={this.state.visibleAlert}
+          role="alert"
+        >
+          You have successfully updated the invoice
+        </div>
 
         {/* adding the from */}
 
@@ -444,8 +428,8 @@ class CustomerInvoice extends Component {
 
           <div class="col-md-8">
             <label for="totalAmount" class="form-label">
-            {"Total Amount "}{" "}
-            <label
+              {"Total Amount "}{" "}
+              <label
                 class="form-label"
                 style={{ color: "red", marginLeft: "10px" }}
               >
@@ -474,22 +458,16 @@ class CustomerInvoice extends Component {
           <br></br>
           <br></br>
 
-      
-
           <div>
-            <button type="submit" id="updateBtn" class="btn btn-outline-primary" onClick={this.toggle.bind(this)} 
-            disabled={(
-              this.state.AmountErrMsg!=="✅" 
-              
-              )}
-
-            
+            <button
+              type="submit"
+              id="updateBtn"
+              class="btn btn-outline-primary"
+              onClick={this.toggle.bind(this)}
+              disabled={this.state.AmountErrMsg !== "✅"}
             >
-              
-              Update Invoice 
+              Update Invoice
             </button>
-            
-            
 
             <button
               class="btn btn-outline-success"
@@ -503,17 +481,17 @@ class CustomerInvoice extends Component {
               style={{ marginLeft: "20px" }}
               value={this.state.invoiceRefID}
               onClick={(e) => this.DelInv(e, "value")}
-
             >
               Delete Invoice
             </button>
           </div>
         </form>
-<br/><br/>
+        <br />
+        <br />
         {/* end of the form */}
       </div>
     );
   }
 }
 
-export default CustomerInvoice
+export default CustomerInvoice;

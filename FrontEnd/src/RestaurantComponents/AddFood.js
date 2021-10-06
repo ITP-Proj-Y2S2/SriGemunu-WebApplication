@@ -57,7 +57,7 @@ export default class AddFood extends Component {
           alert('Food Item successfully added')
         });
         
-    this.props.history.push('/restaurant/retrfood')
+    this.props.history.push('/restaurant/admin/retrfood')
     window.location.reload(false);
     this.setState({
         item: '',
@@ -94,9 +94,7 @@ export default class AddFood extends Component {
           <Form.Control type="text" value={this.state.price} onChange={this.onChangeFoodPrice} />
         </Form.Group>
         <div className="addButton">
-        <Button variant="primary" size="sm" block="block" type="submit">
-          ADD FOOD ITEM
-        </Button>
+        <Button block="block" type="submit">ADD FOOD ITEM</Button>
         </div>
       </Form>
     </div>

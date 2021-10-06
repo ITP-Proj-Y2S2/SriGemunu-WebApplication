@@ -147,24 +147,23 @@ export function MyProfile() {
 
     }
 
+        return (
+            <div className = "shadow-lg p-3 mb-5 bg-white rounded">
+                <div style = {{ paddingLeft:"30px"}} classsName = "container mb-5">
+                <h2 style = {{paddingTop:"30px", paddingBottom:"25px", textAlign:"center"}}>My Profile</h2>
+                <p style = {{paddingLeft:"50px", paddingBottom:"12px", fontSize:"18px"}}><b style = {{paddingRight:"103px"}}> Name : </b>{userobj.cusname}</p>
+                <p style = {{paddingLeft:"50px", paddingBottom:"12px", fontSize:"18px"}}><b style = {{paddingRight:"108px"}}> Email : </b>{userobj.email}</p>
+                <p style = {{paddingLeft:"50px", paddingBottom:"12px", fontSize:"18px"}}><b style = {{paddingRight:"65px"}}> Username : </b>{userobj.username}</p>
+                <p style = {{paddingLeft:"50px", paddingBottom:"12px", fontSize:"18px"}}><b style = {{paddingRight:"60px"}}> Telephone : </b>{userobj.telnum}</p>
 
-    return (
-        <div>
-            <div classsName="container">
-                <h1>My Profile</h1>
-                <p> Name {userobj.cusname}</p>
-                <p> Email {userobj.email}</p>
-                <p> Telephone {userobj.telnum}</p>
+                <div className = "md-5"  style = {{marginBottom:"200px", paddingLeft:"45px"}}>
+                    <button style = {{paddingLeft:"10px", paddingBottom:"10px", paddingTop:"10px", fontSize:"15px"}} className = "btn btn-danger" onClick = {()=>{deleteAccount()}}> <i className ="far fa-trash-alt"></i>&nbsp;&nbsp;Delete Account</button>
+                </div>
 
 
-                <div className="md-5" style={{ marginBottom: "500px" }}>
-                    <button className="btn btn-danger" onClick={() => { deleteAccount() }}> Delete Account</button>
                 </div>
 
             </div>
-
-
-        </div>
     )
 }
 

@@ -1,6 +1,17 @@
-/* .table{
+ /* .tableEmp{
   width: 60%;
   margin-left: 450px;
   margin-top: 50px;
   margin-bottom: 600px;
-} */
+  font-size: 1.2rem;
+ } */
+ .btnemp-flatemp {
+    
+    background-color: black;
+    color: white;
+  }
+
+  .btnemp-memp {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.5rem;
+  }

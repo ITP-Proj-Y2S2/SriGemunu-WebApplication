@@ -153,8 +153,8 @@ class Home extends React.Component {
         const pdf = new jsPDF();
         pdf.setFontSize(9)
         pdf.addImage(imgData, 'JPEG', 0, 0);
-        pdf.text(60,270,'Verified by Head of Revenue Manager')
-        pdf.text(60,280,'© Sri Gemunu Beach Resort 2021')
+        pdf.text(60,290,'Verified by Head of Revenue Manager')
+        pdf.text(60,300,'© Sri Gemunu Beach Resort 2021')
         // pdf.output('dataurlnewwindow');
         pdf.save("RevenueData.pdf");
       })

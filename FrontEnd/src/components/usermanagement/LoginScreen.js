@@ -93,7 +93,7 @@ const loginHandler = async (e) => {
             tabIndex ={2}/>
         </div>
 
-        <button type="submit" className="btn btn-primary mt-4"tabIndex ={3}>
+        <button type="submit" className="btn btn-dark mt-4"tabIndex ={3}>
           Login
         </button>
 

@@ -1,21 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BannerImage from "../resources/bannerEmp.jpg";
-import "../styles/Home.css";
+// import "../styles/EmployeeMain.css";
+import Button from 'react-bootstrap/Button';
 
 function Home() {
   return (
     <div className="home2" style={{ backgroundImage: `url(${BannerImage})` }}>
-      <div className="headerContainer2">
+      <div className="headerContainerEmp" >
         <h1> Employee Management Page </h1>
-        <Link to="Employee/AddEmployee.js">
-          <button> Add Employee </button>
+        <br/><br/>
+        <Link to="/admin/employee/addEmp">
+          <Button variant="flat" size="m"> Add Employee </Button>
         </Link>
-        <Link to="Employee/GetEmployee.js">
-          <button> View Employee </button>
+        <br/><br/>
+        <Link to="/admin/employee/getEmp">
+          <Button variant="flat" size="m"> View Employee </Button>
         </Link>
-        <Link to="Employee/EditEmployee.js">
-          <button> Edit and Delete </button>
+        <br/><br/>
+        <Link to="/admin/employee/editEmp">
+          <Button variant="flat" size="m"> Availability </Button>
         </Link>
       </div>
     </div>

@@ -1,13 +1,29 @@
-/* input[type=text]{
+ /* input[type=text]{
   width: 100%;
   padding: 15px 20px;
   margin: 8px 0;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 4px;
   box-sizing: border-box;
-} */
+  font-size: 1rem;
+}  */
 
-.addButton{
-margin-left: 870px;
-margin-bottom: 350px;
+formemp{
+  font-size: 1.2rem;
 }
+
+.addButtonemp{
+
+  margin-left: 500px;
+}
+
+  .btnemp-flatemp {
+    background-color: black;
+    color: white;
+  }
+
+  .btnemp-memp {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.5rem;
+  }
+  
