@@ -78,7 +78,7 @@ export default class EditFood extends Component {
 
   render() {
     return (
-      <div className="edits">
+      <div className="container mt-5 pt-5">
     <div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
         <Form.Group controlId="Item">
@@ -100,11 +100,7 @@ export default class EditFood extends Component {
           <Form.Label>Price</Form.Label>
           <Form.Control type="text" value={this.state.price} onChange={this.onChangeFoodPrice} />
         </Form.Group>
-        <div className="updateButton">
-        <div className="d-grid gap-2"><Button variant="primary" size="lg" block="block" type="submit">
-          Update Food Item
-        </Button></div>
-        </div>
+        <div className="updateButton"><Button variant="primary" size="lg" block="block" type="submit">Update Food Item</Button></div>
       </Form>
     </div>
     </div>);
