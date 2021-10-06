@@ -1,9 +1,9 @@
 .sidenav{
     width:240px;
-    background: #011627;;
+    background: #121619;;
     position:fixed;
-    height:60%;
-    padding:20px 20px;
+    height:30%;
+    padding:30px 30px;
     padding-left: 2px;
     left: -100%;
     transition: all 1s;
@@ -23,13 +23,21 @@
     list-style-type: none;
 }
 .list ul li a{
-    color: #eaeaea;
+    color: #eaeaea;   
     text-decoration: none;
     font-size: 20px;
-    display: block;
+    display:block;
     padding: 10px 15px;
     border-radius:6px;
 }
+
+.list ul li a svg{
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size:1.2rem;
+}
+
+
 .list ul li a:hover, 
 .list ul li a.active{
     background:#172b4d;
