@@ -78,7 +78,7 @@ export function UserBookings() {
                 <h3  align = "center">Hello, {user.cusname}!</h3>
                 <h5  align = "center">You can find all your bookings below</h5>
             </div>
-            <div className="row justify-content-center">
+            <div className="row justify-content-center" style ={{marginBottom: "300px"}}>
                 <div class="col-md-8">
 
                     {bookings && (bookings.map(booking => {

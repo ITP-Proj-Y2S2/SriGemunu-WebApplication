@@ -41,16 +41,24 @@ export class RoomAvailibilty extends Component {
             roomDB: response.data,
           });
         });
-      this.checkRoomAvailability();
+     
     } catch (error) {
       console.log(error);
     }
 
-    let x = localStorage.getItem("_id");
-    console.log(x)
-
-
-
+    try {
+      await axios
+        .get("http://localhost:8070/api/booking/getallbookings")
+        .then((response) => {
+          this.setState({
+            bookingDB: response.data,
+          });
+        });
+        
+    } catch (error) {
+      console.log(error);
+    }
+    this.checkRoomAvailability();
   }
 
   async bookRoom() {
@@ -213,6 +221,18 @@ export class RoomAvailibilty extends Component {
     }
 
     //console.log(this.state.sendDBroom);
+    let count=0;
+    this.state.bookingDB.map((booking)=>{
+      if(booking.status =="booked"){
+        if(this.state.userId == booking.userId){
+          count+=1;
+        }
+      }
+    })
+
+    this.setState({
+      count: count,
+    });
   }
 
 
@@ -228,7 +248,6 @@ export class RoomAvailibilty extends Component {
     }
 
     const user = JSON.parse(localStorage.getItem("currentUser"))
-
 
     return (
       <div className="bgimg p-5" data-aos="fade-down">
@@ -257,7 +276,7 @@ export class RoomAvailibilty extends Component {
                     <p className="lead">Total Days {this.state.totalDays}</p>
                     <p className="lead">Room type: {this.state.roomType == "King" ? "  King Room" : this.state.roomType == "Deluxe" ? " Deluxe Room" : ""}  </p>
                     <p className="lead">Basis: {this.state.basis == "RoomOnly" ? " Room Only" : this.state.basis == "BB" ? " Bed and Breakfast" : this.state.basis == "FB" ? "  Full board" : ""} </p>
-                    <p className="h5"><b>You will have to pay {this.state.totalAmount} LKR upon arrival </b></p>
+                    {this.state.count>=2 ? <p className="h3"><b>We only allow two room reservations per user through online. Please contact the hotel for more reservations </b></p>: <p className="h5"><b>You will have to pay {this.state.totalAmount} LKR upon arrival </b></p>}
                   </div >
                   <div className >
                     {this.state.sendDBroom !== null &&
@@ -269,7 +288,7 @@ export class RoomAvailibilty extends Component {
             </div>
 
 
-            {this.state.sendDBroom && (user ? (<>
+            {this.state.sendDBroom && this.state.count<2 && (user ? (<>
               <div className="col-12 d-flex justify-content-center mt-5 " style={{ marginBottom: "50px" }}>
                 <button className="btn btn-dark btn-lg" onClick={this.bookRoom}>
                   Proceed with the Booking!
@@ -296,17 +315,14 @@ export class RoomAvailibilty extends Component {
             </div>
             }
 
+            {this.state.count>=2 ? 
+            <div className="col-12 d-flex justify-content-center mt-5"  >
+              <button className="btn btn-dark btn-lg" onClick={this.props.history.goBack}>
+                Go back
+              </button>
+              </div>
+              : ""}
 
-
-            {/* ): (
-        <div className="col-12 d-flex justify-content-center mt-5"  >
-
-        <button className="btn btn-dark btn-lg" onClick={this.props.history.goBack}>
-        Click here to check other dates!
-        </button>
-
-        </div>
-      )} */}
           </div>
         </section >
       </div >
