@@ -9,6 +9,9 @@ import Booking from "../Admin/Booking";
 function AdminBooking() {
 
   const [bookings, setbookings] = useState([]);
+  const [duplicateBookings, setDuplicateBookings] = useState([]);
+
+  const [searchKey, setSearchKey] = useState("");
   const [users, setUsers] = useState([]);
 
   // const [roomTypeArray, setRoomTypeArray] = useState([10,20]);
@@ -16,10 +19,10 @@ function AdminBooking() {
   useEffect(async () => {
     try {
       const data = (await axios.get("http://localhost:8070/api/booking/getallbookings")).data;
-
       //console.log(data);
       setbookings(data);
-
+      setDuplicateBookings(data);
+      
       const users = (await axios.get("http://localhost:8070/api/auth/users/getall")).data;
       //console.log(users);
       setUsers(users);
@@ -37,6 +40,11 @@ function AdminBooking() {
     axios.delete(`http://localhost:8070/api/booking/delete/${id}`).then(() => alert("cancellation success")).then(() => { window.location.href = "http://localhost:3000/admin/bookings" });
   }
 
+  function filterSearch(){
+    const tempBookings = duplicateBookings.filter(booking => booking.userName.toLowerCase().includes(searchKey.toLowerCase()))
+    setbookings(tempBookings)
+  }
+
 
   let profit = 0;
   let roomTypeArray = [0, 0, 0]
@@ -49,18 +57,19 @@ function AdminBooking() {
     users.map(user=>{
       if(booking.userId == user._id ){
         booking.userName = user.cusname
+        duplicateBookings.userName = user.cusname
       }
     })
   
     //setting booking basis
     if(booking.basis == "RoomOnly"){
-      booking.basis="Room Only"
+      booking.basisName="Room Only"
     }
     else if(booking.basis == "BB"){
-      booking.basis="Bed and Breakfast"
+      booking.basisName="Bed and Breakfast"
     }
     else if(booking.basis == "FB"){
-      booking.basis=" Full board"
+      booking.basisName=" Full board"
     }
 
 
@@ -93,10 +102,11 @@ function AdminBooking() {
     else if (booking.basis == "FB") {
       roomTypeArray[2] = roomTypeArray[2] + 1
     }
-
+    
   })
-  // console.log(bookingStatusAnalysis)
-  //console.log(roomTypeArray)
+
+  console.log(bookingStatusAnalysis)
+  console.log(roomTypeArray)
 
 
 
@@ -163,7 +173,7 @@ function AdminBooking() {
           booking.room,
           booking.fromDate,
           booking.toDate,
-          booking.basis,
+          booking.basisName,
           booking.totalAmount,
           booking.status
         ];
@@ -191,6 +201,17 @@ function AdminBooking() {
 
         </h5>
 
+        <div className ="container mt-5">
+        <div className ="row justify-content-center">
+        <div className = " col-5">
+        <input type = "text" className = "form-control" 
+          placeholder = "search bookings by user name" value ={searchKey} onChange={(e)=>{setSearchKey(e.target.value)}} onKeyUp = {filterSearch}>
+
+        </input>
+        </div>
+        </div>
+      </div>
+
         <div className="row justify-content-center mt-5 ">
           <table className="table table-bordered table-dark roombox">
             <thead className="roombox thead-dark">
@@ -215,7 +236,7 @@ function AdminBooking() {
                     <td> {booking.room}</td>
                     <td> {booking.fromDate}</td>
                     <td> {booking.toDate}</td>
-                    <td> {booking.basis}</td>
+                    <td> {booking.basisName}</td>
                     <td> {booking.status}</td>
                     <td> {booking.totalAmount} LKR</td>
                     <td>{booking.status == "cancelled" ? "" : <button className="btn btn-warning m-1" onClick={() => deleteBookingHandler(booking._id)}>Cancel</button>}</td>
