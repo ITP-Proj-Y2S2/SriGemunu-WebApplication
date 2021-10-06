@@ -38,7 +38,7 @@ import EditFood from "./RestaurantComponents/EditFood";
 import Menu from "./RestaurantComponents/CustomerRetr";
 
 //Chamudi's imports
-import EmpMain from './Employee/EmployeeMain';
+
 import AddEmployee from './Employee/AddEmployee';
 import GetEmployee from "./Employee/GetEmployee";
 import EditEmployee from "./Employee/EditEmployee";
@@ -131,7 +131,7 @@ function App() {
         <Route path = "/admin/employee/addEmp" exact component={AddEmployee}/>
         <Route path="/admin/employee/getEmp" exact component={GetEmployee} />
         <Route path="/admin/employee/editEmp/:id" exact component={EditEmployee} />
-        <Route path="/admin/employee" exact component={EmpMain} />
+
        
 
 

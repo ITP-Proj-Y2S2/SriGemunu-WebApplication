@@ -9,6 +9,7 @@
 }  */
 
 .formemp{
+  color: white;
   font-size: 1rem;
   width: 100%;
   padding: 15px 20px;
@@ -16,6 +17,7 @@
   border: 2px solid rgb(0, 0, 0);
   border-radius: 4px;
   box-sizing: border-box;
+  background-color: rgb(0, 0, 0);
  
 }
 
