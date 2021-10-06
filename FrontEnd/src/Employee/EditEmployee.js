@@ -170,11 +170,12 @@ export default class EditEmployee extends Component {
         <br/><br/>
         <div className="updateButtonemp">
         
-        <Button type="submit" variant="dark" size="lg">
+        <Button type="submit" variant="warning" size="lg">
           Update Employee
         </Button></div><br/>
       </Form>
       </div>
+      <br/><br/><br/>
     </div>);
   }
 }
