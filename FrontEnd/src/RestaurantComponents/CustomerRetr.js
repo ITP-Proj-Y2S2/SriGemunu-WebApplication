@@ -7,6 +7,13 @@ import {useState} from 'react'
 import "../styles/CustomerRetr.css";
 import Button from 'react-bootstrap/Button';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init({
+  duration : 1500
+});
+
 export default class CustomerRetr extends Component {
 
   constructor(props) {
@@ -40,9 +47,10 @@ export default class CustomerRetr extends Component {
   render() {
     return ( 
     <div className="container">
+      
       <div className="cusdisplay">
-        
-    <table class="table">
+    <h1 data-aos = "fade-up"> IT'S TIME TO INDULGE </h1>
+    <table class="menutable">
       <thead>
         <tr>
           <th>Food Item</th>
@@ -54,6 +62,7 @@ export default class CustomerRetr extends Component {
         {this.DataTable()}
       </tbody>
     </table>
+    
   </div>
   </div>);
   }
