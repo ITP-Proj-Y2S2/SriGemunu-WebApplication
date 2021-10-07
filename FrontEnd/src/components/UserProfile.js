@@ -20,6 +20,15 @@ function UserProfile() {
                     <TabPane tab="Room Bookings" key="2">
                         <UserBookings />
                     </TabPane>
+                    <TabPane tab="Request Maintenance" key="3" >
+                    <div className ="row justify-content-center" style = {{marginBottom :"250px"}}>
+                    <div className ="col-md-8">
+                        <h3 align ="center">Maintenance Request</h3>
+                        <h5 align ="center">You can request a maintenance by visiting the below link</h5>
+                        <button className="btn btn-dark" onClick ={()=>{ window.location.href = "/maintenance/home"}}>Maintenance</button>
+                    </div>
+                   </div>
+                    </TabPane>
                 </Tabs>
             </div>
         </div>
