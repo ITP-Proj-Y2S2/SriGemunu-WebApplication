@@ -6,7 +6,6 @@ import MenuTableRow from './MenuTableRow';
 import "../styles/RetrFood.css";
 import '../RestaurantComponents/ReportGen'
 import jsPDF from 'jspdf';
-
 export default class RetrFood extends Component {
 
   constructor(props) {
@@ -64,7 +63,7 @@ export default class RetrFood extends Component {
   render() {
     return (
     <div className="container">
-      <div className="retrdisplay">
+      <div className="retrdisplay" >
     <table className="table table-borderless table-dark">
       <thead>
         <tr>

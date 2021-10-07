@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import Swal from "sweetalert2"
 import "../styles/AddFood.css";
+
 
 export default class AddFood extends Component {
 
@@ -70,6 +72,11 @@ export default class AddFood extends Component {
       errors.itemNoError = "Item No is a required field !";
     }
 
+    if (this.state.itemno.length > 3) {
+      isError = true;
+      errors.itemNoError = "Item No is only 3 digits !";
+    }
+
     if (this.state.price.length <1) {
       isError = true;
       errors.itemPriceError = "Price is a required field !";
@@ -98,12 +105,21 @@ export default class AddFood extends Component {
 
     axios.post('http://localhost:8070/restaurant/add', foodObject)
       .then(res => {
-          console.log(res.data)
-          alert('Food Item successfully added')
+          /*console.log(res.data)*/
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Food Item successfully added',
+            showConfirmButton: false,
+            timer: 1500
+          })
+         /* alert('Food Item successfully added')*/
         });
         
     this.props.history.push('/restaurant/admin/retrfood')
-    window.location.reload(false);
+    setTimeout(function(){
+      window.location.reload(1);
+   }, 1000);
     this.setState({
         item: '',
         itemCat:'',
