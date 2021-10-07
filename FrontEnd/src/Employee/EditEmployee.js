@@ -14,8 +14,8 @@ export default class EditEmployee extends Component {
     this.onChangelastName = this.onChangelastName.bind(this);
     this.onChangecontactNumber = this.onChangecontactNumber.bind(this);
     this.onChangeaddress = this.onChangeaddress.bind(this);
-    this.onChangeaNIC = this.onChangeNIC.bind(this);
-    this.onChangemail = this.onChangeemail.bind(this);
+    this.onChangeNIC = this.onChangeNIC.bind(this);
+    this.onChangeemail = this.onChangeemail.bind(this);
     this.onChangeemployeeType = this.onChangeemployeeType.bind(this);
     this.onChangesalary = this.onChangesalary.bind(this);
     this.onChangeavailability = this.onChangeavailability.bind(this);
