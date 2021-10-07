@@ -1,10 +1,10 @@
 .addButton{
-  margin-bottom: 250px;
+  margin-bottom: 550px;
   color: #121619;
 }
 
 .addButton Button{
-  margin-left: 50px;
+  float: left;
   background-color: #121619;
   border: none;
   margin-top: 40px;

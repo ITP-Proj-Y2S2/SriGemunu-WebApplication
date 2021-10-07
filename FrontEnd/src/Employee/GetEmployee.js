@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import EmployeeTable from './EmployeeTable';
+import './RepEmployee'
+import jsPDF from 'jspdf';
 import "../styles/GetEmployee.css";
 export default class GetEmployee extends Component {
 
@@ -34,6 +36,26 @@ export default class GetEmployee extends Component {
     });
   }
 
+  jspdfgenerator = (items) => {
+
+    var doc = new jsPDF('p','pt');
+
+    const tableColumn = [ "firstName","contactNumber","email","employeeType","salary"];
+    const tableRows = [];
+    this.state.items.map((items) => {
+        const itemDetails = [
+          items.firstName,
+          items.contactNumber,
+          items.email,
+          items.employeeType,
+          items.salary
+        ];
+        tableRows.push(itemDetails);
+      });
+    doc.text("Employee Details", 14, 22).setFontSize(12);
+    doc.autoTable(tableColumn, tableRows, {styles: { fontSize: 12, halign: "center" },startY: 35, });
+    doc.save("Employee.pdf");
+  }
 
   render() {
     return (<div className="container mt-5 pt-5">
@@ -55,7 +77,8 @@ export default class GetEmployee extends Component {
         {this.DataTable()}
       </tbody>
     </table><div className="contemp">
-    <Link to={"/admin/employee/addEmp"}><Button size="lg" variant="dark" >Add New</Button>{' '}</Link>
+    <Link to={"/admin/employee/addEmp"}><Button size="lg" variant="warning" >Add New</Button>{' '}</Link>
+    <Button  variant="dark" size="lg"  onClick={this.jspdfgenerator}>Generate Report</Button>
   </div></div>);
   }
 }

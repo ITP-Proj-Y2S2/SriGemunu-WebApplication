@@ -1,4 +1,4 @@
-.about {
+.contact {
   width: 100%;
   height: 90vh;
   display: flex;
@@ -6,7 +6,7 @@
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.aboutTop {
+.contacttop {
   width: 100%;
   height: 45%;
   background-position: center;
@@ -15,7 +15,7 @@
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.aboutBottom {
+.contact {
   display: flex;
   flex-direction: column;
   height: 55%;
@@ -23,13 +23,7 @@
   margin-top: 90px;
 }
 
-.aboutBottom p {
-  width: 1200px;
-  margin-top: 20px;
-  font-size: 20px;
-}
-
-.about .aboutBottom h1 {
+.contact .contactBottom h1 {
   font-weight: 400;
   font-size: 70px;
   color: black;

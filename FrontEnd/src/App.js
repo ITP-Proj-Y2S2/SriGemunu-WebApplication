@@ -38,7 +38,7 @@ import EditFood from "./RestaurantComponents/EditFood";
 import Menu from "./RestaurantComponents/CustomerRetr";
 
 //Chamudi's imports
-import EmpMain from './Employee/EmployeeMain';
+
 import AddEmployee from './Employee/AddEmployee';
 import GetEmployee from "./Employee/GetEmployee";
 import EditEmployee from "./Employee/EditEmployee";
@@ -79,6 +79,11 @@ import TempChart from './components/AdminRevenue/TempChart'
 
 //import Motion from './components/AdminRevenue/Motion';
 
+//shehans 
+import YourRequests from './Maintenance/YourRequests';
+import UpdateForm from './Maintenance/UpdateForm';
+import MaintainHome from './Maintenance/MaintainHome';
+import Form from './Maintenance/Form';
 
 
 
@@ -131,7 +136,7 @@ function App() {
         <Route path = "/admin/employee/addEmp" exact component={AddEmployee}/>
         <Route path="/admin/employee/getEmp" exact component={GetEmployee} />
         <Route path="/admin/employee/editEmp/:id" exact component={EditEmployee} />
-        <Route path="/admin/employee" exact component={EmpMain} />
+
        
 
 
@@ -156,6 +161,12 @@ function App() {
         <Route path="/admin/revenue/ViewInvoice/CustomerInvoice/:id/Update" exact component={Update}/>  
         <Route path="/admin/revenue/TempChart" exact component={TempChart}/>
 
+
+    {/* Shehan */}
+          <Route path="/maintenance/home" exact component={MaintainHome} />
+          <Route path="/maintenance/form" exact component={Form} />
+          <Route path="/maintenance/yourposts" exact component={YourRequests} />
+          <Route path="/maintenance/update/:id" exact component={UpdateForm} />
     
     
 
