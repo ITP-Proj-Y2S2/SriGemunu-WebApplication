@@ -182,8 +182,9 @@ function AdminBooking() {
       doc.text("Sri Gemunu Beach Resort ", 14, 15).setFontSize(15);
     doc.text("Room Bookings ", 14, 22).setFontSize(12);
     doc.autoTable(tableColumn, tableRows, {
-      styles: { fontSize: 12, halign: "center" },
-      startY: 35,
+      styles: { fontSize: 12, halign: "center" , cellWidth: 'wrap'},
+      theme : "grid",
+      startY: 30,
     });
     window.open(URL.createObjectURL(doc.output("blob")));
     doc.save("booking_Report.pdf");
