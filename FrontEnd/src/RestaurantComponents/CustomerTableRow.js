@@ -10,7 +10,7 @@ export default class MenuTableRow extends Component {
             <tr>
                 <td>{this.props.obj.item}</td>
                 <td>{this.props.obj.itemCat}</td>
-                <td>{this.props.obj.price}</td>
+                <td>LKR {this.props.obj.price}</td>
             </tr>
         );
     }

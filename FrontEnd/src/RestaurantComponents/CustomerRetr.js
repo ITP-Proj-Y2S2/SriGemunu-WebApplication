@@ -51,7 +51,7 @@ export default class CustomerRetr extends Component {
     <div className="container">
       
       <div className="cusdisplay">
-    <h1 class=" mb-4" data-aos = "fade-right"> IT'S TIME TO INDULGE </h1>
+    <h1 class=" mb-4" data-aos = "fade-right"> Good food and Great vibes....</h1>
     <table class="menutable" data-aos="fade-up"
      data-aos-duration="1500">
       <thead>
