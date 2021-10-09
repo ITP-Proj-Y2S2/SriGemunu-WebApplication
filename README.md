@@ -11,20 +11,20 @@ for special occasions such as weddings and birthday parties. This web applicatio
 interface for both clients and admin to manage their specific functions and store their data in a real time database.
 
 
-### Features :
+### Tools and Technologies :
 
 * MERN stack as the main technology
 
-> No SQL, document databse in MongoDB
+> MongoDB - No SQL database
 >
-> Express.js for backend framewrok in node.js
+> Express Js - Node.js web framework
 > 
-> Bootstrapped with Create React App.
+> React Js - client-side JavaScript framework
 > 
-> premier JavaScript web server, Nodejs
+> Node Js -  JavaScript web server
 
-* Visual Studio Code as the development environment
-* Github as internet hosting provider
+* Visual Studio Code as the code editor for development
+* Git/Github as version control system
 
 ### Contributors :
 
