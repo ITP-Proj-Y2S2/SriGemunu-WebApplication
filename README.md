@@ -4,6 +4,12 @@
 
 _Hotel Management Web Application for the Sri Gemunu Beach Resort (ITP project)_
 
+### Description :
+Sri Gemunu Beach Resort is a beach front hotel situated in the Southern coast of Sri Lanka. 
+Currently the hotel has few rooms operating with a restaurant and a bar. The hotel premises is available
+for special occasions such as weddings and birthday parties. This web application provides a user- friendly 
+interface for both clients and admin to manage their specific functions and store their data in a real time database.
+
 
 ### Features :
 
@@ -29,6 +35,7 @@ _Hotel Management Web Application for the Sri Gemunu Beach Resort (ITP project)_
 * [Yasas Abhishek ](https://github.com/YasasAbhishek)
 * [Chamudi R Wijesekera ](https://github.com/ChamudiRW)
 * [Shehan Jayesingha ](https://github.com/ShehanCes)
+
 
 
 
