@@ -1,18 +1,24 @@
-# Hotel Management Web Application for the Sri Gemunu Beach Resort
+# Sri Gemunu Beach Resort
 
+![logo2](https://user-images.githubusercontent.com/75931718/136669853-32a27203-a4ac-445a-91cc-f65f3b1df9b4.png)
+
+_Hotel Management Web Application for the Sri Gemunu Beach Resort (ITP project)_
 
 
 ### Features :
 
-* Used MERN stack technology
+* MERN stack as the main technology
 
 > No SQL, document databse in MongoDB
 >
 > Express.js for backend framewrok in node.js
 > 
-> React Bootstrap for clientside JS framework
+> Bootstrapped with Create React App.
 > 
 > premier JavaScript web server, Nodejs
+
+* Visual Studio Code as the development environment
+* Github as internet hosting provider
 
 ### Contributors :
 
