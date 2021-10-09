@@ -36,6 +36,8 @@ export default class RetrFood extends Component {
     });
   }
 
+  
+
   jspdfgenerator = (items) => {
 
     var doc = new jsPDF('p','pt');
@@ -53,13 +55,15 @@ export default class RetrFood extends Component {
       });
     doc.text("Restaurant Food Entries", 14, 22).setFontSize(12);
     doc.autoTable(tableColumn, tableRows, {styles: { fontSize: 12, halign: "center" },startY: 35, });
-    doc.save("generated.pdf");
+    doc.save("Food_Entries.pdf");
   }
+
+  
 
   render() {
     return (
     <div className="container">
-      <div className="retrdisplay">
+      <div className="retrdisplay" >
     <table className="table table-borderless table-dark">
       <thead>
         <tr>

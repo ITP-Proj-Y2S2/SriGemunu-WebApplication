@@ -74,3 +74,8 @@ app.post("/viewall", (req, res) => {
     res.status(200).send(req.body);
     console.log(req.body);
   });
+
+  //shehan's import
+  const maintenanceRouter = require ("./routes/Maintenances.js");
+
+app.use("/maintenance", maintenanceRouter);

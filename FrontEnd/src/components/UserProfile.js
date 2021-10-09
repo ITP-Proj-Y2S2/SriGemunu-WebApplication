@@ -20,17 +20,14 @@ function UserProfile() {
                     <TabPane tab="Room Bookings" key="2">
                         <UserBookings />
                     </TabPane>
-                    <TabPane tab="Special Occassion Bookings" key="3">
-                        <div class="container" style = {{marginBottom : "600px"}}>
-                            <div class="row row justify-content-center">
-                                <div class="col align-self-center">
-                                <h3>Special Occassion Bookings</h3>
-                                <button className="btn btn-dark btn-lg btn-block" onClick={() => { window.location.href = "http://localhost:3000/specialoccasion/OccasionHome/ViewOccasion" }}>View All Your Occasions!</button>
-                                </div>
-                            </div>
-                        </div>
-
-
+                    <TabPane tab="Request Maintenance" key="3" >
+                    <div className ="row justify-content-center" style = {{marginBottom :"250px"}}>
+                    <div className ="col-md-8">
+                        <h3 align ="center">Maintenance Request</h3>
+                        <h5 align ="center">You can request a maintenance by visiting the below link</h5>
+                        <button className="btn btn-dark" onClick ={()=>{ window.location.href = "/maintenance/home"}}>Maintenance</button>
+                    </div>
+                   </div>
                     </TabPane>
                 </Tabs>
             </div>
@@ -90,7 +87,7 @@ export function UserBookings() {
                 <h3  align = "center">Hello, {user.cusname}!</h3>
                 <h5  align = "center">You can find all your bookings below</h5>
             </div>
-            <div className="row justify-content-center">
+            <div className="row justify-content-center" style ={{marginBottom: "300px"}}>
                 <div class="col-md-8">
 
                     {bookings && (bookings.map(booking => {

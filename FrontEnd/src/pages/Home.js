@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import BannerImage from "../resources/banner2blur.jpg";
 import Sidebar from "../RestaurantComponents/Sidebar"
 import { GiHamburgerMenu } from 'react-icons/gi'
+
 import {useState} from 'react'
 import "../styles/Home.css";
 

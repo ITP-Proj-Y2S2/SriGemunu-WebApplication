@@ -14,8 +14,8 @@ export default class EditEmployee extends Component {
     this.onChangelastName = this.onChangelastName.bind(this);
     this.onChangecontactNumber = this.onChangecontactNumber.bind(this);
     this.onChangeaddress = this.onChangeaddress.bind(this);
-    this.onChangeaNIC = this.onChangeNIC.bind(this);
-    this.onChangemail = this.onChangeemail.bind(this);
+    this.onChangeNIC = this.onChangeNIC.bind(this);
+    this.onChangeemail = this.onChangeemail.bind(this);
     this.onChangeemployeeType = this.onChangeemployeeType.bind(this);
     this.onChangesalary = this.onChangesalary.bind(this);
     this.onChangeavailability = this.onChangeavailability.bind(this);
@@ -122,7 +122,7 @@ export default class EditEmployee extends Component {
   render() {
     return (<div className="form-wrapper">
     <div className="container mt-5 pt-5">
-      <Form onSubmit={this.onSubmit}>
+      <Form onSubmit={this.onSubmit} className = "formemp">
       <Form.Group controlId="firstName">
           <Form.Label>firstName</Form.Label>
           <Form.Control type="text" value={this.state.firstName} onChange={this.onChangefirstName} />
@@ -167,14 +167,15 @@ export default class EditEmployee extends Component {
           <Form.Label>availability</Form.Label>
           <Form.Control type="text" value={this.state.availability} onChange={this.onChangeavailability} />
         </Form.Group>
-
-        <div className="updateButton">
+        <br/><br/>
+        <div className="updateButtonemp">
         
-        <Button type="submit" variant="flat" size="m">
+        <Button type="submit" variant="warning" size="lg">
           Update Employee
-        </Button></div>
+        </Button></div><br/>
       </Form>
       </div>
+      <br/><br/><br/>
     </div>);
   }
 }
